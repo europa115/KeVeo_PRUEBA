@@ -5,6 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -31,11 +32,11 @@ public class User implements Serializable {
     private String userEmail;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<Role> roles;
+    private List<Role> roles= new ArrayList<>();
 
     //******************************************Constructors************************************************************
     public User(String userName, String password, Date date, boolean active, String userSurname,
-                String userEmail, List roles) {
+                String userEmail, List <Role>roles) {
         this.userName = userName;
         this.password = password;
         this.date = date;

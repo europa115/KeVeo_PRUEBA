@@ -2,11 +2,12 @@ package com.example.KeVeo.data.repository;
 
 import com.example.KeVeo.data.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public interface UserRepository extends JpaRepository <User, Integer> {
-
+   //@Query("SELECT u FROM User u WHERE userEmail = ?1")
    public User findByUserEmail(String useremail);
 
    User findByUserNameAndActiveTrue(String username);

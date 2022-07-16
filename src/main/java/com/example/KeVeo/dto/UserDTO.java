@@ -10,6 +10,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -28,12 +29,12 @@ public class UserDTO implements Serializable {
     private boolean active;
     private String userSurname;
     private String userEmail;
-    private List roles;
+    private List <Role>roles=new ArrayList<>();
 
 
     //****************************************CONSTRUCTORS**************************************************************
 
-    public UserDTO(String userName, String password, Date date, boolean active, String userSurname, String userEmail, List roles) {
+    public UserDTO(String userName, String password, Date date, boolean active, String userSurname, String userEmail, List<Role> roles) {
         this.userName = userName;
         this.password = password;
         this.date = date;
@@ -42,6 +43,8 @@ public class UserDTO implements Serializable {
         this.userEmail = userEmail;
         this.roles = roles;
     }
-
+    public void addRole(Role role) {
+        this.roles.add(role);
+    }
 
 }
