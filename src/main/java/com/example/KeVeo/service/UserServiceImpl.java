@@ -18,7 +18,7 @@ import java.util.Collection;
 import java.util.stream.Collectors;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl /*implements UserService*/ {
 
     private UserRepository userRepository;
 
@@ -37,7 +37,7 @@ public class UserServiceImpl implements UserService {
         User user = new User(userDTO.getUserName(),
                 passwordEncoder.encode(userDTO.getPassword()),
                 userDTO.getDate(),
-                true,
+                userDTO.isActive(),
                 userDTO.getUserSurname(),
                 userDTO.getUserEmail(),
                 userDTO.getRoles());
@@ -45,13 +45,10 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
     }
 
-
-
     public void save(User user) {
 
         encodePassword(user);
         userRepository.save(user);
-
 
     }
 
@@ -60,16 +57,16 @@ public class UserServiceImpl implements UserService {
         user.setPassword(encodedPassword);
     }
 
-    @Override
+    /*@Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User usuario = userRepository.findByUserEmail(username);
         if(usuario == null) {
-            throw new UsernameNotFoundException("Usuario o password inválidos");
+            throw new UsernameNotFoundException("Email o password inválidos");
         }
         return new org.springframework.security.core.userdetails.User(usuario.getUserEmail(),usuario.getPassword(), mapearAutoridadesRoles(usuario.getRoles()));
     }
 
     private Collection<? extends GrantedAuthority> mapearAutoridadesRoles(Collection<Role> roles){
         return roles.stream().map(role -> new SimpleGrantedAuthority(role.getRoleName())).collect(Collectors.toList());
-    }
+    }*/
 }

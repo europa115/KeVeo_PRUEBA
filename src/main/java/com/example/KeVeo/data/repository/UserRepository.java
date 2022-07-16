@@ -6,11 +6,10 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRepository extends JpaRepository <User, Integer> {
-   //@Query("SELECT u FROM User u WHERE userEmail = ?1")
-   public User findByUserEmail(String useremail);
+public interface UserRepository extends JpaRepository<User, Integer> {
+    //@Query("SELECT u FROM User u WHERE userEmail = ?1")
+    public User findByUserEmail(String useremail);
 
-   User findByUserNameAndActiveTrue(String username);
-
+    User findByUserNameAndActiveTrue(String username);
 
 }

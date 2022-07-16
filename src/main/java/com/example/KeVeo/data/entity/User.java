@@ -32,11 +32,11 @@ public class User implements Serializable {
     private String userEmail;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<Role> roles= new ArrayList<>();
+    private List<Role> roles;
 
     //******************************************Constructors************************************************************
     public User(String userName, String password, Date date, boolean active, String userSurname,
-                String userEmail, List <Role>roles) {
+                String userEmail, List<Role> roles) {
         this.userName = userName;
         this.password = password;
         this.date = date;

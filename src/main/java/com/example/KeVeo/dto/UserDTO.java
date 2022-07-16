@@ -29,7 +29,7 @@ public class UserDTO implements Serializable {
     private boolean active;
     private String userSurname;
     private String userEmail;
-    private List <Role>roles=new ArrayList<>();
+    private List<Role> roles = new ArrayList<>();
 
 
     //****************************************CONSTRUCTORS**************************************************************
@@ -43,8 +43,6 @@ public class UserDTO implements Serializable {
         this.userEmail = userEmail;
         this.roles = roles;
     }
-    public void addRole(Role role) {
-        this.roles.add(role);
-    }
+
 
 }
