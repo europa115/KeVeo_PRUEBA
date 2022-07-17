@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class RoleServiceMapper extends AbstractServiceMapper<Role, RoleDTO> {
 
+    //*********Falta registerDate en todos los mapper***********************************************
+
     public Role toEntity(RoleDTO dto) {
         final Role entity = new Role();
         entity.setId(dto.getId());

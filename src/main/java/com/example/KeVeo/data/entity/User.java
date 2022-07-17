@@ -5,7 +5,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -24,8 +25,9 @@ public class User implements Serializable {
     @Column(nullable = false)
     private String password;
     @Temporal(TemporalType.DATE)
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    //@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private Date date;
+    private ZonedDateTime registerDate;
     @Basic(optional = false)
     private boolean active;
     private String userSurname;
@@ -35,11 +37,12 @@ public class User implements Serializable {
     private List<Role> roles;
 
     //******************************************Constructors************************************************************
-    public User(String userName, String password, Date date, boolean active, String userSurname,
+    public User(String userName, String password, Date date, ZonedDateTime registerDate, boolean active, String userSurname,
                 String userEmail, List<Role> roles) {
         this.userName = userName;
         this.password = password;
         this.date = date;
+        this.registerDate=registerDate;
         this.active = active;
         this.userSurname = userSurname;
         this.userEmail = userEmail;

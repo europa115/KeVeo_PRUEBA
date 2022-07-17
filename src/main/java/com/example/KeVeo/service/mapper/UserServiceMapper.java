@@ -27,7 +27,7 @@ public class UserServiceMapper extends AbstractServiceMapper<User, UserDTO> {
         entity.setPassword(dto.getPassword());
         entity.setActive(dto.isActive());
         entity.setUserEmail(dto.getUserEmail());
-        entity.setDate(dto.getDate());
+       // entity.setDate(dto.getDate());
        // entity.setRoles(this.roleServiceMapper.toEntity(new ArrayList<>(dto.getRoles())));
 
         return entity;
@@ -44,7 +44,7 @@ public class UserServiceMapper extends AbstractServiceMapper<User, UserDTO> {
         dto.setPassword(dto.getPassword());
         dto.setActive(dto.isActive());
         dto.setUserEmail(dto.getUserEmail());
-        dto.setDate(dto.getDate());
+        //dto.setDate(dto.getDate());
         //dto.setRoles(this.roleServiceMapper.toDto(new ArrayList<>(entity.getRoles())));
 
         return dto;

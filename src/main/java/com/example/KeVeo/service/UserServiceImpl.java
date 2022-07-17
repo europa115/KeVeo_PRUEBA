@@ -5,17 +5,10 @@ import com.example.KeVeo.data.entity.User;
 import com.example.KeVeo.data.repository.RoleRepository;
 import com.example.KeVeo.data.repository.UserRepository;
 import com.example.KeVeo.dto.UserDTO;
+import com.example.KeVeo.utils.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-
-import java.util.Collection;
-import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl /*implements UserService*/ {
@@ -36,7 +29,8 @@ public class UserServiceImpl /*implements UserService*/ {
         Role roleUser = roleRepo.findByRoleName("ROLE_USER");
         User user = new User(userDTO.getUserName(),
                 passwordEncoder.encode(userDTO.getPassword()),
-                userDTO.getDate(),
+                DateUtil.stringToDateSimple(userDTO.getDate()),
+                userDTO.getRegisterDate(),
                 userDTO.isActive(),
                 userDTO.getUserSurname(),
                 userDTO.getUserEmail(),
