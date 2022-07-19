@@ -1,7 +1,7 @@
 package com.example.KeVeo.web.controller;
 
 import com.example.KeVeo.dto.UserDTO;
-import com.example.KeVeo.service.UserServiceImpl;
+import com.example.KeVeo.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/register")
 public class RegisterUserController {
 
-   private UserServiceImpl userService;
+   private UserService userService;
 
     //Aquí, en vez de esta linea es mejor utilizar @Autowired
-    public  RegisterUserController(UserServiceImpl userService){this.userService=userService;}
+    public  RegisterUserController(UserService userService){this.userService=userService;}
 
 
     @ModelAttribute("user")

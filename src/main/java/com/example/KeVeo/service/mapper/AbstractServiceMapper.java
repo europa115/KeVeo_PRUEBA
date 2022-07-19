@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public abstract class AbstractServiceMapper<E, DTO> {
+
     public abstract E toEntity(DTO dto);
 
     public abstract DTO toDto(E e);

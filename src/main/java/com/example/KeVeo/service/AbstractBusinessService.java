@@ -1,6 +1,5 @@
 package com.example.KeVeo.service;
 
-
 import com.example.KeVeo.service.mapper.AbstractServiceMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -11,8 +10,8 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 public abstract class AbstractBusinessService<E, ID, DTO, REPO extends JpaRepository<E, ID>, MAPPER extends AbstractServiceMapper<E, DTO>> {
-    private final REPO repository;
-    private final MAPPER serviceMapper;
+    private REPO repository;
+    private MAPPER serviceMapper;
 
     protected AbstractBusinessService(REPO repository,
                                       MAPPER serviceMapper) {
@@ -37,7 +36,6 @@ public abstract class AbstractBusinessService<E, ID, DTO, REPO extends JpaReposi
         final E savedEntity = this.repository.save(entity);
         return this.serviceMapper.toDto(savedEntity);
     }
-
     public void delete(ID id) {
         this.repository.deleteById(id);
     }
