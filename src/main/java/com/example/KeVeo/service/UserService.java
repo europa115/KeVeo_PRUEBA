@@ -5,18 +5,18 @@ import com.example.KeVeo.data.entity.User;
 import com.example.KeVeo.data.repository.RoleRepository;
 import com.example.KeVeo.data.repository.UserRepository;
 import com.example.KeVeo.dto.UserDTO;
-import com.example.KeVeo.service.mapper.MapperUser;
+import com.example.KeVeo.service.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserService extends AbstractBusinessService<User, Integer, UserDTO, UserRepository, MapperUser> {
+public class UserService extends AbstractBusinessService<User, Integer, UserDTO, UserRepository, UserMapper> {
     private RoleRepository roleRepository;
     private PasswordEncoder passwordEncoder;
 
     @Autowired
-    protected UserService(UserRepository repository, MapperUser serviceMapper, RoleRepository roleRepository,
+    protected UserService(UserRepository repository, UserMapper serviceMapper, RoleRepository roleRepository,
                           PasswordEncoder passwordEncoder) {
         super(repository, serviceMapper);
 
