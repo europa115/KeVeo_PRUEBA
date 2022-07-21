@@ -31,7 +31,6 @@ public class UserService extends AbstractBusinessService<User, Integer, UserDTO,
         save(entity);
 
     }
-
     public void save(User user) {
 
         user.setActive(true);
@@ -39,7 +38,6 @@ public class UserService extends AbstractBusinessService<User, Integer, UserDTO,
         getRepository().save(user);
 
     }
-
     private void encodePassword(User user) {
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
