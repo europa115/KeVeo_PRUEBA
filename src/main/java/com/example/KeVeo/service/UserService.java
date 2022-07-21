@@ -28,11 +28,13 @@ public class UserService extends AbstractBusinessService<User, Integer, UserDTO,
         Role roleUser = roleRepository.findByRoleName("ROLE_USER");
         User entity=getServiceMapper().toEntity(userDTO);
         entity.addRole(roleUser);
-        encodePassword(entity);
-        getRepository().save(entity);
+        save(entity);
+
     }
 
     public void save(User user) {
+
+        user.setActive(true);
         encodePassword(user);
         getRepository().save(user);
 

@@ -1,6 +1,7 @@
 package com.example.KeVeo.data.entity;
 
 import lombok.*;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -52,5 +53,6 @@ public class User implements Serializable {
     public void addRole(Role role) {
         this.roles.add(role);
     }
+
 
 }
