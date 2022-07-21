@@ -1,13 +1,74 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<meta charset="utf-8">
-	<title>Welcome to CodeJava Home</title>
-	<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
-	<script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
-	<script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+    <meta charset="utf-8">
+    <title>Welcome to CodeJava Home</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var menudd = Cookies.get('menu-dd');
+
+            if (menudd != null) {
+                $("#" + menudd).addClass("active");
+            } else {
+                Cookies.set('menu-dd', "user");
+            }
+
+            $(".treeview").each(function () {
+                $(this).click(function () {
+                    $(this.id).addClass("active");
+                    $("#" + Cookies.get('menu-dd')).removeClass("active");
+                    Cookies.set('menu-dd', this.id);
+                });
+            });
+
+            $('.datetimepicker').datetimepicker({
+                "allowInputToggle": true,
+                "showClose": true,
+                "showClear": true,
+                "showTodayButton": true,
+                "format": "YYYY-MM-DD HH:mm:ss",
+            });
+        });
+
+    </script>
+
 </head>
 <body>
-		<h1>Estas dentro de KeVeo</h1>
+
+<div class="container text-center">
+
+    <div>
+        <h1>Estas dentro de KeVeo</h1>
+
+        <form th:action="@{/logout}" method="post">
+
+            <input type="submit" value="Sign Out"/>
+        </form>
+
+    </div>
+
+</div>
+<section class="sidebar">
+
+    <!-- Sidebar user panel (optional) -->
+    <div class="user-panel">
+    </div>
+
+    <!-- Sidebar Menu -->
+    <ul class="sidebar-menu">
+        <li class="treeview" th:each="menuItem : ${menuList}">
+            <a th:href="${menuItem.url}" th:text="${menuItem.description}"></a>
+        </li>
+    </ul>
+    <!-- /.sidebar-menu -->
+
+    <div align="bottom" class="bottom">
+
+    </div>
+
+</section>
 </body>
 </html>

@@ -27,6 +27,6 @@ public class GestionUserService extends AbstractBusinessService<User,Integer,Use
     }
 
     public Page<UserDTO> findAll(Integer userId, Pageable pageable) {
-        return getRepository().findByUserId(userId, pageable).map(getServiceMapper()::toDto);
+        return getRepository().findAll(pageable).map(getServiceMapper()::toDto);
     }
 }

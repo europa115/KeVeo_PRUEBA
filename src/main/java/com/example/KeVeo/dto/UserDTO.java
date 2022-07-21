@@ -28,18 +28,4 @@ public class UserDTO implements Serializable {
     private List<Role> roles = new ArrayList<>();
 
 
-    //****************************************CONSTRUCTORS**************************************************************
-
-    public UserDTO(String userName, String password, String date, ZonedDateTime registerDate, boolean active, String userSurname, String userEmail, List<Role> roles) {
-        this.userName = userName;
-        this.password = password;
-        this.date = date;
-        this.registerDate=registerDate;
-        this.active = active;
-        this.userSurname = userSurname;
-        this.userEmail = userEmail;
-        this.roles = roles;
-    }
-
-
 }
