@@ -42,13 +42,13 @@ public class GestionUserController extends AbstractController<UserDTO>{
     public String getAll(@RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size,
                          Model model) {
         final User user = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-        final Page<UserDTO> all = this.userService.findAll(PageRequest.of(page.orElse(1) - 1,
+        final Page<UserDTO> listUsers = this.userService.findAll(PageRequest.of(page.orElse(1) - 1,
                 size.orElse(10)));
         model
                 .addAttribute("username", user.getUserName())
-                .addAttribute("users", all)
-                .addAttribute(pageNumbersAttributeKey, getPageNumbers(all));
-        return "gestionUser/list";
+                .addAttribute("listUsers", listUsers)
+                .addAttribute(pageNumbersAttributeKey, getPageNumbers(listUsers));
+        return "gestionUser";
     }
     @GetMapping("/gestionUser/{id}/edit")
     @PostAuthorize("hasRole('ROLE_ADMIN') ")
