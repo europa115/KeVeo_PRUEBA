@@ -2,10 +2,14 @@ package com.example.KeVeo.web.controller;
 
 
 
+import com.example.KeVeo.data.entity.Role;
 import com.example.KeVeo.data.entity.User;
+import com.example.KeVeo.data.repository.RoleRepository;
+import com.example.KeVeo.dto.RoleDTO;
 import com.example.KeVeo.dto.UserDTO;
 import com.example.KeVeo.service.MenuService;
 import com.example.KeVeo.service.UserService;
+import com.example.KeVeo.service.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
@@ -29,12 +33,18 @@ import java.util.Optional;
 public class GestionUserController extends AbstractController<UserDTO>{
 
     private UserService userService;
+    private RoleRepository roleRepository;
+
+    private UserMapper userMapper;
 
 
     @Autowired
-    protected GestionUserController(MenuService menuService,UserService userService) {
+    protected GestionUserController(MenuService menuService,UserService userService,RoleRepository roleRepository,
+                                    UserMapper userMapper) {
         super(menuService);
         this.userService=userService;
+        this.roleRepository=roleRepository;
+        this.userMapper=userMapper;
     }
 
 
@@ -48,12 +58,16 @@ public class GestionUserController extends AbstractController<UserDTO>{
                 .addAttribute("username", user.getUserName())
                 .addAttribute("listUsers", listUsers)
                 .addAttribute(pageNumbersAttributeKey, getPageNumbers(listUsers));
-        return "gestionUser";
+        return "gestionUser/listUser";
     }
-    @GetMapping("/gestionUser/{id}/edit")
-    @PostAuthorize("hasRole('ROLE_ADMIN') ")
-    public String edit(@PathVariable("id") Integer id, ModelMap model) {
-        model.addAttribute("user", this.userService.findById(id).get());
+    @GetMapping("/gestionUser/edit/{id}")
+        public String edit(@PathVariable("id") Integer id, ModelMap model) {
+        UserDTO userDto = userService.findById(id).get();
+        User user= userMapper.toEntity(userDto);
+        List<Role> listRoles = userService.listRoles();
+        model.addAttribute("user", user);
+        model.addAttribute("listRoles", listRoles);
+
         return "gestionUser/edit";
     }
 
@@ -74,7 +88,9 @@ public class GestionUserController extends AbstractController<UserDTO>{
     }
 
     @PostMapping("/gestionUser/save")
-    public String saveUser(User user) {
+    public String saveUser(UserDTO userDto) {
+
+        User user=userMapper.toEntity(userDto);
         userService.save(user);
 
         return "redirect:/gestionUser";

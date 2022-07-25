@@ -26,7 +26,7 @@ public class User implements Serializable {
     @Column(nullable = false)
     private String password;
     @Temporal(TemporalType.DATE)
-    //@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private Date date;
     private ZonedDateTime registerDate;
     @Basic(optional = false)
