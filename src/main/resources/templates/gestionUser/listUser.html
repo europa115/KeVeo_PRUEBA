@@ -45,6 +45,7 @@
 <br>
 
 <div class="container">
+    <form action="#" class="form" th:action="@{'/'}" method="post">
     <br>
     <h1>
         GESTIÓN DE USUARIOS
@@ -72,12 +73,23 @@
             <td th:text="${user.userSurname}">Apellidos</td>
             <td th:text="${user.date}">Fecha de Naciento</td>
             <td th:text="${user.roles}">Roles</td>
-            <td><a th:href="@{'/gestionUser/edit/' + ${user.id}}">Edit</a></td>
-            <td><a th:href="@{'/gestionUser/delete/' + ${user.id}}">Delete</a></td>
+            <td><a th:href="@{'/gestionUser/edit/' + ${user.id}}">
+                <button  type="button" class="btn btn-primary">Edit</button>
+            </a></td>
+            <td> <button class="btn btn-danger" type="submit" value="Delete"
+                          th:formaction="'/gestionUser/' + ${user.id} + '/delete'">
+                <span class="glyphicon glyphicon-trash"></span>
+            </button>
+                </td>
         </tr>
         </tbody>
     </table>
+    </form>
 </div>
+
+
+<!--"@{'/gestionUser/delete/' + ${user.id}}"-->
+
 
 
 

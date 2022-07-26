@@ -34,7 +34,7 @@ public class CustomUserAuthenticationProvider implements AuthenticationProvider 
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         final UsernamePasswordAuthenticationToken token = (UsernamePasswordAuthenticationToken) authentication;
 
-        final User user = token.getName() == null ? null : userRepository.findByUserEmail(token.getName());
+        final User user = token.getName() == null ? null : userRepository.findByUserEmailAndActiveTrue(token.getName());
         if (user == null) {
             throw new UsernameNotFoundException("Invalid username/password");
         }
