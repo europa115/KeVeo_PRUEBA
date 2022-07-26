@@ -12,10 +12,10 @@ public interface UserRepository extends JpaRepository<User, Integer> {
    // @Query("SELECT u FROM User u WHERE userEmail = ?1")
     public User findByUserEmailAndActiveTrue(String useremail);
 
-    User findByUserNameAndActiveTrue(String username);
+    //User findByUserNameAndActiveTrue(String username);
 
    // Page<User> findByUserId(Pageable pageable);
 
-    Page<User> findAll(Pageable pageable);
+    Page<User> findByActiveTrue(Pageable pageable);
 
 }
