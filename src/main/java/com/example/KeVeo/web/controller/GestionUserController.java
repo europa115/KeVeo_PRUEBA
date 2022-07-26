@@ -36,7 +36,6 @@ public class GestionUserController extends AbstractController<UserDTO>{
     private UserService userService;
     private RoleRepository roleRepository;
     private UserMapper userMapper;
-
     private UserRepository userRepository;
 
 
