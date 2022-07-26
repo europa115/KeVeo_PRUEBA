@@ -5,6 +5,7 @@ package com.example.KeVeo.web.controller;
 import com.example.KeVeo.data.entity.Role;
 import com.example.KeVeo.data.entity.User;
 import com.example.KeVeo.data.repository.RoleRepository;
+import com.example.KeVeo.data.repository.UserRepository;
 import com.example.KeVeo.dto.RoleDTO;
 import com.example.KeVeo.dto.UserDTO;
 import com.example.KeVeo.service.MenuService;
@@ -34,17 +35,19 @@ public class GestionUserController extends AbstractController<UserDTO>{
 
     private UserService userService;
     private RoleRepository roleRepository;
-
     private UserMapper userMapper;
+
+    private UserRepository userRepository;
 
 
     @Autowired
     protected GestionUserController(MenuService menuService,UserService userService,RoleRepository roleRepository,
-                                    UserMapper userMapper) {
+                                    UserMapper userMapper,UserRepository userRepository) {
         super(menuService);
         this.userService=userService;
         this.roleRepository=roleRepository;
         this.userMapper=userMapper;
+        this.userRepository=userRepository;
     }
 
 
@@ -71,10 +74,15 @@ public class GestionUserController extends AbstractController<UserDTO>{
         return "gestionUser/edit";
     }
 
+//El metodo de borrar no esta hecho exactamente para borrar sino lo que hace es cambiar la actividad a 0/false
     @PostMapping({ "/gestionUser/{id}/delete" })
     public Object delete(@PathVariable(value = "id") Integer id, SessionStatus status) {
         try {
-            this.userService.delete(id);
+           UserDTO userDTO= this.userService.findById(id).get();
+           User user=userMapper.toEntity(userDTO);
+           user.setActive(false);
+           userRepository.save(user);
+
         } catch (DataIntegrityViolationException exception) {
             status.setComplete();
             return new ModelAndView("error/errorHapus")

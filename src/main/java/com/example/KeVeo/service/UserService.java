@@ -32,12 +32,12 @@ public class UserService extends AbstractBusinessService<User, Integer, UserDTO,
         Role roleUser = roleRepository.findByRoleName("ROLE_USER");
         User entity=getServiceMapper().toEntity(userDTO);
         entity.addRole(roleUser);
+        entity.setActive(true);
         save(entity);
 
     }
     public void save(User user) {
 
-        user.setActive(true);
         encodePassword(user);
         getRepository().save(user);
 
@@ -54,4 +54,6 @@ public class UserService extends AbstractBusinessService<User, Integer, UserDTO,
     public Page<UserDTO> findByActiveTrue(Pageable pageable) {
             return getRepository().findByActiveTrue(pageable).map(getServiceMapper()::toDto);
     }
+
+
 }
