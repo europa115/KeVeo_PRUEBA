@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" xmlns:sd="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8">
     <title>KeVeo/GestiónUsuarios</title>
@@ -45,6 +45,7 @@
 <br>
 
 <div class="container">
+    <span sd:page-size-selector="javascript"></span>
     <form action="#" class="form" th:action="@{'/'}" method="post">
     <br>
     <h1>
@@ -61,8 +62,8 @@
             <th>E-mail</th>
             <th>Nombre</th>
             <th>Apellidos</th>
-            <th>F. de nacimiento</th>
-            <th>F. de Registro</th>
+            <th>Fecha de nacimiento</th>
+            <th>Fecha de Registro</th>
             <th>Roles</th>
             <th></th>
         </tr>
@@ -74,8 +75,8 @@
             <td th:text="${user.userEmail}">E-mail</td>
             <td th:text="${user.userName}">Nombre</td>
             <td th:text="${user.userSurname}">Apellidos</td>
-            <td th:text="${user.date}">F. de Naciento</td>
-            <td th:text="${user.registerDate}">F. de Registro</td>
+            <td th:text="${user.date}">Fecha de Naciento</td>
+            <td th:text="${user.registerDate}">Fecha de Registro</td>
             <td th:text="${user.roles}">Roles</td>
             <td><a th:href="@{'/gestionUser/edit/' + ${user.id}}">
                 <button  type="button" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span></button>
@@ -86,12 +87,29 @@
             </button>
                 </td>
         </tr>
+        <tr th:if="${#lists.isEmpty(listUsers.content)}">
+            <td colspan="13" class="text-center">No User</td>
+        </tr>
         </tbody>
     </table>
     </form>
 </div>
 
-
+<div th:if="${not #lists.isEmpty(listUsers.content)}">
+    <div class="text-center">
+        <nav>
+            <ul class="pagination" sd:pagination="full">
+                <div th:if="${listUsers.totalPages > 0}" class="pagination"
+                     th:each="pageNumber : ${pageNumbers}">
+                    <li th:class="${pageNumber==listUsers.number + 1} ? active">
+                        <a href="#" th:href="@{/gestionUser(size=${listUsers.size}, page=${pageNumber})}"
+                           th:text=${pageNumber}></a>
+                    </li>
+                </div>
+            </ul>
+        </nav>
+    </div>
+</div>
 <!--"@{'/gestionUser/delete/' + ${user.id}}"-->
 
 
