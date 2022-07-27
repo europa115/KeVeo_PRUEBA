@@ -47,6 +47,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // Web Expression Handler:
                 .expressionHandler(customWebSecurityExpressionHandler);
 
+        // Matchers
+        http.authorizeRequests()
+                .antMatchers("/admin/*").hasAnyRole("ROLE_ADMIN")
+                .antMatchers("/login/*").permitAll()
+                .antMatchers("/logout").permitAll()
+                .antMatchers("/register**").permitAll()
+                .antMatchers("/*", "/api/*").authenticated()
+        ;
+
         // Login
         http.formLogin()
                 .loginPage("/login")
@@ -64,14 +73,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // Enable <frameset> in order to use H2 web console
                 .headers().frameOptions().disable();
 
-        // Matchers
-        http.authorizeRequests()
-                .antMatchers("/admin/*").hasAnyRole("ROLE_ADMIN")
-                .antMatchers("/login/*").permitAll()
-                .antMatchers("/logout").permitAll()
-                .antMatchers("/register**").permitAll()
-                .antMatchers("/*", "/api/*").authenticated()
-        ;
+
     }
 
     @Override
