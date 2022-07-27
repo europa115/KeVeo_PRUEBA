@@ -51,9 +51,9 @@ public class UserService extends AbstractBusinessService<User, Integer, UserDTO,
         return roleRepository.findAll();
     }
 
-    public Page<UserDTO> findByActiveTrue(Pageable pageable) {
+    /*public Page<UserDTO> findByActiveTrue(Pageable pageable) {
             return getRepository().findByActiveTrue(pageable).map(getServiceMapper()::toDto);
-    }
+    }*/
 
 
 }

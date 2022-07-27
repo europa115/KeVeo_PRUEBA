@@ -54,7 +54,7 @@ public class GestionUserController extends AbstractController<UserDTO>{
     public String getAll(@RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size,
                          Model model) {
         final User user = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-        final Page<UserDTO> listUsers = this.userService.findByActiveTrue(PageRequest.of(page.orElse(1) - 1,
+        final Page<UserDTO> listUsers = this.userService.findAll(PageRequest.of(page.orElse(1) - 1,
                 size.orElse(10)));
         model
                 .addAttribute("username", user.getUserName())
