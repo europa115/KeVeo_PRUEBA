@@ -26,6 +26,7 @@ public abstract class AbstractController<DTO> {
     public List<MenuDTO> menu() {
         final Integer userId = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
         return this.menuService.getMenuForUserId(userId);
+
     }
 
     protected List<Integer> getPageNumbers(Page<DTO> pages) {
