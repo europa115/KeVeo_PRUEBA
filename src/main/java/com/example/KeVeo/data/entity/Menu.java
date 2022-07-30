@@ -26,6 +26,7 @@ public class Menu {
     private Integer order;
     private Integer active;
     private String url;
+    private String icon;
 
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;

@@ -18,5 +18,6 @@ public class MenuDTO {
     private Integer order;
     private Integer active;
     private String url;
+    private String icon;
     private Set<RoleDTO> roles;
 }
