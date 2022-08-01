@@ -21,11 +21,19 @@
           </button>
           <a class="navbar-brand" href="/">KeVeo</a>
         </div>
+
         <div id="navbar" class="collapse navbar-collapse">
+
           <ul class="nav navbar-nav navbar-user navbar-right">
+            <!--Etiqueta buscador añadida a la fuerza-->
+            <li><a><input type="search" name="search" style="color:rgb(20, 51, 91);" placeholder="Que estas buscando?" class="form-input">
+              <input type="submit" value="Buscar.." class="button" style="color:rgb(20, 51, 91);"></a></li>
+
+
             <li><a href="#"> <span class="glyphicon glyphicon-user"></span><span th:text="${#authentication.getPrincipal().getUserName()}"></span>
             </a></li>
             <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+
           </ul>
         </div><!--/.nav-collapse -->
       </div>
