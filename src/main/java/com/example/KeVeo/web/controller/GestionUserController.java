@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.repository.query.Param;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -50,12 +51,13 @@ public class GestionUserController extends AbstractController<UserDTO>{
 
     @GetMapping("/gestionUser")
     public String getAll(@RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size,
-                         Model model) {
+                         Model model, @Param("wordKey") String wordKey) {
         final User user = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         final Page<UserDTO> listUsers = this.userService.findAll(PageRequest.of(page.orElse(1) - 1,
-                size.orElse(10)));
+                size.orElse(10)), wordKey);
         model
                 .addAttribute("username", user.getUserName())
+                .addAttribute("wordKey",wordKey)
                 .addAttribute("listUsers", listUsers)
                 .addAttribute(pageNumbersAttributeKey, getPageNumbers(listUsers));
         return "gestionUser/listUser";

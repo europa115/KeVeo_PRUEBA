@@ -7,6 +7,8 @@ import com.example.KeVeo.data.repository.UserRepository;
 import com.example.KeVeo.dto.UserDTO;
 import com.example.KeVeo.service.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -53,5 +55,15 @@ public class UserService extends AbstractBusinessService<User, Integer, UserDTO,
             return getRepository().findByActiveTrue(pageable).map(getServiceMapper()::toDto);
     }*/
 
+    public Page<UserDTO> findAll(Pageable pageable,String wordKey) {
+
+        if (wordKey !=null){
+
+            return this.getRepository().findAll(pageable,wordKey).map(getServiceMapper()::toDto);
+        }
+
+
+        return this.getRepository().findAll(pageable).map(getServiceMapper()::toDto);
+    }
 
 }

@@ -13,7 +13,10 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     public User findByUserEmailAndActiveTrue(String useremail);
 
     //User findByUserNameAndActiveTrue(String username);
-
+    @Query("SELECT u FROM User u WHERE"
+    + " CONCAT(u.id, u.userName, u.userEmail)"
+    + " LIKE %?1%")
+    Page<User> findAll(Pageable pageable,String wordKey);
     Page<User> findByActiveTrue(Pageable pageable);
 
 }

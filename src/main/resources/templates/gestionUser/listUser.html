@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns="http://www.w3.org/1999/html"
       layout:decorate="~{layout}"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" xmlns:sd="http://www.w3.org/1999/xhtml">
 <head>
@@ -11,80 +11,95 @@
 </head>
 <body>
 <div layout:fragment="content">
-<div class="container">
-    <span sd:page-size-selector="javascript"></span>
-    <form action="#" class="form" th:action="@{'/'}" method="post">
-    <br>
-    <h1>
-        GESTIÓN DE USUARIOS
-    </h1>
+    <div class="container">
+        <span sd:page-size-selector="javascript"></span>
 
-    <br>
+        <br>
+        <h1>
+            GESTIÓN DE USUARIOS
+        </h1>
 
-    <table class="table table-striped table-bordered">
-        <thead class="table-dark">
-        <tr>
-            <th>ID</th>
-            <th>Activo</th>
-            <th>E-mail</th>
-            <th>Nombre</th>
-            <th>Apellidos</th>
-            <th>Fecha de nacimiento</th>
-            <th>Fecha de Registro</th>
-            <th>Roles</th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="user: ${listUsers}">
-            <td th:text="${user.id}">User ID</td>
-            <td th:text="${user.active}">Activo</td>
-            <td th:text="${user.userEmail}">E-mail</td>
-            <td th:text="${user.userName}">Nombre</td>
-            <td th:text="${user.userSurname}">Apellidos</td>
-            <td th:text="${user.date}">Fecha de Naciento</td>
-            <td th:text="${user.registerDate}">Fecha de Registro</td>
-            <td th:text="${user.roles}">Roles</td>
-            <td><a th:href="@{'/gestionUser/edit/' + ${user.id}}">
-                <button  type="button" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span></button>
-            </a></td>
-            <td> <button class="btn btn-danger" type="submit" value="Delete"
-                          th:formaction="'/gestionUser/' + ${user.id} + '/delete'">
-                <span class="glyphicon glyphicon-trash"></span>
-            </button>
-                </td>
-        </tr>
-        <tr th:if="${#lists.isEmpty(listUsers.content)}">
-            <td colspan="13" class="text-center">No User</td>
-        </tr>
-        </tbody>
-    </table>
-    </form>
-</div>
+        <br>
+        <br>
+        <form class="example" th:action="gestionUser">
+            <input type="text" style="width:20%" placeholder="Buscar por..   ID,Nombre,Email.." name="wordKey" id="wordKey" th:value="${wordKey}">
+            <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-search"></span> Buscar..</button>
+            &nbsp;
+            <input type="button" class="btn btn-danger" onclick="cleanFields()" value="X">
+            <!--<button onclick="cleanFields()" ><span class="glyphicon glyphicon-remove"></span></button>-->
 
-<div th:if="${not #lists.isEmpty(listUsers.content)}">
-    <div class="text-center">
-        <nav>
-            <ul class="pagination" sd:pagination="full">
-                <div th:if="${listUsers.totalPages > 0}" class="pagination"
-                     th:each="pageNumber : ${pageNumbers}">
-                    <li th:class="${pageNumber==listUsers.number + 1} ? active">
-                        <a href="#" th:href="@{/gestionUser(size=${listUsers.size}, page=${pageNumber})}"
-                           th:text=${pageNumber}></a>
-                    </li>
-                </div>
-            </ul>
-        </nav>
+        </form>
+
+        <br>
+        <form action="#" class="form" th:action="@{'/'}" method="post">
+            <table class="table table-striped table-bordered">
+                <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Activo</th>
+                    <th>E-mail</th>
+                    <th>Nombre</th>
+                    <th>Apellidos</th>
+                    <th>Fecha de nacimiento</th>
+                    <th>Fecha de Registro</th>
+                    <th>Roles</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="user: ${listUsers}">
+                    <td th:text="${user.id}">User ID</td>
+                    <td th:text="${user.active}">Activo</td>
+                    <td th:text="${user.userEmail}">E-mail</td>
+                    <td th:text="${user.userName}">Nombre</td>
+                    <td th:text="${user.userSurname}">Apellidos</td>
+                    <td th:text="${user.date}">Fecha de Naciento</td>
+                    <td th:text="${user.registerDate}">Fecha de Registro</td>
+                    <td th:text="${user.roles}">Roles</td>
+                    <td><a th:href="@{'/gestionUser/edit/' + ${user.id}}">
+                        <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span>
+                        </button>
+                    </a></td>
+                    <td>
+                        <button class="btn btn-danger" type="submit" value="Delete"
+                                th:formaction="'/gestionUser/' + ${user.id} + '/delete'">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                    </td>
+                </tr>
+                <tr th:if="${#lists.isEmpty(listUsers.content)}">
+                    <td colspan="13" class="text-center">No User</td>
+                </tr>
+                </tbody>
+            </table>
+        </form>
     </div>
+
+    <div th:if="${not #lists.isEmpty(listUsers.content)}">
+        <div class="text-center">
+            <nav>
+                <ul class="pagination" sd:pagination="full">
+                    <div th:if="${listUsers.totalPages > 0}" class="pagination"
+                         th:each="pageNumber : ${pageNumbers}">
+                        <li th:class="${pageNumber==listUsers.number + 1} ? active">
+                            <a href="#" th:href="@{/gestionUser(size=${listUsers.size}, page=${pageNumber}, wordKey=${wordKey})}"
+                               th:text=${pageNumber}></a>
+                        </li>
+                    </div>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <!--"@{'/gestionUser/delete/' + ${user.id}}"-->
+
+    <script type="text/javascript">
+    function cleanFields(){
+    window.location='/gestionUser';
+    }
+    </script>
+    <!-- Latest compiled and minified JavaScript -->
+
 </div>
-<!--"@{'/gestionUser/delete/' + ${user.id}}"-->
 
-
-
-
-<!-- Latest compiled and minified JavaScript -->
-
-
-</div>
 </body>
 </html>
