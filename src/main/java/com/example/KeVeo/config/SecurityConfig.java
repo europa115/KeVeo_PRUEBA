@@ -18,7 +18,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true, proxyTargetClass = true)
-@Import({ CustomAuthorizationConfig.class })
+@Import({CustomAuthorizationConfig.class})
 @Order(SecurityProperties.BASIC_AUTH_ORDER)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -28,8 +28,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public SecurityConfig(CustomUserAuthenticationProvider authenticationProvider,
-            AccessDecisionManager accessDecisionManager,
-            CustomWebSecurityExpressionHandler customWebSecurityExpressionHandler) {
+                          AccessDecisionManager accessDecisionManager,
+                          CustomWebSecurityExpressionHandler customWebSecurityExpressionHandler) {
         this.authenticationProvider = authenticationProvider;
         this.accessDecisionManager = accessDecisionManager;
         this.customWebSecurityExpressionHandler = customWebSecurityExpressionHandler;

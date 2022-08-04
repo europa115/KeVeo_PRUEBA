@@ -22,7 +22,6 @@ public class RegisterUserController {
     public UserDTO returnNewUserDTO() {
 
         return new UserDTO();
-
     }
 
     @GetMapping
@@ -31,14 +30,12 @@ public class RegisterUserController {
             return "register";
 
     }
-
     @PostMapping
     public String registerAccountUser(@ModelAttribute("user") UserDTO userDTO){
 
         userService.registerDefaultUser(userDTO);
+
         return "redirect:/register?successful";
-
-
     }
 
 }

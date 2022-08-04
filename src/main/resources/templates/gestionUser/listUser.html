@@ -23,6 +23,7 @@
         <br>
         <form class="example" th:action="gestionUser">
             <input type="text" style="width:20%" placeholder="Buscar por..   ID,Nombre,Email.." name="wordKey" id="wordKey" th:value="${wordKey}">
+            &nbsp;
             <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-search"></span> Buscar..</button>
             &nbsp;
             <input type="button" class="btn btn-danger" onclick="cleanFields()" value="X">

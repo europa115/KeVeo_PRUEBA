@@ -1,18 +1,19 @@
 .navbar-global {
-  background-color: rgb(20, 51, 91);
+   background-color: rgb(20, 51, 91);
 }
 
 .navbar-global .navbar-brand {
-  color: white;
+  color: rgb(233, 179, 17);
 }
 
 .navbar-global .navbar-user > li > a
 {
-  color: white;
+  color: rgb(233, 179, 17);
 }
 
 .navbar-primary {
   background: url(../img/navBackground.jpg);
+  background-size: cover;
   bottom: 0px;
   left: 0px;
   position: fixed;

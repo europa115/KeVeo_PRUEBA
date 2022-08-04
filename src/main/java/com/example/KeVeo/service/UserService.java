@@ -58,11 +58,8 @@ public class UserService extends AbstractBusinessService<User, Integer, UserDTO,
     public Page<UserDTO> findAll(Pageable pageable,String wordKey) {
 
         if (wordKey !=null){
-
             return this.getRepository().findAll(pageable,wordKey).map(getServiceMapper()::toDto);
         }
-
-
         return this.getRepository().findAll(pageable).map(getServiceMapper()::toDto);
     }
 
