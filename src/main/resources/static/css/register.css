@@ -57,6 +57,9 @@ body{
 .form-group#email-group::before{
     content: "\f0e0";
 }
+.form-group#file-group::before{
+    content: "\f03e";
+}
 
 button{
     width: 60%;

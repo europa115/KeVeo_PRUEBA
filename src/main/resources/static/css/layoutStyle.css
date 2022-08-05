@@ -1,5 +1,6 @@
 .navbar-global {
    background-color: rgb(20, 51, 91);
+   height: 56px;
 }
 
 .navbar-global .navbar-brand {
@@ -97,4 +98,18 @@
 
 .collapsed + .content-wrapper {
   margin-left: 60px;
+}
+.avatars{
+    display: flex;
+
+}
+.avatars img{
+width: 42px;
+height: 42px;
+border-radius: 100%;
+border: 2px solid rgb(233, 179, 17);
+position: absolute;
+top: 5px;
+left: 1px;
+
 }
