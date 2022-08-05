@@ -32,6 +32,8 @@
                                   placeholder="Que estas buscando?" class="form-input">
                         <input type="submit" value="Buscar.." class="button" style="color:rgb(20, 51, 91);"></a></li>
 
+
+                    <!--Enseña la imagen correspondiente en el navbar-->
                     <li><a href="#">
                         <td><span th:if="${#authentication.getPrincipal() == 'anonymousUser'}" class="avatars"><img
                                 src="static/img/user.png" th:src="@{/img/user.png}"></span>
@@ -49,13 +51,15 @@
 
                         </td>
                     </a></li>
+                    <!--Enseña el nombre correspondiente en el navbar-->
+                    <li>
+                        <td><a th:if="${#authentication.getPrincipal() == 'anonymousUser'}" href="/login">
+                            <span>Login</span></a>
+                            <a th:unless="${#authentication.getPrincipal() == 'anonymousUser'}" href="#"><span
+                                    th:text="${#authentication.getPrincipal().getUserName()}"></span>
 
-                    <li><a>
-                        <td><span th:if="${#authentication.getPrincipal() == 'anonymousUser'}">Login</span>
-                            <span th:unless="${#authentication.getPrincipal() == 'anonymousUser'}"
-                                  th:text="${#authentication.getPrincipal().getUserName()}"></span>
-                        </td>
-                    </a></li>
+                            </a></td>
+                    </li>
 
                     <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 
