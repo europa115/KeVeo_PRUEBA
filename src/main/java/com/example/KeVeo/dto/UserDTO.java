@@ -25,6 +25,7 @@ public class UserDTO implements Serializable {
     private boolean active;
     private String userSurname;
     private String userEmail;
+    private String photo;
     private List<Role> roles = new ArrayList<>();
 
 

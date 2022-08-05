@@ -11,7 +11,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 @Service
@@ -28,9 +33,25 @@ public class UserService extends AbstractBusinessService<User, Integer, UserDTO,
         this.passwordEncoder = passwordEncoder;
     }
 
-    public void registerDefaultUser(UserDTO userDTO) {
+    public void registerDefaultUser(UserDTO userDTO, MultipartFile photo){
         Role roleUser = roleRepository.findByRoleName("ROLE_USER");
         User entity=getServiceMapper().toEntity(userDTO);
+        if(!photo.isEmpty()){
+            Path directoryImage= Paths.get("src//main//resources//static/imgUser");
+            String AbsoluteRoute=directoryImage.toFile().getAbsolutePath();
+
+            try{
+                byte[] bytesImg= photo.getBytes();
+                Path completRoute=Paths.get(AbsoluteRoute+"//"+photo.getOriginalFilename());
+                Files.write(completRoute,bytesImg);
+
+                entity.setPhoto(photo.getOriginalFilename());
+
+            }catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+        }
         entity.addRole(roleUser);
         entity.setActive(true);
         save(entity);

@@ -33,13 +33,13 @@ public class User implements Serializable {
     private boolean active;
     private String userSurname;
     private String userEmail;
-
+    private String photo;
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Role> roles;
 
     //******************************************Constructors************************************************************
     public User(String userName, String password, Date date, ZonedDateTime registerDate, boolean active, String userSurname,
-                String userEmail, List<Role> roles) {
+                String userEmail,String photo, List<Role> roles) {
         this.userName = userName;
         this.password = password;
         this.date = date;
@@ -47,6 +47,7 @@ public class User implements Serializable {
         this.active = active;
         this.userSurname = userSurname;
         this.userEmail = userEmail;
+        this.photo=photo;
         this.roles = roles;
     }
 
