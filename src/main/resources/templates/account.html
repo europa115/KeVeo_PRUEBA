@@ -75,7 +75,7 @@
 
 
 
-                        <button type="submit" class="btn btn-primary">Update</button>
+                        <button type="submit" class="btn btn-primary" th:formaction="${#authentication.getPrincipal().getId} + '/account'">Update</button>
 
 
                         <!-- <input type="submit" class="form-control btn btn-primary " name="login-submit" id="login-submit"value="Ingresar"/>-->

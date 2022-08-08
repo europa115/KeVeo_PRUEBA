@@ -74,7 +74,7 @@ public class GestionUserController extends AbstractController<UserDTO>{
     }
 
 //El metodo de borrar no esta hecho exactamente para borrar sino lo que hace es cambiar la actividad a 0/false
-    @PostMapping({ "/gestionUser/{id}/delete" })
+    @PostMapping({ "/gestionUser/{id}" })
     public Object delete(@PathVariable(value = "id") Integer id, SessionStatus status) {
         try {
            UserDTO userDTO= this.userService.findById(id).get();

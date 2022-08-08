@@ -1,17 +1,24 @@
 package com.example.KeVeo.web.controller;
 
 import com.example.KeVeo.data.entity.User;
+import com.example.KeVeo.data.repository.UserRepository;
 import com.example.KeVeo.dto.UserDTO;
 import com.example.KeVeo.service.MenuService;
 import com.example.KeVeo.service.UserService;
 import com.example.KeVeo.service.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.security.auth.kerberos.KerberosKey;
 
@@ -19,11 +26,13 @@ import javax.security.auth.kerberos.KerberosKey;
 public class AccountController extends AbstractController<UserDTO>{
     private UserMapper userMapper;
     private UserService userService;
+    private UserRepository userRepository;
     @Autowired
-    protected AccountController(MenuService menuService, UserMapper userMapper, UserService userService) {
+    protected AccountController(MenuService menuService, UserMapper userMapper, UserService userService, UserRepository userRepository) {
         super(menuService);
         this.userMapper=userMapper;
         this.userService=userService;
+        this.userRepository=userRepository;
     }
 
     @GetMapping("/account")
@@ -40,12 +49,23 @@ public class AccountController extends AbstractController<UserDTO>{
         //*********Puede que esto no funcione, revisar cuando este rol anonimo instaurado****************
 
     }
-    @PostMapping("/account/save")
-    public String saveUser(UserDTO userDto) {
+    @PostMapping({ "/{id}/account" })
+    public Object changePhoto(@PathVariable(value = "id") Integer id, SessionStatus status,@RequestParam("file") MultipartFile photo) {
+        try {
+            UserDTO userDTO= this.userService.findById(id).get();
+            User user=userMapper.toEntity(userDTO);
+            user.changePhoto(photo);
+            userRepository.save(user);
 
-        User user=userMapper.toEntity(userDto);
-        userService.save(user);
-
+        } catch (DataIntegrityViolationException exception) {
+            status.setComplete();
+            return new ModelAndView("error/errorHapus")
+                    .addObject("entityId", id)
+                    .addObject("entityName", "user")
+                    .addObject("errorCause", exception.getRootCause().getMessage())
+                    .addObject("backLink", "/gestionUser");
+        }
+        status.setComplete();
         return "redirect:/account";
     }
 

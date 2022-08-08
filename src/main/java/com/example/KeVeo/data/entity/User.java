@@ -3,9 +3,14 @@ package com.example.KeVeo.data.entity;
 import lombok.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
+import java.io.IOException;
 import java.io.Serializable;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.Date;
@@ -53,6 +58,25 @@ public class User implements Serializable {
 
     public void addRole(Role role) {
         this.roles.add(role);
+    }
+
+    public void changePhoto(MultipartFile photo){
+        if(!photo.isEmpty()){
+            Path directoryImage= Paths.get("src//main//resources//static/imgUser");
+            String AbsoluteRoute=directoryImage.toFile().getAbsolutePath();
+
+            try{
+                byte[] bytesImg= photo.getBytes();
+                Path completRoute=Paths.get(AbsoluteRoute+"//"+photo.getOriginalFilename());
+                Files.write(completRoute,bytesImg);
+
+                this.setPhoto(photo.getOriginalFilename());
+
+            }catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+        }
     }
 
 
