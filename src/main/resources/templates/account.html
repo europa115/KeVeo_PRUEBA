@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns="http://www.w3.org/1999/html"
+      layout:decorate="~{layout}">
+<head>
+    <title>Info-User</title>
+
+</head>
+<body>
+<div layout:fragment="content">
+
+    <!--JQUERY-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Los iconos tipo Solid de Fontawesome-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
+    <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+
+    <!-- Nuestro css-->
+    <link rel="stylesheet" type="text/css" href="static/css/login.css" th:href="@{/css/accountStyle.css}">
+
+
+
+    <div class="modal-dialog text-center">
+        <div class="col-sm-8 main-section">
+            <div class="modal-content">
+                <div class="col-12 user-img">
+
+                    <img th:if="${#authentication.getPrincipal().getPhoto == null}"
+                         src="static/img/user.png"
+                         th:src="@{/img/user.png}">
+
+
+                    <img th:unless="${#authentication.getPrincipal().getPhoto == null}"
+                         src="'static/imgUser/'+ ${#authentication.getPrincipal().getPhoto"
+                         th:src="@{'/imgUser/'+ ${#authentication.getPrincipal().getPhoto}}">
+
+                </div>
+
+                    <form class="col-12" th:action="@{/account/save}" method="post" enctype="multipart/form-data" th:object="${user}">
+                        <div class="img-title">
+                        <img src="static/img/titleAccount.png" th:src="@{/img/titleAccount.png}" />
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+
+
+                        <div class="form-group" id="user-group" >
+                            <span th:text="${#authentication.getPrincipal().getUserName}"></span>
+                        </div>
+                        <hr>
+                        <div class="form-group" id="user-group" >
+                            <span th:text="${#authentication.getPrincipal().getUserSurname}"></span>
+                        </div>
+                        <hr>
+                        <div class="form-group" id="email-group" >
+                            <span th:text="${#authentication.getPrincipal().getUserEmail}"></span>
+                        </div>
+                        <hr>
+                        <div class="form-group" id="calendar-group" >
+                            <span th:text="${#authentication.getPrincipal().getDate}"></span>
+                        </div>
+                        <hr>
+                        <div class="form-group" id="contrasena-group" >
+                            <span> *********</span>
+                        </div>
+
+                        <div class="form-group" id="file-group">
+
+                            <input
+                                    type="file" name="file" id="file" class="form-control">
+                        </div>
+
+
+
+
+                        <button type="submit" class="btn btn-primary">Update</button>
+
+
+                        <!-- <input type="submit" class="form-control btn btn-primary " name="login-submit" id="login-submit"value="Ingresar"/>-->
+
+
+
+
+                    </form>
+                <div class="form-group">
+                    <span><FONT SIZE="4">Si deseas eliminar tu cuenta </FONT><a th:href="@{/login}">pulsa
+							aqui</a></span>
+                </div>
+                <div th:if="${errors}" class="alert alert-danger" role="alert">
+                    Invalid username and password.
+                </div>
+                <div th:if="${param.successful}" class="alert alert-success" role="alert">
+                    Te has unido a KeVedo. Bienvenido!
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

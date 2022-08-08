@@ -25,12 +25,14 @@
         <div class="col-sm-8 main-section">
             <div class="modal-content">
                 <div class="col-12 user-img">
-                    <img src="static/img/userIronman.png" th:src="@{/img/userIronman.png}"/>
+                    <img src="static/img/userAvengers.jpg" th:src="@{/img/userAvengers.jpg}"/>
                 </div>
 
                 <form class="col-12" th:action="@{/register}" method="post" enctype="multipart/form-data" th:object="${user}">
 
                     <img src="static/img/uneteTitle.png" th:src="@{/img/uneteTitle.png}"/>
+                    <br>
+                    <br>
                     <br>
                     <div class="form-group" id="user-group">
                         <input type="text"  placeholder="Nombre" class="form-control" th:field="*{userName}"

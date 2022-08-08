@@ -34,7 +34,7 @@
 
 
                     <!--Enseña la imagen correspondiente en el navbar-->
-                    <li><a href="#">
+                    <li><a href="/account">
                         <td><span th:if="${#authentication.getPrincipal() == 'anonymousUser'}" class="avatars"><img
                                 src="static/img/user.png" th:src="@{/img/user.png}"></span>
                             <span th:unless="${#authentication.getPrincipal() == 'anonymousUser'}" class="avatars">
@@ -55,7 +55,7 @@
                     <li>
                         <td><a th:if="${#authentication.getPrincipal() == 'anonymousUser'}" href="/login">
                             <span>Login</span></a>
-                            <a th:unless="${#authentication.getPrincipal() == 'anonymousUser'}" href="#"><span
+                            <a th:unless="${#authentication.getPrincipal() == 'anonymousUser'}" href="/account"><span
                                     th:text="${#authentication.getPrincipal().getUserName()}"></span>
 
                             </a></td>

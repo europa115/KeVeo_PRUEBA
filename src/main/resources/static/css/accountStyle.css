@@ -1,5 +1,5 @@
 body{
-    background: url(../img/backgroundRegister.jpg) no-repeat center center fixed;
+    background: url(../img/backgroundAccount.jpg) no-repeat center center fixed;
     background-size: cover;
 }
 
@@ -13,16 +13,28 @@ body{
     background-color: #3b4652;
     opacity: .85;
     padding: 0 20px;
+
+    box-shadow:
+        0 0 7px #fff,
+        0 0 10px #fff,
+        0 0 21px #fff,
+        0 0 42px #c50d0d,
+        0 0 82px #c50d0d,
+        0 0 92px #c50d0d,
+        0 0 102px #c50d0d,
+        0 0 151px #c50d0d;
+}
+.img-title img{
     box-shadow:
             0 0 7px #fff,
             0 0 10px #fff,
             0 0 21px #fff,
-            0 0 42px #1d2ae2,
-            0 0 82px #1d2ae2,
-            0 0 92px #1d2ae2,
-            0 0 102px #1d2ae2,
-            0 0 151px #1d2ae2;
+            0 0 42px #c50d0d,
+            0 0 62px #c50d0d;
+
+
 }
+
 .user-img{
     margin-top: -50px;
     margin-bottom: 35px;
@@ -35,6 +47,16 @@ body{
     border-radius: 50%;
 }
 
+.form-group{
+    height: 42px;
+    font-size: 20px;
+    color:rgb(233, 179, 17);
+    border:0;
+    padding-left: 0px;
+    border-radius: 5px;
+
+     align-items: center;
+}
 .form-group input{
     height: 42px;
     font-size: 18px;
@@ -60,10 +82,11 @@ body{
 }
 
 .form-group#calendar-group::before{
-    content: "\f073";f0e0
+    content: "\f073";
 }
 .form-group#email-group::before{
     content: "\f0e0";
+
 }
 .form-group#file-group::before{
     content: "\f03e";
