@@ -1,6 +1,6 @@
 package com.example.KeVeo.web.controller;
 
-import com.example.KeVeo.data.entity.User;
+
 import com.example.KeVeo.data.repository.UserRepository;
 import com.example.KeVeo.dto.UserDTO;
 import com.example.KeVeo.service.MenuService;
@@ -20,7 +20,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.security.auth.kerberos.KerberosKey;
+
 
 @Controller
 public class AccountController extends AbstractController<UserDTO>{
@@ -53,9 +53,7 @@ public class AccountController extends AbstractController<UserDTO>{
     public Object changePhoto(@PathVariable(value = "id") Integer id, SessionStatus status,@RequestParam("file") MultipartFile photo) {
         try {
             UserDTO userDTO= this.userService.findById(id).get();
-            User user=userMapper.toEntity(userDTO);
-            user.changePhoto(photo);
-            userRepository.save(user);
+            userService.changePhoto(photo,userDTO);
 
         } catch (DataIntegrityViolationException exception) {
             status.setComplete();

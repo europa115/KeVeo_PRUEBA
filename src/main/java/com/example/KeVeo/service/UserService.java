@@ -37,9 +37,9 @@ public class UserService extends AbstractBusinessService<User, Integer, UserDTO,
         Role roleUser = roleRepository.findByRoleName("ROLE_USER");
         User entity=getServiceMapper().toEntity(userDTO);
         if(!photo.isEmpty()){
-            Path directoryImage= Paths.get("src//main//resources//static/imgUser");
-            String AbsoluteRoute=directoryImage.toFile().getAbsolutePath();
-
+           // Path directoryImage= Paths.get("src//main//resources//static/imgUser");
+           // String AbsoluteRoute=directoryImage.toFile().getAbsolutePath();
+            String AbsoluteRoute="C://Users//esteb//Documents//recursos//imgUser";
             try{
                 byte[] bytesImg= photo.getBytes();
                 Path completRoute=Paths.get(AbsoluteRoute+"//"+photo.getOriginalFilename());
@@ -70,6 +70,28 @@ public class UserService extends AbstractBusinessService<User, Integer, UserDTO,
 
     public List<Role> listRoles() {
         return roleRepository.findAll();
+    }
+
+    public void changePhoto(MultipartFile photo, UserDTO userDTO){
+        if(!photo.isEmpty()){
+           // Path directoryImage= Paths.get("src//main//resources//static/imgUser/");
+            //String AbsoluteRoute=directoryImage.toFile().getAbsolutePath();
+            String AbsoluteRoute="C://Users//esteb//Documents//recursos//imgUser";
+
+            try{
+                byte[] bytesImg= photo.getBytes();
+                Path completRoute=Paths.get(AbsoluteRoute+"//"+photo.getOriginalFilename());
+                Files.write(completRoute,bytesImg);
+
+                userDTO.setPhoto(photo.getOriginalFilename());
+
+                getRepository().save(getServiceMapper().toEntity(userDTO));
+
+            }catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+        }
     }
 
     /*public Page<UserDTO> findByActiveTrue(Pageable pageable) {

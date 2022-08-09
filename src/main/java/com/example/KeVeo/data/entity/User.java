@@ -60,24 +60,5 @@ public class User implements Serializable {
         this.roles.add(role);
     }
 
-    public void changePhoto(MultipartFile photo){
-        if(!photo.isEmpty()){
-            Path directoryImage= Paths.get("src//main//resources//static/imgUser");
-            String AbsoluteRoute=directoryImage.toFile().getAbsolutePath();
-
-            try{
-                byte[] bytesImg= photo.getBytes();
-                Path completRoute=Paths.get(AbsoluteRoute+"//"+photo.getOriginalFilename());
-                Files.write(completRoute,bytesImg);
-
-                this.setPhoto(photo.getOriginalFilename());
-
-            }catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-
-        }
-    }
-
 
 }
