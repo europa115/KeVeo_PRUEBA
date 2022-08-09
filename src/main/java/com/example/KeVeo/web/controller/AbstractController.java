@@ -24,8 +24,18 @@ public abstract class AbstractController<DTO> {
 
     @ModelAttribute("menuList")
     public List<MenuDTO> menu() {
-        final Integer userId = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
-        return this.menuService.getMenuForUserId(userId);
+        try{
+            final Integer userId = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
+            return this.menuService.getMenuForUserId(userId);
+
+        }catch (ClassCastException e){
+
+            final Integer userId=3;
+            //La id de este usuario corresponde aun usuario anonimo
+            return this.menuService.getMenuForUserId(userId);
+
+        }
+
 
     }
 

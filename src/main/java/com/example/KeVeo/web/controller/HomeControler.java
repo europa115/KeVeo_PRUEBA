@@ -13,10 +13,12 @@ public class HomeControler extends AbstractController{
         super(menuService);
     }
 
-    @GetMapping("")
+    @GetMapping("/")
     public String viewHomePage() {
         return "home";
     }
+
+
 
 
 }

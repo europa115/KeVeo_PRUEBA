@@ -1,7 +1,9 @@
 package com.example.KeVeo.web.controller;
 
 import com.example.KeVeo.dto.UserDTO;
+import com.example.KeVeo.service.MenuService;
 import com.example.KeVeo.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -10,12 +12,14 @@ import java.io.IOException;
 
 @Controller
 @RequestMapping("/register")
-public class RegisterUserController {
+public class RegisterUserController extends AbstractController{
 
    private UserService userService;
-
-    //Aquí, en vez de esta linea es mejor utilizar @Autowired
-    public  RegisterUserController(UserService userService){this.userService=userService;}
+    @Autowired
+    protected RegisterUserController(MenuService menuService, UserService userService) {
+        super(menuService);
+        this.userService=userService;
+    }
 
 
     @ModelAttribute("user")
