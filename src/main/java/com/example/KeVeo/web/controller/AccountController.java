@@ -9,7 +9,7 @@ import com.example.KeVeo.service.UserService;
 import com.example.KeVeo.service.mapper.UserMapper;
 
 
-import org.aspectj.bridge.Message;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.core.Authentication;
@@ -23,7 +23,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpSession;
+
 
 
 @Controller
@@ -96,8 +96,6 @@ public class AccountController extends AbstractController<UserDTO> {
             model.addAttribute("successful", true);
 
         } else {
-
-            String message = "Contraseña incorrecta";
 
             model.addAttribute("errors", true);
 
