@@ -44,7 +44,7 @@ public class AccountController extends AbstractController<UserDTO>{
 
             return "/login";
 
-        }else return "account";
+        }else return "account/account-info";
 
         //*********Puede que esto no funcione, revisar cuando este rol anonimo instaurado****************
 
@@ -65,6 +65,13 @@ public class AccountController extends AbstractController<UserDTO>{
         }
         status.setComplete();
         return "redirect:/account";
+    }
+
+    @GetMapping("/{id}/account/changePassword")
+    public String changePassword(@PathVariable(value = "id") Integer id){
+
+
+        return "account/changePassword";
     }
 
 }

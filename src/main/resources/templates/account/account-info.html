@@ -62,28 +62,23 @@
                             <span th:text="${#authentication.getPrincipal().getDate}"></span>
                         </div>
                         <hr>
-                        <div class="form-group" id="contrasena-group" >
-                            <span> *********</span>
-                        </div>
-
                         <div class="form-group" id="file-group">
 
                             <input
                                     type="file" name="file" id="file" class="form-control">
+
                         </div>
 
-
-
-
                         <button type="submit" class="btn btn-primary" th:formaction="${#authentication.getPrincipal().getId} + '/account'">Update</button>
-
+                        <hr>
+                        <div class="form-group" id="contrasena-group" >
+                            <a th:href="${#authentication.getPrincipal().getId} + '/account/changePassword'"><button type="button" class="btn btn-primary" >Cambiar contraseña</button></a>
+                        </div>
 
                         <!-- <input type="submit" class="form-control btn btn-primary " name="login-submit" id="login-submit"value="Ingresar"/>-->
-
-
-
-
                     </form>
+
+
                 <div class="form-group">
                     <span><FONT SIZE="4">Si deseas eliminar tu cuenta </FONT><a th:href="@{/login}">pulsa
 							aqui</a></span>
