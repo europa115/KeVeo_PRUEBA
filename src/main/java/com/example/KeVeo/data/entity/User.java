@@ -42,6 +42,11 @@ public class User implements Serializable {
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Role> roles;
 
+    @ManyToMany(cascade = CascadeType.ALL)     //Un poco de dudas con lazy y cascade
+    @JoinTable(name = "user_films", joinColumns = @JoinColumn(name = "User_ID"),
+    inverseJoinColumns = @JoinColumn(name = "Film_ID"))
+    private List<Film> films;
+
     //******************************************Constructors************************************************************
     public User(String userName, String password, Date date, ZonedDateTime registerDate, boolean active, String userSurname,
                 String userEmail,String photo, List<Role> roles) {
