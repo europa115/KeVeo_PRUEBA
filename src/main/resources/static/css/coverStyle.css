@@ -1,0 +1,94 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300italic,300,400italic,600,600italic,700,800,800italic,700italic&subset=latin,greek,greek-ext,latin-ext);
+
+* {
+	margin: 0 auto;
+	padding: 0;
+}
+
+body {
+	font-family: 'Open Sans', sans-serif;
+	background: url(../img/backgroundFilm.jpg) no-repeat center center fixed;
+}
+
+.film {
+	position: relative;
+	z-index: 1;
+	background: #ddd;
+	width: 220px;
+	height: 320px;
+	float: left;
+	margin: 22px;
+	cursor: pointer;
+	border-bottom-left-radius: 20px;
+	border-bottom-right-radius: 20px;
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
+	overflow: hidden;
+}
+
+.film img {
+	width: 220px;
+	height: 320px;
+}
+
+.film > .desc {
+    opacity: 0;
+ 	transition: all 520ms ease;
+}
+
+.film:hover > .desc {
+	position: relative;
+	z-index: 2;
+    margin-top: -280px;
+	background: rgba(0, 0, 0, 0.7);
+	width: 9cm;
+	height: 8cm;
+	opacity: 1;
+    backdrop-filter: blur(12px);
+}
+
+.film > .desc button {
+	background: rgba(67, 66, 77, 0.8);
+	transition: all 250ms ease;
+	padding: 15px 44px 15px 44px;
+	border-radius: 60px;
+	border: 0;
+	color: #fff;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 21px;
+	font-weight: 300;
+	cursor: pointer;
+	margin: 22px 0 0 18px;
+	outline: none;
+  border: 2px solid transparent;
+}
+
+.film > .desc button:hover {
+	background: transparent;
+  border: 2px solid rgba(67, 66, 77, 0.9);
+}
+
+.film > .desc hr {
+	margin-top: 15px;
+	border: none;
+  height: 1px;
+  background-color: rgba(81, 68, 63, 0.5);
+}
+
+.film > .desc > .text {
+	color: #fff;
+	margin: 22px 0 0 22px;
+	width: 290px;
+}
+.neonText {
+  color: #fff;
+  text-shadow:
+    0 0 7px #fff,
+    0 0 10px #fff,
+    0 0 21px #fff,
+    0 0 42px #f8c407,
+    0 0 82px #f8c407,
+    0 0 92px #f8c407,
+    0 0 102px #f8c407,
+    0 0 151px #f8c407;
+}

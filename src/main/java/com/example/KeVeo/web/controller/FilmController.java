@@ -33,7 +33,7 @@ public class FilmController extends AbstractController<FilmDTO> {
                          Model model, @Param("wordKey") String wordKey) {
 
         final Page<FilmDTO> listFilms = this.filmService.findAll(PageRequest.of(page.orElse(1) - 1,
-                size.orElse(10)), wordKey);
+                size.orElse(12)), wordKey);
         model
                 .addAttribute("wordKey", wordKey)
                 .addAttribute("listFilms", listFilms)
