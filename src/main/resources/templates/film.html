@@ -43,9 +43,12 @@
                     <div class="desc">
                         <button>INFO</button>
                         <hr>
-                        <div class="text">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, sint odit fuga odio ullam
-                            tempore repellendus blanditiis.
+                        <div class="text" th:text="${film.title}">
+
+                        </div>
+                        <div class="text" >
+                            Plataformas:
+                            <p th:text="${film.platforms}"></p>
                         </div>
                     </div>
                 </div>
