@@ -38,6 +38,6 @@ public class FilmController extends AbstractController<FilmDTO> {
                 .addAttribute("wordKey", wordKey)
                 .addAttribute("listFilms", listFilms)
                 .addAttribute(pageNumbersAttributeKey, getPageNumbers(listFilms));
-        return "film";
+        return "film/filmAll";
     }
 }

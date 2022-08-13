@@ -31,6 +31,7 @@ body {
 	height: 320px;
 }
 
+
 .film > .desc {
     opacity: 0;
  	transition: all 520ms ease;
@@ -74,12 +75,17 @@ body {
   height: 1px;
   background-color: rgba(81, 68, 63, 0.5);
 }
+.film > .desc img{
+	width: 48px;
+	height: 48px;
+}
 
 .film > .desc > .text {
 	color: #fff;
 	margin: 22px 0 0 22px;
 	width: 205px;
 }
+
 .neonText {
   color: #fff;
   text-shadow:

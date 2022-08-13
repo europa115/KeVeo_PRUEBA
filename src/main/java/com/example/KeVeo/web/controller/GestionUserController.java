@@ -52,7 +52,7 @@ public class GestionUserController extends AbstractController<UserDTO>{
     @GetMapping("/gestionUser")
     public String getAll(@RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size,
                          Model model, @Param("wordKey") String wordKey) {
-        final User user = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+        final User user = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());//no creo que sea necesario
         final Page<UserDTO> listUsers = this.userService.findAll(PageRequest.of(page.orElse(1) - 1,
                 size.orElse(10)), wordKey);
         model
