@@ -22,17 +22,24 @@
 
         <br>
 
-        <form class="example" th:action="film">
-            <input type="text" style="width:20%" placeholder="Buscar por..   ID,Nombre,Email.." name="wordKey"
-                   id="wordKey" th:value="${wordKey}">
-            &nbsp;
-            <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-search"></span> Buscar..
-            </button>
-            &nbsp;
-            <input type="button" class="btn btn-danger" onclick="cleanFields()" value="X">
-            <!--<button onclick="cleanFields()" ><span class="glyphicon glyphicon-remove"></span></button>-->
+        <!--  Generos:
 
-        </form>
+          <div th:each="genre: ${listGenres}">
+
+              <button th:text="${genre.name}"></button>
+
+          </div>-->
+          <form class="example" th:action="film">
+              <input type="text" style="width:20%" placeholder="Buscar por..   Titulo,Actores.." name="wordKey"
+                     id="wordKey" th:value="${wordKey}">
+              &nbsp;
+              <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-search"></span> Buscar..
+              </button>
+              &nbsp;
+              <input type="button" class="btn btn-danger" onclick="cleanFields()" value="X">
+              <!--  <button onclick="cleanFields()" ><span class="glyphicon glyphicon-remove"></span></button> // Esta linea esta comentada-->
+
+          </form>
 
         <br>
         <form action="#" class="form" th:action="@{'/'}" method="post">

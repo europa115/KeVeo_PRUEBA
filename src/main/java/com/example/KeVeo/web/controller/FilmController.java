@@ -1,6 +1,8 @@
 package com.example.KeVeo.web.controller;
 
+import com.example.KeVeo.data.entity.Genre;
 import com.example.KeVeo.data.entity.User;
+import com.example.KeVeo.data.repository.GenreRepository;
 import com.example.KeVeo.dto.FilmDTO;
 import com.example.KeVeo.dto.UserDTO;
 import com.example.KeVeo.service.FilmService;
@@ -15,28 +17,33 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
 import java.util.Optional;
 @Controller
 public class FilmController extends AbstractController<FilmDTO> {
 
     private FilmService filmService;
 
+    private GenreRepository genreRepository;
+
     @Autowired
-    protected FilmController(MenuService menuService, FilmService filmService) {
+    protected FilmController(MenuService menuService, FilmService filmService,GenreRepository genreRepository) {
         super(menuService);
 
         this.filmService = filmService;
+        this.genreRepository=genreRepository;
     }
 
     @GetMapping("/film")
     public String getAll(@RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size,
                          Model model, @Param("wordKey") String wordKey) {
-
+        final List<Genre> listGenres=filmService.listGenres();
         final Page<FilmDTO> listFilms = this.filmService.findAll(PageRequest.of(page.orElse(1) - 1,
                 size.orElse(12)), wordKey);
         model
                 .addAttribute("wordKey", wordKey)
                 .addAttribute("listFilms", listFilms)
+                .addAttribute("listGenres", listGenres)
                 .addAttribute(pageNumbersAttributeKey, getPageNumbers(listFilms));
         return "film/filmAll";
     }

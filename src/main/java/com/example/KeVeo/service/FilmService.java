@@ -1,7 +1,10 @@
 package com.example.KeVeo.service;
 
 import com.example.KeVeo.data.entity.Film;
+import com.example.KeVeo.data.entity.Genre;
+import com.example.KeVeo.data.entity.Role;
 import com.example.KeVeo.data.repository.FilmRepository;
+import com.example.KeVeo.data.repository.GenreRepository;
 import com.example.KeVeo.dto.FilmDTO;
 import com.example.KeVeo.service.mapper.FilmMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,12 +12,18 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class FilmService extends AbstractBusinessService<Film,Integer, FilmDTO, FilmRepository, FilmMapper>{
 
+    private GenreRepository genreRepository;
+
     @Autowired
-    protected FilmService(FilmRepository repository, FilmMapper serviceMapper) {
+    protected FilmService(FilmRepository repository, FilmMapper serviceMapper,GenreRepository genreRepository) {
         super(repository, serviceMapper);
+
+        this.genreRepository=genreRepository;
     }
 
     public Page<FilmDTO> findAll(Pageable pageable, String wordKey) {
@@ -23,5 +32,9 @@ public class FilmService extends AbstractBusinessService<Film,Integer, FilmDTO, 
             return this.getRepository().findAll(pageable,wordKey).map(getServiceMapper()::toDto);
         }
         return this.getRepository().findAll(pageable).map(getServiceMapper()::toDto);
+    }
+
+    public List<Genre> listGenres() {
+        return genreRepository.findAll();
     }
 }
