@@ -91,10 +91,63 @@ body {
   text-shadow:
     0 0 7px #fff,
     0 0 10px #fff,
-    0 0 21px #fff,
-    0 0 42px #f8c407,
-    0 0 82px #f8c407,
-    0 0 92px #f8c407,
-    0 0 102px #f8c407,
-    0 0 151px #f8c407;
+    0 0 21px #f8c407,
+    0 0 41px #f8c407,
+    0 0 46px #f8c407,
+    0 0 51px #f8c407,
+    0 0 75px #f8c407;
+}
+@import url(https://fonts.googleapis.com/css?family=Raleway:700);
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+.btn-gender{
+font-size: 1rem;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  text-transform: uppercase;
+  color:rgb(233, 179, 17) ;
+  background: transparent;
+  display: inline-block;
+  padding: 0.5em 1.25em;
+  outline: 0;
+  box-shadow:
+      0 0 2px #fff,
+      0 0 5px #fff;
+
+}
+
+.btngroup {
+  font-size: 0;
+  line-height: 1;
+  white-space: nowrap;
+  display: inline;
+}
+.btngroup--a {
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  text-transform: uppercase;
+  text-color: #f8c407
+  background: transparent;
+  display: inline-block;
+  padding: 0.5em 1.25em;
+  outline: 0;
+
+
+}
+
+.btngroup--a:link {
+  color: #bdc3c7;
+}
+.btngroup--a:visted {
+  color: #bdc3c7;
+}
+.btngroup--a:hover {
+  background: #34495e;
+  color: #fff;
+}
+.btngroup--a:active {
+  background: #fff;
+  color: #34495e;
 }

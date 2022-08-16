@@ -19,28 +19,40 @@
         <h1 class="neonText">
             Películas
         </h1>
+        <br>
+
+        <div class="btn-group">
+            <button type="button" class="btn-gender">Generos</button>
+            <button type="button" class="btn-gender dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">
+                <span class="caret"></span>
+            </button>
+            <div class="dropdown-menu" >
+
+               <div th:each="genre: ${listGenres}">
+                <span class="btngroup">
+            <a class="btngroup--a" th:href="@{/film(wordKey=${genre.name})}" th:text="${genre.name}"></a>
+            </span>
+               </div>
+            </div>
+        </div>
 
         <br>
 
-        <!--  Generos:
+        <form class="example" th:action="film">
+            <input type="text" style="width:20%" placeholder="Buscar por..   Titulo,Actores.." name="wordKey"
+                   id="wordKey" th:value="${wordKey}">
+            &nbsp;
+            <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-search"></span> Buscar..
+            </button>
+            &nbsp;
+            <input type="button" class="btn btn-danger" onclick="cleanFields()" value="X">
+            <!--  <button onclick="cleanFields()" ><span class="glyphicon glyphicon-remove"></span></button> // Esta linea esta comentada-->
 
-          <div th:each="genre: ${listGenres}">
+        </form>
 
-              <button th:text="${genre.name}"></button>
 
-          </div>-->
-          <form class="example" th:action="film">
-              <input type="text" style="width:20%" placeholder="Buscar por..   Titulo,Actores.." name="wordKey"
-                     id="wordKey" th:value="${wordKey}">
-              &nbsp;
-              <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-search"></span> Buscar..
-              </button>
-              &nbsp;
-              <input type="button" class="btn btn-danger" onclick="cleanFields()" value="X">
-              <!--  <button onclick="cleanFields()" ><span class="glyphicon glyphicon-remove"></span></button> // Esta linea esta comentada-->
 
-          </form>
-
+    <!--<div th:each="genre: ${listGenres}"> </div>  th:text="${genre.name}"-->
         <br>
         <form action="#" class="form" th:action="@{'/'}" method="post">
 

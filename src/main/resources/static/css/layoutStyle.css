@@ -29,6 +29,7 @@
 
 .navbar-primary.collapsed {
   width: 60px;
+  background: rgb(20, 51, 91);
 }
 
 .navbar-primary.collapsed .glyphicon {
@@ -98,6 +99,7 @@
 
 .collapsed + .content-wrapper {
   margin-left: 60px;
+
 }
 .avatars{
     display: flex;
