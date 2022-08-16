@@ -34,26 +34,66 @@
             </span>
                </div>
             </div>
+        </div>&nbsp;&nbsp;
+
+        <div class="btn-group">
+            <button type="button" class="btn-gender">Plataformas</button>
+            <button type="button" class="btn-gender dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">
+                <span class="caret"></span>
+            </button>
+            <div class="dropdown-menu" >
+
+                <div>
+                <span class="btngroup">
+
+                          <li class="dropdown-item">
+                              <img src="./img/platform/netflix.png" width="30" height="21">
+                              <a class="btngroup--a" th:href="@{/film(wordKey='Netflix')}">Netflix</a></li>
+
+                    <li class="dropdown-item">
+                              <img src="./img/platform/hbo.png" width="30" height="21">
+                              <a class="btngroup--a" th:href="@{/film(wordKey='HBO Max')}">HBO Max</a></li>
+
+                    <li class="dropdown-item">
+                              <img src="./img/platform/prime.png" width="30" height="21">
+                              <a class="btngroup--a" th:href="@{/film(wordKey='Prime Video')}">Prime Video</a></li>
+
+                    <li class="dropdown-item">
+                              <img src="./img/platform/disney.png" width="30" height="21">
+                              <a class="btngroup--a" th:href="@{/film(wordKey='Disney+')}">Disney+</a></li>
+
+            </span>
+                </div>
+            </div>
         </div>
 
         <br>
+        <br>
 
-        <form class="example" th:action="film">
-            <input type="text" style="width:20%" placeholder="Buscar por..   Titulo,Actores.." name="wordKey"
-                   id="wordKey" th:value="${wordKey}">
-            &nbsp;
-            <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-search"></span> Buscar..
-            </button>
-            &nbsp;
-            <input type="button" class="btn btn-danger" onclick="cleanFields()" value="X">
-            <!--  <button onclick="cleanFields()" ><span class="glyphicon glyphicon-remove"></span></button> // Esta linea esta comentada-->
+        <!-- partial:index.partial.html -->
+        <form class="search" th:action="film">
+            <input class="searchTerm" placeholder="Buscar ..." name="wordKey"
+                   id="wordKey" th:value="${wordKey}"/><input class="searchButton" type="submit" />
 
         </form>
 
-
+       <!-- <div class="wrap">
+            <div class="search">
+                <form class="example" th:action="film">
+                    <input type="text"  class="searchTerm" placeholder="Buscar por..   Titulo,Actores.." name="wordKey"
+                           id="wordKey" th:value="${wordKey}">
+                    <button type="submit" class="searchButton"><i class="fa fa-search"></i></button>
+                    &nbsp;
+                    <input type="button" class="btn btn-danger" onclick="cleanFields()" value="X">
+                 <button onclick="cleanFields()" ><span class="glyphicon glyphicon-remove"></span></button> // Esta linea esta comentada-->
+        <!--    </form>
+      </div>
+  </div>-->
 
     <!--<div th:each="genre: ${listGenres}"> </div>  th:text="${genre.name}"-->
+<br>
         <br>
+
         <form action="#" class="form" th:action="@{'/'}" method="post">
 
             <div th:each="film: ${listFilms}">

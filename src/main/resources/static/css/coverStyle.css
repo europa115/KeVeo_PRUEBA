@@ -1,5 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300italic,300,400italic,600,600italic,700,800,800italic,700italic&subset=latin,greek,greek-ext,latin-ext);
-
+@import url(https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
 * {
 	margin: 0 auto;
 	padding: 0;
@@ -85,7 +85,7 @@ body {
 	margin: 22px 0 0 22px;
 	width: 205px;
 }
-
+/*Neon titulo peliculas*/
 .neonText {
   color: #fff;
   text-shadow:
@@ -101,6 +101,7 @@ body {
 *, *:before, *:after {
   box-sizing: border-box;
 }
+/*Boton principal para desplegar*/
 .btn-gender{
 font-size: 1rem;
   letter-spacing: 0.1em;
@@ -116,7 +117,8 @@ font-size: 1rem;
       0 0 5px #fff;
 
 }
-
+/*Stilo desplegables*/
+@import url(https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
 .btngroup {
   font-size: 0;
   line-height: 1;
@@ -150,4 +152,59 @@ font-size: 1rem;
 .btngroup--a:active {
   background: #fff;
   color: #34495e;
+}
+/*Stilo barra buscar*/
+
+.search {
+   width: 35%;
+    position: relative;
+    /*left: -375px;*/
+    left: -33%;
+}
+.search:before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  font-family: 'FontAwesome';
+  content:'\f002';
+  background: #e5b60b;
+  text-align: center;
+  color: #fff;
+  border-radius: 5px;
+  -webkit-font-smoothing: subpixel-antialiased;
+  font-smooth: always;
+}
+
+.searchTerm {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;
+  border: 5px solid #e5b60b;
+  padding: 5px;
+  height: 40px;
+  border-radius: 5px;
+  outline: none;
+}
+
+.searchButton {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  opacity: 0;
+  cursor: pointer;
+}
+@media only screen and (max-width: 400px) {
+  .search {
+     width: 70%;
+      position: relative;
+      /*left: -375px;*/
+      left: -15%;
+  }
+
 }
