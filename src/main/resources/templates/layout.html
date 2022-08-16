@@ -98,7 +98,15 @@
     <!-- partial -->
     <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
     <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js'></script>
-    <script src="js/layoutScript.js"></script>
+    <script>
+        if (window.matchMedia("(min-width: 400px)").matches) {
+    $('.btn-expand-collapse').click(function(e) {
+    				$('.navbar-primary').toggleClass('collapsed');
+    });
+    } else {
+    $('.navbar-primary').toggleClass('collapsed');
+    }
+    </script>
 </div>
 </body>
 </html>
