@@ -32,7 +32,7 @@ public class Film implements Serializable {
     private String cover;
 
     private String casting;
-
+    @Lob
     private String synopsis;
 
     private String trailer;

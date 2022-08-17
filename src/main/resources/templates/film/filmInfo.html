@@ -34,23 +34,7 @@
 
                     <div class="extra">
                         <div class="ratings"><p> &#9733; &#9733; &#9733; &#9733; &#9734; 8.0</p></div>
-                        <p class="channels">
-                         <a th:each="num: ${film.platforms}">
 
-                                <a th:if="${num.toString() == 'Netflix'}" href="https://www.netflix.com/es/browse/genre/839338" target="_blank">
-                                    <span><img class="platform" th:src="@{/img/platform/netflix.png}"></span></a>
-
-                                <a th:if="${num.toString() == 'HBO Max'}" href="https://www.hbomax.com/" target="_blank">
-                                    <span><img  class="platform" th:src="@{/img/platform/hbo.png}"></span></a>
-
-                                <a th:if="${num.toString() == 'Prime Video'}" href="https://www.primevideo.com/" target="_blank">
-                                    <span><img  class="platform" th:src="@{/img/platform/prime.png}"></span></a>
-
-                                <a th:if="${num.toString() == 'Disney+'}" href="https://www.disneyplus.com/" target="_blank">
-                                    <span><img  class="platform" th:src="@{/img/platform/disney.png}"></span></a>
-                            </a>
-
-                        </p>
                     </div>
                 </div>
 
@@ -58,59 +42,41 @@
 
 
 
-                <!--   <div>
-                    <h3>Plataformas</h3>
+               <div>
+                    <h3>PLATAFORMAS</h3>
                     <a th:each="num: ${film.platforms}">
 
                         <a th:if="${num.toString() == 'Netflix'}" href="https://www.netflix.com/es/browse/genre/839338" target="_blank">
                             <span><img class="platform" th:src="@{/img/platform/netflix.png}"></span></a>
 
                         <a th:if="${num.toString() == 'HBO Max'}" href="https://www.hbomax.com/" target="_blank">
-                            <span><img  class="platform" th:src="@{/img/platform/netflix.png}"></span></a>
+                            <span><img  class="platform" th:src="@{/img/platform/hbo.png}"></span></a>
 
                         <a th:if="${num.toString() == 'Prime Video'}" href="https://www.primevideo.com/" target="_blank">
-                            <span><img  class="platform" th:src="@{/img/platform/netflix.png}"></span></a>
+                            <span><img  class="platform" th:src="@{/img/platform/prime.png}"></span></a>
 
                         <a th:if="${num.toString() == 'Disney+'}" href="https://www.disneyplus.com/" target="_blank">
-                            <span><img  class="platform" th:src="@{/img/platform/netflix.png}"></span></a>
+                            <span><img  class="platform" th:src="@{/img/platform/disney.png}"></span></a>
                     </a>
 
 
-                </div>-->
+                </div>
 
                     <div class="cast-section">
                         <h3>THE CAST</h3>
-                        <div class="casts">
-                            <img src="https://m.media-amazon.com/images/M/MV5BNDg4OTczODE5Nl5BMl5BanBnXkFtZTcwMjgwMjA0Mg@@._V1_UY44_CR3,0,32,44_AL_.jpg"
-                                 alt="avatar"/>
-                            <img src="https://m.media-amazon.com/images/M/MV5BOTkyNDE4NTA4NF5BMl5BanBnXkFtZTgwOTY3ODQ1MDI@._V1_UY44_CR3,0,32,44_AL_.jpg"
-                                 alt="avatar"/>
-                            <img src="https://m.media-amazon.com/images/M/MV5BNzYwMTQ1ODY1MV5BMl5BanBnXkFtZTgwMTU5NDc5OTE@._V1_UY44_CR17,0,32,44_AL_.jpg"
-                                 alt="avatar"/>
-                            <img src="https://m.media-amazon.com/images/M/MV5BMTEyMDA1MzE0NjdeQTJeQWpwZ15BbWU3MDM0NzA4MDQ@._V1_UY44_CR1,0,32,44_AL_.jpg"
-                                 alt="avatar"/>
+                        <div th:text="${film.casting}">
+
                         </div>
                     </div>
                     <div class="synopsis-section">
                         <h3>SYNOPSIS</h3>
-                        <p>
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. QuisXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-                            itaque sequi nemo neque, quibusdam, repellat libero deleniti velXXXXXXXXXXXXXX
-
-                        </p>
+                        <p th:text="${film.synopsis}"></p>
                     </div>
                     <div class="gallery-section">
-                        <h3>VIDEO / PICTURE</h3>
+                        <h3>TRAILER</h3>
                         <div class="gallery">
-                            <div class="small"><img
-                                    src="https://m.media-amazon.com/images/M/MV5BYzkyNGViZDItYzFkMy00OGM0LTg3NzktZGVkZjM2Mzk1OGEzXkEyXkFqcGdeQXVyNjUwNzk3NDc@._V1_.jpg"
-                                    alt="media"/></div>
-                            <div class="medium"><img
-                                    src="https://m.media-amazon.com/images/M/MV5BNTkxOGIwYzUtNzc0ZS00MTBkLWFkODItYzEzNGRkN2E3MTAxXkEyXkFqcGdeQXVyNjUwNzk3NDc@._V1_.jpg"
-                                    alt="media"/></div>
-                            <div class="small"><img
-                                    src="https://m.media-amazon.com/images/M/MV5BMzg2OTY3MjE3OF5BMl5BanBnXkFtZTgwNTkxMDU0MDI@._V1_SX1777_CR0,0,1777,745_AL_.jpg"
-                                    alt="media"/></div>
+                            <iframe th:src="${film.trailer} + '?autoplay=1&mute=1'">
+                            </iframe>
                         </div>
                     </div>
                 </div>

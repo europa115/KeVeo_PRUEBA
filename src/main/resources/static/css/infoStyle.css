@@ -17,6 +17,7 @@ p {
 
 img {
   width: 100%;
+  height: 620px;
 }
 /*Para el tamaño de las imagenes de plataforma*/
 .platform{
@@ -61,7 +62,7 @@ h3 {
 /*movie-card*/
 .movie-card {
   display: grid;
-  grid-template-columns: 2fr 400px 0.5fr 400px 2fr;
+  grid-template-columns: 2fr 400px 0.7fr 700px 2fr;
   grid-template-areas: ". p . m .";
 }
 @media screen and (max-width: 1024px) {
@@ -91,17 +92,24 @@ h3 {
 @media screen and (max-width: 500px) {
   .movie-card .poster-wrapper .poster {
     margin-bottom: 30px;
+
   }
+}
+@media screen and (max-width: 500px){
+    img {
+    width: 100%;
+    height: 50%;
+    }
 }
 
 .movie-card .movie-info {
   grid-area: m;
 }
 .movie-card .movie-info > div {
-  margin-bottom: 30px;
+  margin-bottom: 1px;
 }
 .movie-card .movie-info .header-section p {
-  margin: 5px 0;
+  margin: 2px 0;
 }
 .movie-card .movie-info .header-section .extra {
   display: flex;
@@ -125,29 +133,16 @@ h3 {
 .movie-card .movie-info .cast-section .casts {
   display: flex;
 }
-.movie-card .movie-info .cast-section .casts img {
-  width: 40px;
-  height: 40px;
-  object-fit: cover;
-  border-radius: 50%;
-  margin-right: 15px;
-}
 .movie-card .movie-info .gallery-section .gallery {
-  display: grid;
-  grid-template-columns: repeat(autofit, minmax(50px, 1fr));
-  grid-auto-rows: 75px;
-  grid-row-gap: 10px;
-  grid-column-gap: 10px;
-  grid-auto-flow: dense;
+
+    height:210px;
+
+
 }
-.movie-card .movie-info .gallery-section .gallery .small {
-  grid-column: span 1;
-}
-.movie-card .movie-info .gallery-section .gallery .medium {
-  grid-column: span 3;
-}
-.movie-card .movie-info .gallery-section .gallery img {
-  object-fit: cover;
+
+.movie-card .movie-info .gallery-section .gallery iframe {
+
   width: 100%;
-  height: 100%;
+  height:100%
+
 }
