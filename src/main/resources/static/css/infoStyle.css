@@ -18,6 +18,11 @@ p {
 img {
   width: 100%;
 }
+/*Para el tamaño de las imagenes de plataforma*/
+.platform{
+    width: 36px;
+	height: 36px;
+}
 
 h1 {
   color: #020518;
