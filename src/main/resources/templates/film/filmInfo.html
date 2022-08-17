@@ -68,17 +68,18 @@
 
                         </div>
                     </div>
+
                     <div class="synopsis-section">
                         <h3>SYNOPSIS</h3>
-                        <p th:text="${film.synopsis}"></p>
+                        <span class="more" th:text="${film.synopsis}"></span>
                     </div>
-                    <div class="gallery-section">
-                        <h3>TRAILER</h3>
-                        <div class="gallery">
-                            <iframe th:src="${film.trailer} + '?autoplay=1&mute=1'">
-                            </iframe>
-                        </div>
+                <div class="gallery-section">
+                    <h3>TRAILER</h3>
+                    <div class="gallery">
+                        <iframe th:src="${film.trailer} + '?autoplay=1&mute=1'">
+                        </iframe>
                     </div>
+                </div>
                 </div>
             </div>
             <!-- end movie-card -->
