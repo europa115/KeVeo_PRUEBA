@@ -77,25 +77,9 @@
 
         </form>
 
-       <!-- <div class="wrap">
-            <div class="search">
-                <form class="example" th:action="film">
-                    <input type="text"  class="searchTerm" placeholder="Buscar por..   Titulo,Actores.." name="wordKey"
-                           id="wordKey" th:value="${wordKey}">
-                    <button type="submit" class="searchButton"><i class="fa fa-search"></i></button>
-                    &nbsp;
-                    <input type="button" class="btn btn-danger" onclick="cleanFields()" value="X">
-                 <button onclick="cleanFields()" ><span class="glyphicon glyphicon-remove"></span></button> // Esta linea esta comentada-->
-        <!--    </form>
-      </div>
-  </div>-->
-
-    <!--<div th:each="genre: ${listGenres}"> </div>  th:text="${genre.name}"-->
         <br>
 
         <br>
-
-
 
             <div th:each="film: ${listFilms}">
                 <div class="film">
