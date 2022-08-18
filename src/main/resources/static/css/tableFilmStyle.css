@@ -1,0 +1,19 @@
+th{
+    border: 1px solid blue;
+    word-wrap: break-word;
+
+}
+td{
+    border: 1px solid blue;
+    border-collapse: collapse;
+    width: 100px;
+    height: 120px;
+    word-wrap: break-word;
+
+}
+.withScroll {
+    overflow:scroll;
+    text-align:center;
+    height:100%;
+    width:100%;
+     }

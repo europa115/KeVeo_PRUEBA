@@ -35,11 +35,13 @@ public class FilmDTO  implements Serializable {
 
     private String trailer;
 
+    private boolean active;
+
     // private Integer puntuation;
 
     // private boolean favorites;
 
     private List<Genre> genres= new ArrayList<>();;
 
-    private List<Platform> platforms= new ArrayList<>();;
+    private List<Platform> platforms= new ArrayList<>();
 }

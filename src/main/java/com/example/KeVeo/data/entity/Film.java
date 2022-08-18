@@ -37,6 +37,8 @@ public class Film implements Serializable {
 
     private String trailer;
 
+    private boolean active;
+
    // private Integer puntuation;
 
    // private boolean favorites;
