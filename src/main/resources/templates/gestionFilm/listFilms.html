@@ -19,6 +19,7 @@
         </h1>
 
         <br>
+        <a th:href="@{gestionFilm/create}" style="float:right"><button class="btn btn-success"><span class="glyphicon glyphicon-film"></span>&nbsp;&nbsp;AÑADIR PELÍCULA</button></a>
         <br>
         <form class="example" th:action="gestionFilm">
             <input type="text" style="width:20%" placeholder="Buscar por..  " name="wordKey" id="wordKey" th:value="${wordKey}">

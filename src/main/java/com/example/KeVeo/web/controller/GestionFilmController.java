@@ -67,6 +67,19 @@ public class GestionFilmController extends AbstractController<FilmDTO> {
         return "gestionFilm/edit";
     }
 
+    @GetMapping("gestionFilm/create")
+    public String createFilm(ModelMap model){
+        List<Genre> listGenres = filmService.listGenres();
+        List<Platform> listPlatforms= filmService.listPlatforms();
+
+        model.addAttribute("listGenres", listGenres);
+        model.addAttribute("listPlatforms", listPlatforms);
+        model.addAttribute("film", new FilmDTO());
+
+        return"gestionFilm/create";
+    }
+
+
     @GetMapping("gestionFilm/show/{id}")
     public String viewFilm(@PathVariable(value = "id") Integer id, ModelMap model){
 
