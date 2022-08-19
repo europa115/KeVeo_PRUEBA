@@ -14,7 +14,7 @@ public interface FilmRepository extends JpaRepository<Film, Integer> {
 
     @Query("SELECT distinct f FROM Film f  JOIN f.genres g JOIN f.platforms p WHERE"
             +  " CONCAT(f.id,f.title,g.name,f.casting,p.name)"
-            + " LIKE %?1%"
+            + " LIKE %?1% ORDER BY f.id"
     )
     Page<Film> findAll(Pageable pageable, String wordKey);
 
