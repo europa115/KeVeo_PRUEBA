@@ -24,6 +24,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="/">KeVeo</a>
+
             </div>
 
             <div id="navbar" class="collapse navbar-collapse">
@@ -36,8 +37,9 @@
 
 
                     <!--Enseña la imagen correspondiente en el navbar-->
-                    <li><a href="/account">
-                        <td><span th:if="${#authentication.getPrincipal() == 'anonymousUser'}" class="avatars"><img
+                    <li class="locationAvatar">
+                        <a href="/account">
+                        <span th:if="${#authentication.getPrincipal() == 'anonymousUser'}" class="avatars"><img
                                 src="static/img/user.png" th:src="@{/img/user.png}"></span>
                             <span th:unless="${#authentication.getPrincipal() == 'anonymousUser'}" class="avatars">
 
@@ -51,17 +53,17 @@
                                     src="'C://Users//esteb//Documents//recursos//imgUser/'+ ${#authentication.getPrincipal().getPhoto"
                                     th:src="@{'/imgUser/'+ ${#authentication.getPrincipal().getPhoto}}"></span>
 
-                        </td>
-                    </a></li>
-                    <!--Enseña el nombre correspondiente en el navbar-->
-                    <li>
-                        <td><a th:if="${#authentication.getPrincipal() == 'anonymousUser'}" href="/login">
-                            <span>Login</span></a>
-                            <a th:unless="${#authentication.getPrincipal() == 'anonymousUser'}" href="/account"><span
+                            <i th:if="${#authentication.getPrincipal() == 'anonymousUser'}" th:href="@{/login}">
+                                <span>Login/Registro</span></i>
+                            <i th:unless="${#authentication.getPrincipal() == 'anonymousUser'}" th:href="@{/acounnt}"><span
                                     th:text="${#authentication.getPrincipal().getUserName()}"></span>
+                            </i>
 
-                            </a></td>
-                    </li>
+                        </a> </li>
+                    <!--Enseña el nombre correspondiente en el navbar-->
+
+
+
 
                     <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 

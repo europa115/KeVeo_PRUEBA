@@ -5,11 +5,13 @@
 
 .navbar-global .navbar-brand {
   color: rgb(233, 179, 17);
+
 }
 
 .navbar-global .navbar-user > li > a
 {
   color: rgb(233, 179, 17);
+
 }
 
 .navbar-primary {
@@ -62,7 +64,6 @@
 .btn-expand-collapse:active {
     background-color: rgb(233, 179, 17);
 }
-
 .navbar-primary-menu,
 .navbar-primary-menu li {
   margin:0; padding:0;
@@ -102,7 +103,7 @@
 
 }
 .avatars{
-    display: flex;
+
 
 }
 .avatars img{
@@ -110,13 +111,28 @@ width: 42px;
 height: 42px;
 border-radius: 100%;
 border: 2px solid rgb(233, 179, 17);
-position: absolute;
-top: 5px;
-left: 1px;
 
+
+}
+.locationAvatar{
+top:-8px;
 }
 @media only screen and (max-width: 400px) {
   .navbar-primary {
     background: rgb(42, 41, 41);
+
+}
+@media only screen and (max-width: 400px) {
+  .locationAvatar {
+    top:0;
+  }
+    }
+
+    .navbar-global .navbar-user > li > a
+    {
+      color: rgb(233, 179, 17);
+    background-color: rgb(20, 51, 91);
+     border-bottom:solid 1px rgb(233, 179, 17);
+    }
 
 }
