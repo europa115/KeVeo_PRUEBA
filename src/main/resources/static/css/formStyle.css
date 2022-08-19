@@ -1,0 +1,115 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
+body{
+	background-color: #AEAEAE;
+}
+.wrap{
+	width:100%;
+  min-width:20em;
+}
+.background{
+	background-color:rgb(20, 51, 91);
+	margin: 0 auto;
+	padding: 1.5em;
+	width:60%;
+	height: auto;
+	border: .2em solid rgb(233, 179, 17);
+	border-radius: .8em;
+	-webkit-box-shadow: 0 1em .5em #555;
+	-moz-box-shadow: 0 1em .5em #555;
+	box-shadow: 0 1em .5em #555;
+}
+.title{
+	width:100%;
+	margin:0;
+	padding: .5em 0;
+	background-color: rgb(233, 179, 17);
+}
+#title h1{
+	text-align: center;
+	color:#000;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 2em;
+  font-weight:400;
+  line-height: 1em;
+  margin-top: .3em;
+}
+
+.section {
+
+	font-family: Helvetica, sans-serif;
+  font-weight:300;
+	font-size: 1em;
+	line-height: 1em;
+
+	width: 100%;
+	padding: .8em;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;
+	border: .1em solid rgb(0,0,0);
+  text-indent: 1.5em;
+}
+.section:focus{
+	border: .1em solid #0198E1;
+}
+#synopsis{
+	height: 7em;
+	max-width: 100%;
+}
+#casting{
+	height: 5em;
+	max-width: 100%;
+}
+#agree{
+	font-family: 'Open Sans', sans-serif;
+	color: #0198E1;
+	font-size: 1em;
+	font-weight: 400;
+}
+
+.submit{
+ width: 100%;
+}
+button{
+	width:50%;
+
+	padding:1em;
+	font-family: 'Open Sans', sans-serif;
+	cursor:pointer;
+	background-color: rgb(233, 179, 17);
+	color: #000;
+	font-size: 1em;
+	font-weight: 400;
+	border: none;
+	min-width: 10em;
+}
+button:focus , button:hover {
+	background-color: #fff;
+	color: #0198E1;
+	font-weight: 600;
+}
+label{
+
+color:rgb(233, 179, 17);
+
+}
+@media only screen and (max-width: 400px) {
+ .wrap{
+ 	width:100%;
+   min-width:20em;
+ }
+ .background{
+ 	background-color:rgb(20, 51, 91);
+ 	margin: 0 auto;
+ 	padding: 1.5em;
+ 	width:100%;
+ 	height: auto;
+ 	border: .2em solid rgb(233, 179, 17);
+ 	border-radius: .8em;
+ 	-webkit-box-shadow: 0 1em .5em #555;
+ 	-moz-box-shadow: 0 1em .5em #555;
+ 	box-shadow: 0 1em .5em #555;
+ }
+
+}
