@@ -15,400 +15,396 @@
             <h2>Populares</h2>
             <div class="popular-movies">
                 <div class="movie-container">
-                    <div class="film-effect">
-                        <div >
-                            <div>
-                                <div class="film">
-                                    <img src="https://farm5.staticflickr.com/4487/24153103448_8ce5082f75.jpg" alt="">
-                                    <div class="desc">
-                                        <a><button>INFO</button></a>
-                                        <hr>
-                                        <div class="text" >
-                                            Guardianes de la galaxia Vol.3
-                                        </div>
-                                        <div class="text" >
-                                            Plataformas disponibles:
-                                            &nbsp;
-                                            &nbsp;
-                                            &nbsp;
-                                            <a href="https://www.netflix.com/es/browse/genre/839338" target="_blank">
-                                                    <span><img src="./img/platform/netflix.png"></span></a>
-
-                                            <a href="https://www.hbomax.com/" target="_blank">
-                                                    <span><img src="./img/platform/hbo.png"></span></a>
-                                        </div>
+                    <div class="film-effect"  th:each="film, iterator : ${listFilms}">
+                            <div th:if="${iterator.count lt 10}"  class="film">
+                                <img th:src="${film.cover}" alt="">
+                                <div class="desc">
+                                    <a th:href="@{'/film/filmInfo/' + ${film.id}}">
+                                                <button>INFO</button>
+                                    </a>
+                                    <hr>
+                                    <div class="text" th:text="${film.title}">
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="film-effect">
-                        <div class>
-                            <div>
-                                <div class="film">
-                                    <img src="https://farm5.staticflickr.com/4487/24153103448_8ce5082f75.jpg" alt="">
-                                    <div class="desc">
-                                        <a><button>INFO</button></a>
-                                        <hr>
-                                        <div class="text" >
-                                            Guardianes de la galaxia Vol.2
-                                        </div>
+                                    <div class="text">
 
-                                        <div class="text" >
+                                        Plataformas disponibles:
 
-                                            Plataformas disponibles:
+                                        <a th:each="num: ${film.platforms}">
 
-                                            <a href="https://www.hbomax.com/" target="_blank">
+                                            <a th:if="${num.toString() == 'Netflix'}"
+                                               href="https://www.netflix.com/es/browse/genre/839338"
+                                               target="_blank">
+                                                <span><img src="./img/platform/netflix.png"></span></a>
+
+                                            <a th:if="${num.toString() == 'HBO Max'}"
+                                               href="https://www.hbomax.com/" target="_blank">
                                                 <span><img src="./img/platform/hbo.png"></span></a>
 
-                                            <a href="https://www.netflix.com/es/browse/genre/839338" target="_blank">
-                                                <span><img src="./img/platform/netflix.png"></span></a>
+                                            <a th:if="${num.toString() == 'Prime Video'}"
+                                               href="https://www.primevideo.com/" target="_blank">
+                                                <span><img src="./img/platform/prime.png"></span></a>
 
-
-
-
-
-                                        </div>
+                                            <a th:if="${num.toString() == 'Disney+'}"
+                                               href="https://www.disneyplus.com/" target="_blank">
+                                                <span><img src="./img/platform/disney.png"></span></a>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="film-effect">
-                        <div >
-                            <div>
-                                <div class="film">
-                                    <img src="https://farm5.staticflickr.com/4487/24153103448_8ce5082f75.jpg" alt="">
-                                    <div class="desc">
-                                        <a><button>INFO</button></a>
-                                        <hr>
-                                        <div class="text" >
-                                            Guardianes de la galaxia Vol.2
-                                        </div>
-
-                                        <div class="text" >
-
-                                            Plataformas disponibles:
-
-                                            <a href="https://www.netflix.com/es/browse/genre/839338" target="_blank">
-                                                <span><img src="./img/platform/netflix.png"></span></a>
-                                            <a href="https://www.netflix.com/es/browse/genre/839338" target="_blank">
-                                                <span><img src="./img/platform/netflix.png"></span></a>
-                                            <a href="https://www.netflix.com/es/browse/genre/839338" target="_blank">
-                                                <span><img src="./img/platform/netflix.png"></span></a>
-
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="film-effect">
-                        <div>
-                            <div>
-                                <div class="film">
-                                    <img src="https://farm5.staticflickr.com/4487/24153103448_8ce5082f75.jpg" alt="">
-                                    <div class="desc">
-                                        <a><button>INFO</button></a>
-                                        <hr>
-                                        <div class="text" >
-                                            Guardianes de la galaxia Vol.2
-                                        </div>
-
-                                        <div class="text" >
-
-                                            Plataformas disponibles:
-
-                                            <a href="https://www.netflix.com/es/browse/genre/839338" target="_blank">
-                                                <span><img src="./img/platform/netflix.png"></span></a>
-                                            <a href="https://www.netflix.com/es/browse/genre/839338" target="_blank">
-                                                <span><img src="./img/platform/netflix.png"></span></a>
-                                            <a href="https://www.netflix.com/es/browse/genre/839338" target="_blank">
-                                                <span><img src="./img/platform/netflix.png"></span></a>
-
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="film-effect">
-                        <div>
-                            <div>
-                                <div class="film">
-                                    <img src="https://farm5.staticflickr.com/4487/24153103448_8ce5082f75.jpg" alt="">
-                                    <div class="desc">
-                                        <a><button>INFO</button></a>
-                                        <hr>
-                                        <div class="text">
-                                            Guardianes de la galaxia Vol.2
-                                        </div>
-
-                                        <div class="text" >
-
-                                            Plataformas disponibles:
-
-                                            <a href="https://www.netflix.com/es/browse/genre/839338" target="_blank">
-                                                <span><img src="./img/platform/netflix.png"></span></a>
-                                            <a href="https://www.netflix.com/es/browse/genre/839338" target="_blank">
-                                            <span><img src="./img/platform/netflix.png"></span></a>
-                                            <a href="https://www.netflix.com/es/browse/genre/839338" target="_blank">
-                                                <span><img src="./img/platform/netflix.png"></span></a>
-
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!--Nueva SECCION------------------------------------------------------------------------>
 
-        <section>
-            <h2>Nuevos Estrenos</h2>
-            <div class="section">
-                <div class="recents-movies">
-                    <div class="recents-movie-container">
-                        <div class="image-poster">
-                            <div class="movie-image" ><img src="https://farm5.staticflickr.com/4487/24153103448_8ce5082f75.jpg" alt="Guardianes de la galaxia vol.2" class="zoom">
-                                <div class="movie-info">
-                                    <h2 class="movie-title">Guardianes de la Galaxia vol.2</h2>
-                                    <p class="movie-sinopsis">La informacion de esta pelicula no se encuentra disponible en este momento. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique odit animi ut nam facilis architecto, minus itaque accusamus labore fugit assumenda omnis ab molestias optio saepe sunt..</p>
-                                    <div class="links">
-                                        <a class="watch" href="ver" >Ver</a>
-                                        <a class="down" href="down" >Descargar</a>
+
+            <!--Nueva SECCION------------------------------------------------------------------------>
+
+            <section>
+                <h2>Nuevos Estrenos</h2>
+                <div class="section">
+                    <div class="recents-movies">
+                        <div class="recents-movie-container">
+                            <div class="image-poster">
+                                <div class="movie-image"><img
+                                        src="https://farm5.staticflickr.com/4487/24153103448_8ce5082f75.jpg"
+                                        alt="Guardianes de la galaxia vol.2" class="zoom">
+                                    <div class="movie-info">
+                                        <h2 class="movie-title">Guardianes de la Galaxia vol.2</h2>
+                                        <p class="movie-sinopsis">La informacion de esta pelicula no se encuentra
+                                            disponible en este momento. Lorem ipsum dolor sit amet, consectetur
+                                            adipisicing elit. Similique odit animi ut nam facilis architecto, minus
+                                            itaque accusamus labore fugit assumenda omnis ab molestias optio saepe
+                                            sunt..</p>
+                                        <div class="links">
+                                            <a class="watch" href="ver">Ver</a>
+                                            <a class="down" href="down">Descargar</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="image-poster">
-                            <div class="movie-image" ><img src="https://farm5.staticflickr.com/4487/24153103448_8ce5082f75.jpg" alt="Guardianes de la galaxia vol.2" class="zoom">
-                                <div class="movie-info">
-                                    <h2 class="movie-title">Guardianes de la Galaxia vol.2</h2>
-                                    <p class="movie-sinopsis">La informacion de esta pelicula no se encuentra disponible en este momento. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique odit animi ut nam facilis architecto, minus itaque accusamus labore fugit assumenda omnis ab molestias optio saepe sunt..</p>
-                                    <div class="links">
-                                        <a class="watch" href="ver" >Ver</a>
-                                        <a class="down" href="down" >Descargar</a>
+                            <div class="image-poster">
+                                <div class="movie-image"><img
+                                        src="https://farm5.staticflickr.com/4487/24153103448_8ce5082f75.jpg"
+                                        alt="Guardianes de la galaxia vol.2" class="zoom">
+                                    <div class="movie-info">
+                                        <h2 class="movie-title">Guardianes de la Galaxia vol.2</h2>
+                                        <p class="movie-sinopsis">La informacion de esta pelicula no se encuentra
+                                            disponible en este momento. Lorem ipsum dolor sit amet, consectetur
+                                            adipisicing elit. Similique odit animi ut nam facilis architecto, minus
+                                            itaque accusamus labore fugit assumenda omnis ab molestias optio saepe
+                                            sunt..</p>
+                                        <div class="links">
+                                            <a class="watch" href="ver">Ver</a>
+                                            <a class="down" href="down">Descargar</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="image-poster">
-                            <div class="movie-image" ><img src="https://farm5.staticflickr.com/4487/24153103448_8ce5082f75.jpg" alt="Guardianes de la galaxia vol.2" class="zoom">
-                                <div class="movie-info">
-                                    <h2 class="movie-title">Guardianes de la Galaxia vol.2</h2>
-                                    <p class="movie-sinopsis">La informacion de esta pelicula no se encuentra disponible en este momento. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique odit animi ut nam facilis architecto, minus itaque accusamus labore fugit assumenda omnis ab molestias optio saepe sunt..</p>
-                                    <div class="links">
-                                        <a class="watch" href="ver" >Ver</a>
-                                        <a class="down" href="down" >Descargar</a>
+                            <div class="image-poster">
+                                <div class="movie-image"><img
+                                        src="https://farm5.staticflickr.com/4487/24153103448_8ce5082f75.jpg"
+                                        alt="Guardianes de la galaxia vol.2" class="zoom">
+                                    <div class="movie-info">
+                                        <h2 class="movie-title">Guardianes de la Galaxia vol.2</h2>
+                                        <p class="movie-sinopsis">La informacion de esta pelicula no se encuentra
+                                            disponible en este momento. Lorem ipsum dolor sit amet, consectetur
+                                            adipisicing elit. Similique odit animi ut nam facilis architecto, minus
+                                            itaque accusamus labore fugit assumenda omnis ab molestias optio saepe
+                                            sunt..</p>
+                                        <div class="links">
+                                            <a class="watch" href="ver">Ver</a>
+                                            <a class="down" href="down">Descargar</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="image-poster">
-                            <div class="movie-image" ><img src="https://farm5.staticflickr.com/4487/24153103448_8ce5082f75.jpg" alt="Guardianes de la galaxia vol.2" class="zoom">
-                                <div class="movie-info">
-                                    <h2 class="movie-title">Guardianes de la Galaxia vol.2</h2>
-                                    <p class="movie-sinopsis">La informacion de esta pelicula no se encuentra disponible en este momento. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique odit animi ut nam facilis architecto, minus itaque accusamus labore fugit assumenda omnis ab molestias optio saepe sunt..</p>
-                                    <div class="links">
-                                        <a class="watch" href="ver" >Ver</a>
-                                        <a class="down" href="down" >Descargar</a>
+                            <div class="image-poster">
+                                <div class="movie-image"><img
+                                        src="https://farm5.staticflickr.com/4487/24153103448_8ce5082f75.jpg"
+                                        alt="Guardianes de la galaxia vol.2" class="zoom">
+                                    <div class="movie-info">
+                                        <h2 class="movie-title">Guardianes de la Galaxia vol.2</h2>
+                                        <p class="movie-sinopsis">La informacion de esta pelicula no se encuentra
+                                            disponible en este momento. Lorem ipsum dolor sit amet, consectetur
+                                            adipisicing elit. Similique odit animi ut nam facilis architecto, minus
+                                            itaque accusamus labore fugit assumenda omnis ab molestias optio saepe
+                                            sunt..</p>
+                                        <div class="links">
+                                            <a class="watch" href="ver">Ver</a>
+                                            <a class="down" href="down">Descargar</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="image-poster">
-                            <div class="movie-image" ><img src="https://farm5.staticflickr.com/4487/24153103448_8ce5082f75.jpg" alt="Guardianes de la galaxia vol.2" class="zoom">
-                                <div class="movie-info">
-                                    <h2 class="movie-title">Guardianes de la Galaxia vol.2</h2>
-                                    <p class="movie-sinopsis">La informacion de esta pelicula no se encuentra disponible en este momento. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique odit animi ut nam facilis architecto, minus itaque accusamus labore fugit assumenda omnis ab molestias optio saepe sunt..</p>
-                                    <div class="links">
-                                        <a class="watch" href="ver" >Ver</a>
-                                        <a class="down" href="down" >Descargar</a>
+                            <div class="image-poster">
+                                <div class="movie-image"><img
+                                        src="https://farm5.staticflickr.com/4487/24153103448_8ce5082f75.jpg"
+                                        alt="Guardianes de la galaxia vol.2" class="zoom">
+                                    <div class="movie-info">
+                                        <h2 class="movie-title">Guardianes de la Galaxia vol.2</h2>
+                                        <p class="movie-sinopsis">La informacion de esta pelicula no se encuentra
+                                            disponible en este momento. Lorem ipsum dolor sit amet, consectetur
+                                            adipisicing elit. Similique odit animi ut nam facilis architecto, minus
+                                            itaque accusamus labore fugit assumenda omnis ab molestias optio saepe
+                                            sunt..</p>
+                                        <div class="links">
+                                            <a class="watch" href="ver">Ver</a>
+                                            <a class="down" href="down">Descargar</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="image-poster">
-                            <div class="movie-image" ><img src="https://farm5.staticflickr.com/4487/24153103448_8ce5082f75.jpg" alt="Guardianes de la galaxia vol.2" class="zoom">
-                                <div class="movie-info">
-                                    <h2 class="movie-title">Guardianes de la Galaxia vol.2</h2>
-                                    <p class="movie-sinopsis">La informacion de esta pelicula no se encuentra disponible en este momento. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique odit animi ut nam facilis architecto, minus itaque accusamus labore fugit assumenda omnis ab molestias optio saepe sunt..</p>
-                                    <div class="links">
-                                        <a class="watch" href="ver" >Ver</a>
-                                        <a class="down" href="down" >Descargar</a>
+                            <div class="image-poster">
+                                <div class="movie-image"><img
+                                        src="https://farm5.staticflickr.com/4487/24153103448_8ce5082f75.jpg"
+                                        alt="Guardianes de la galaxia vol.2" class="zoom">
+                                    <div class="movie-info">
+                                        <h2 class="movie-title">Guardianes de la Galaxia vol.2</h2>
+                                        <p class="movie-sinopsis">La informacion de esta pelicula no se encuentra
+                                            disponible en este momento. Lorem ipsum dolor sit amet, consectetur
+                                            adipisicing elit. Similique odit animi ut nam facilis architecto, minus
+                                            itaque accusamus labore fugit assumenda omnis ab molestias optio saepe
+                                            sunt..</p>
+                                        <div class="links">
+                                            <a class="watch" href="ver">Ver</a>
+                                            <a class="down" href="down">Descargar</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="image-poster">
-                            <div class="movie-image" ><img src="https://farm5.staticflickr.com/4487/24153103448_8ce5082f75.jpg" alt="Guardianes de la galaxia vol.2" class="zoom">
-                                <div class="movie-info">
-                                    <h2 class="movie-title">Guardianes de la Galaxia vol.2</h2>
-                                    <p class="movie-sinopsis">La informacion de esta pelicula no se encuentra disponible en este momento. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique odit animi ut nam facilis architecto, minus itaque accusamus labore fugit assumenda omnis ab molestias optio saepe sunt..</p>
-                                    <div class="links">
-                                        <a class="watch" href="ver" >Ver</a>
-                                        <a class="down" href="down" >Descargar</a>
+                            <div class="image-poster">
+                                <div class="movie-image"><img
+                                        src="https://farm5.staticflickr.com/4487/24153103448_8ce5082f75.jpg"
+                                        alt="Guardianes de la galaxia vol.2" class="zoom">
+                                    <div class="movie-info">
+                                        <h2 class="movie-title">Guardianes de la Galaxia vol.2</h2>
+                                        <p class="movie-sinopsis">La informacion de esta pelicula no se encuentra
+                                            disponible en este momento. Lorem ipsum dolor sit amet, consectetur
+                                            adipisicing elit. Similique odit animi ut nam facilis architecto, minus
+                                            itaque accusamus labore fugit assumenda omnis ab molestias optio saepe
+                                            sunt..</p>
+                                        <div class="links">
+                                            <a class="watch" href="ver">Ver</a>
+                                            <a class="down" href="down">Descargar</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="image-poster">
-                            <div class="movie-image" ><img src="https://farm5.staticflickr.com/4487/24153103448_8ce5082f75.jpg" alt="Guardianes de la galaxia vol.2" class="zoom">
-                                <div class="movie-info">
-                                    <h2 class="movie-title">Guardianes de la Galaxia vol.2</h2>
-                                    <p class="movie-sinopsis">La informacion de esta pelicula no se encuentra disponible en este momento. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique odit animi ut nam facilis architecto, minus itaque accusamus labore fugit assumenda omnis ab molestias optio saepe sunt..</p>
-                                    <div class="links">
-                                        <a class="watch" href="ver" >Ver</a>
-                                        <a class="down" href="down" >Descargar</a>
+                            <div class="image-poster">
+                                <div class="movie-image"><img
+                                        src="https://farm5.staticflickr.com/4487/24153103448_8ce5082f75.jpg"
+                                        alt="Guardianes de la galaxia vol.2" class="zoom">
+                                    <div class="movie-info">
+                                        <h2 class="movie-title">Guardianes de la Galaxia vol.2</h2>
+                                        <p class="movie-sinopsis">La informacion de esta pelicula no se encuentra
+                                            disponible en este momento. Lorem ipsum dolor sit amet, consectetur
+                                            adipisicing elit. Similique odit animi ut nam facilis architecto, minus
+                                            itaque accusamus labore fugit assumenda omnis ab molestias optio saepe
+                                            sunt..</p>
+                                        <div class="links">
+                                            <a class="watch" href="ver">Ver</a>
+                                            <a class="down" href="down">Descargar</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="image-poster">
-                            <div class="movie-image" ><img src="https://farm5.staticflickr.com/4487/24153103448_8ce5082f75.jpg" alt="Guardianes de la galaxia vol.2" class="zoom">
-                                <div class="movie-info">
-                                    <h2 class="movie-title">Guardianes de la Galaxia vol.2</h2>
-                                    <p class="movie-sinopsis">La informacion de esta pelicula no se encuentra disponible en este momento. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique odit animi ut nam facilis architecto, minus itaque accusamus labore fugit assumenda omnis ab molestias optio saepe sunt..</p>
-                                    <div class="links">
-                                        <a class="watch" href="ver" >Ver</a>
-                                        <a class="down" href="down" >Descargar</a>
+                            <div class="image-poster">
+                                <div class="movie-image"><img
+                                        src="https://farm5.staticflickr.com/4487/24153103448_8ce5082f75.jpg"
+                                        alt="Guardianes de la galaxia vol.2" class="zoom">
+                                    <div class="movie-info">
+                                        <h2 class="movie-title">Guardianes de la Galaxia vol.2</h2>
+                                        <p class="movie-sinopsis">La informacion de esta pelicula no se encuentra
+                                            disponible en este momento. Lorem ipsum dolor sit amet, consectetur
+                                            adipisicing elit. Similique odit animi ut nam facilis architecto, minus
+                                            itaque accusamus labore fugit assumenda omnis ab molestias optio saepe
+                                            sunt..</p>
+                                        <div class="links">
+                                            <a class="watch" href="ver">Ver</a>
+                                            <a class="down" href="down">Descargar</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
-        <section>
-            <h2>Películas Recientes</h2>
-            <div class="section">
-                <div class="recents-movies">
-                    <div class="recents-movie-container">
-                        <div class="image-poster">
-                            <div class="movie-image" ><img src="https://farm5.staticflickr.com/4487/24153103448_8ce5082f75.jpg" alt="Guardianes de la galaxia vol.2" class="zoom">
-                                <div class="movie-info">
-                                    <h2 class="movie-title">Guardianes de la Galaxia vol.2</h2>
-                                    <p class="movie-sinopsis">La informacion de esta pelicula no se encuentra disponible en este momento. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique odit animi ut nam facilis architecto, minus itaque accusamus labore fugit assumenda omnis ab molestias optio saepe sunt..</p>
-                                    <div class="links">
-                                        <a class="watch" href="ver" >Ver</a>
-                                        <a class="down" href="down" >Descargar</a>
+            </section>
+            <section>
+                <h2>Películas Recientes</h2>
+                <div class="section">
+                    <div class="recents-movies">
+                        <div class="recents-movie-container">
+                            <div class="image-poster">
+                                <div class="movie-image"><img
+                                        src="https://farm5.staticflickr.com/4487/24153103448_8ce5082f75.jpg"
+                                        alt="Guardianes de la galaxia vol.2" class="zoom">
+                                    <div class="movie-info">
+                                        <h2 class="movie-title">Guardianes de la Galaxia vol.2</h2>
+                                        <p class="movie-sinopsis">La informacion de esta pelicula no se encuentra
+                                            disponible en este momento. Lorem ipsum dolor sit amet, consectetur
+                                            adipisicing elit. Similique odit animi ut nam facilis architecto, minus
+                                            itaque accusamus labore fugit assumenda omnis ab molestias optio saepe
+                                            sunt..</p>
+                                        <div class="links">
+                                            <a class="watch" href="ver">Ver</a>
+                                            <a class="down" href="down">Descargar</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="image-poster">
-                            <div class="movie-image" ><img src="https://farm5.staticflickr.com/4487/24153103448_8ce5082f75.jpg" alt="Guardianes de la galaxia vol.2" class="zoom">
-                                <div class="movie-info">
-                                    <h2 class="movie-title">Guardianes de la Galaxia vol.2</h2>
-                                    <p class="movie-sinopsis">La informacion de esta pelicula no se encuentra disponible en este momento. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique odit animi ut nam facilis architecto, minus itaque accusamus labore fugit assumenda omnis ab molestias optio saepe sunt..</p>
-                                    <div class="links">
-                                        <a class="watch" href="ver" >Ver</a>
-                                        <a class="down" href="down" >Descargar</a>
+                            <div class="image-poster">
+                                <div class="movie-image"><img
+                                        src="https://farm5.staticflickr.com/4487/24153103448_8ce5082f75.jpg"
+                                        alt="Guardianes de la galaxia vol.2" class="zoom">
+                                    <div class="movie-info">
+                                        <h2 class="movie-title">Guardianes de la Galaxia vol.2</h2>
+                                        <p class="movie-sinopsis">La informacion de esta pelicula no se encuentra
+                                            disponible en este momento. Lorem ipsum dolor sit amet, consectetur
+                                            adipisicing elit. Similique odit animi ut nam facilis architecto, minus
+                                            itaque accusamus labore fugit assumenda omnis ab molestias optio saepe
+                                            sunt..</p>
+                                        <div class="links">
+                                            <a class="watch" href="ver">Ver</a>
+                                            <a class="down" href="down">Descargar</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="image-poster">
-                            <div class="movie-image" ><img src="https://farm5.staticflickr.com/4487/24153103448_8ce5082f75.jpg" alt="Guardianes de la galaxia vol.2" class="zoom">
-                                <div class="movie-info">
-                                    <h2 class="movie-title">Guardianes de la Galaxia vol.2</h2>
-                                    <p class="movie-sinopsis">La informacion de esta pelicula no se encuentra disponible en este momento. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique odit animi ut nam facilis architecto, minus itaque accusamus labore fugit assumenda omnis ab molestias optio saepe sunt..</p>
-                                    <div class="links">
-                                        <a class="watch" href="ver" >Ver</a>
-                                        <a class="down" href="down" >Descargar</a>
+                            <div class="image-poster">
+                                <div class="movie-image"><img
+                                        src="https://farm5.staticflickr.com/4487/24153103448_8ce5082f75.jpg"
+                                        alt="Guardianes de la galaxia vol.2" class="zoom">
+                                    <div class="movie-info">
+                                        <h2 class="movie-title">Guardianes de la Galaxia vol.2</h2>
+                                        <p class="movie-sinopsis">La informacion de esta pelicula no se encuentra
+                                            disponible en este momento. Lorem ipsum dolor sit amet, consectetur
+                                            adipisicing elit. Similique odit animi ut nam facilis architecto, minus
+                                            itaque accusamus labore fugit assumenda omnis ab molestias optio saepe
+                                            sunt..</p>
+                                        <div class="links">
+                                            <a class="watch" href="ver">Ver</a>
+                                            <a class="down" href="down">Descargar</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="image-poster">
-                            <div class="movie-image" ><img src="https://farm5.staticflickr.com/4487/24153103448_8ce5082f75.jpg" alt="Guardianes de la galaxia vol.2" class="zoom">
-                                <div class="movie-info">
-                                    <h2 class="movie-title">Guardianes de la Galaxia vol.2</h2>
-                                    <p class="movie-sinopsis">La informacion de esta pelicula no se encuentra disponible en este momento. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique odit animi ut nam facilis architecto, minus itaque accusamus labore fugit assumenda omnis ab molestias optio saepe sunt..</p>
-                                    <div class="links">
-                                        <a class="watch" href="ver" >Ver</a>
-                                        <a class="down" href="down" >Descargar</a>
+                            <div class="image-poster">
+                                <div class="movie-image"><img
+                                        src="https://farm5.staticflickr.com/4487/24153103448_8ce5082f75.jpg"
+                                        alt="Guardianes de la galaxia vol.2" class="zoom">
+                                    <div class="movie-info">
+                                        <h2 class="movie-title">Guardianes de la Galaxia vol.2</h2>
+                                        <p class="movie-sinopsis">La informacion de esta pelicula no se encuentra
+                                            disponible en este momento. Lorem ipsum dolor sit amet, consectetur
+                                            adipisicing elit. Similique odit animi ut nam facilis architecto, minus
+                                            itaque accusamus labore fugit assumenda omnis ab molestias optio saepe
+                                            sunt..</p>
+                                        <div class="links">
+                                            <a class="watch" href="ver">Ver</a>
+                                            <a class="down" href="down">Descargar</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="image-poster">
-                            <div class="movie-image" ><img src="https://farm5.staticflickr.com/4487/24153103448_8ce5082f75.jpg" alt="Guardianes de la galaxia vol.2" class="zoom">
-                                <div class="movie-info">
-                                    <h2 class="movie-title">Guardianes de la Galaxia vol.2</h2>
-                                    <p class="movie-sinopsis">La informacion de esta pelicula no se encuentra disponible en este momento. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique odit animi ut nam facilis architecto, minus itaque accusamus labore fugit assumenda omnis ab molestias optio saepe sunt..</p>
-                                    <div class="links">
-                                        <a class="watch" href="ver" >Ver</a>
-                                        <a class="down" href="down" >Descargar</a>
+                            <div class="image-poster">
+                                <div class="movie-image"><img
+                                        src="https://farm5.staticflickr.com/4487/24153103448_8ce5082f75.jpg"
+                                        alt="Guardianes de la galaxia vol.2" class="zoom">
+                                    <div class="movie-info">
+                                        <h2 class="movie-title">Guardianes de la Galaxia vol.2</h2>
+                                        <p class="movie-sinopsis">La informacion de esta pelicula no se encuentra
+                                            disponible en este momento. Lorem ipsum dolor sit amet, consectetur
+                                            adipisicing elit. Similique odit animi ut nam facilis architecto, minus
+                                            itaque accusamus labore fugit assumenda omnis ab molestias optio saepe
+                                            sunt..</p>
+                                        <div class="links">
+                                            <a class="watch" href="ver">Ver</a>
+                                            <a class="down" href="down">Descargar</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="image-poster">
-                            <div class="movie-image" ><img src="https://farm5.staticflickr.com/4487/24153103448_8ce5082f75.jpg" alt="Guardianes de la galaxia vol.2" class="zoom">
-                                <div class="movie-info">
-                                    <h2 class="movie-title">Guardianes de la Galaxia vol.2</h2>
-                                    <p class="movie-sinopsis">La informacion de esta pelicula no se encuentra disponible en este momento. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique odit animi ut nam facilis architecto, minus itaque accusamus labore fugit assumenda omnis ab molestias optio saepe sunt..</p>
-                                    <div class="links">
-                                        <a class="watch" href="ver" >Ver</a>
-                                        <a class="down" href="down" >Descargar</a>
+                            <div class="image-poster">
+                                <div class="movie-image"><img
+                                        src="https://farm5.staticflickr.com/4487/24153103448_8ce5082f75.jpg"
+                                        alt="Guardianes de la galaxia vol.2" class="zoom">
+                                    <div class="movie-info">
+                                        <h2 class="movie-title">Guardianes de la Galaxia vol.2</h2>
+                                        <p class="movie-sinopsis">La informacion de esta pelicula no se encuentra
+                                            disponible en este momento. Lorem ipsum dolor sit amet, consectetur
+                                            adipisicing elit. Similique odit animi ut nam facilis architecto, minus
+                                            itaque accusamus labore fugit assumenda omnis ab molestias optio saepe
+                                            sunt..</p>
+                                        <div class="links">
+                                            <a class="watch" href="ver">Ver</a>
+                                            <a class="down" href="down">Descargar</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="image-poster">
-                            <div class="movie-image" ><img src="https://farm5.staticflickr.com/4487/24153103448_8ce5082f75.jpg" alt="Guardianes de la galaxia vol.2" class="zoom">
-                                <div class="movie-info">
-                                    <h2 class="movie-title">Guardianes de la Galaxia vol.2</h2>
-                                    <p class="movie-sinopsis">La informacion de esta pelicula no se encuentra disponible en este momento. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique odit animi ut nam facilis architecto, minus itaque accusamus labore fugit assumenda omnis ab molestias optio saepe sunt..</p>
-                                    <div class="links">
-                                        <a class="watch" href="ver" >Ver</a>
-                                        <a class="down" href="down" >Descargar</a>
+                            <div class="image-poster">
+                                <div class="movie-image"><img
+                                        src="https://farm5.staticflickr.com/4487/24153103448_8ce5082f75.jpg"
+                                        alt="Guardianes de la galaxia vol.2" class="zoom">
+                                    <div class="movie-info">
+                                        <h2 class="movie-title">Guardianes de la Galaxia vol.2</h2>
+                                        <p class="movie-sinopsis">La informacion de esta pelicula no se encuentra
+                                            disponible en este momento. Lorem ipsum dolor sit amet, consectetur
+                                            adipisicing elit. Similique odit animi ut nam facilis architecto, minus
+                                            itaque accusamus labore fugit assumenda omnis ab molestias optio saepe
+                                            sunt..</p>
+                                        <div class="links">
+                                            <a class="watch" href="ver">Ver</a>
+                                            <a class="down" href="down">Descargar</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="image-poster">
-                            <div class="movie-image" ><img src="https://farm5.staticflickr.com/4487/24153103448_8ce5082f75.jpg" alt="Guardianes de la galaxia vol.2" class="zoom">
-                                <div class="movie-info">
-                                    <h2 class="movie-title">Guardianes de la Galaxia vol.2</h2>
-                                    <p class="movie-sinopsis">La informacion de esta pelicula no se encuentra disponible en este momento. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique odit animi ut nam facilis architecto, minus itaque accusamus labore fugit assumenda omnis ab molestias optio saepe sunt..</p>
-                                    <div class="links">
-                                        <a class="watch" href="ver" >Ver</a>
-                                        <a class="down" href="down" >Descargar</a>
+                            <div class="image-poster">
+                                <div class="movie-image"><img
+                                        src="https://farm5.staticflickr.com/4487/24153103448_8ce5082f75.jpg"
+                                        alt="Guardianes de la galaxia vol.2" class="zoom">
+                                    <div class="movie-info">
+                                        <h2 class="movie-title">Guardianes de la Galaxia vol.2</h2>
+                                        <p class="movie-sinopsis">La informacion de esta pelicula no se encuentra
+                                            disponible en este momento. Lorem ipsum dolor sit amet, consectetur
+                                            adipisicing elit. Similique odit animi ut nam facilis architecto, minus
+                                            itaque accusamus labore fugit assumenda omnis ab molestias optio saepe
+                                            sunt..</p>
+                                        <div class="links">
+                                            <a class="watch" href="ver">Ver</a>
+                                            <a class="down" href="down">Descargar</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="image-poster">
-                            <div class="movie-image" ><img src="https://farm5.staticflickr.com/4487/24153103448_8ce5082f75.jpg" alt="Guardianes de la galaxia vol.2" class="zoom">
-                                <div class="movie-info">
-                                    <h2 class="movie-title">Guardianes de la Galaxia vol.2</h2>
-                                    <p class="movie-sinopsis">La informacion de esta pelicula no se encuentra disponible en este momento. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique odit animi ut nam facilis architecto, minus itaque accusamus labore fugit assumenda omnis ab molestias optio saepe sunt..</p>
-                                    <div class="links">
-                                        <a class="watch" href="ver" >Ver</a>
-                                        <a class="down" href="down" >Descargar</a>
+                            <div class="image-poster">
+                                <div class="movie-image"><img
+                                        src="https://farm5.staticflickr.com/4487/24153103448_8ce5082f75.jpg"
+                                        alt="Guardianes de la galaxia vol.2" class="zoom">
+                                    <div class="movie-info">
+                                        <h2 class="movie-title">Guardianes de la Galaxia vol.2</h2>
+                                        <p class="movie-sinopsis">La informacion de esta pelicula no se encuentra
+                                            disponible en este momento. Lorem ipsum dolor sit amet, consectetur
+                                            adipisicing elit. Similique odit animi ut nam facilis architecto, minus
+                                            itaque accusamus labore fugit assumenda omnis ab molestias optio saepe
+                                            sunt..</p>
+                                        <div class="links">
+                                            <a class="watch" href="ver">Ver</a>
+                                            <a class="down" href="down">Descargar</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
 
-
-
+        </div>
     </div>
-</div>
 </body>
 </html>
