@@ -17,10 +17,7 @@ a,p,li{
 	text-decoration: none;
 	z-index: 1;
 }
-a{
-	display: block;
-	padding:10px 15px;
-}
+
 header{
 	margin: auto;
 	width: 100%;
@@ -37,16 +34,17 @@ form{
 form #submit{
 	display: none;
 }
-.border{
-	border-top: 1px solid #ff3737;
-}
-.genres:hover > nav>ul>li>ul a:hover{
 
-
-}
 .slider{
 	margin: 10px auto;
 	width: 95%;
+}
+.slider > h2{
+	border-bottom: 1px solid rgb(233, 179, 17);
+	color: rgb(233, 179, 17);
+	line-height: 1.5em;
+	text-align: center;
+	width: 100%;
 }
 .popular-movies{
 	overflow: hidden;
@@ -97,13 +95,7 @@ form #submit{
 	100%{margin-right: 10%;}
 }
 
-.film-effect:hover img{
-	opacity: .5;
-	transition: all 300ms;
-	-webkit-transition: all 300ms;
-	transform: scale(1.1);
-	-webkit-transform: scale(1.1);
-}
+
 
 .film > .desc {
     opacity: 0;
@@ -115,8 +107,8 @@ form #submit{
 	z-index: 2;
     margin-top: -280px;
 	background: rgba(0, 0, 0, 0.7);
-	width: 9cm;
-	height: 8cm;
+	width: 8.1cm;
+	height: 7.6cm;
 	opacity: 1;
     backdrop-filter: blur(12px);
 }
@@ -124,7 +116,7 @@ form #submit{
 .film > .desc button {
 	background: rgba(67, 66, 77, 0.8);
 	transition: all 250ms ease;
-	padding: 15px 44px 15px 44px;
+	padding: 13px 40px 13px 40px;
 	border-radius: 60px;
 	border: 0;
 	color: #fff;
@@ -132,7 +124,7 @@ form #submit{
 	font-size: 21px;
 	font-weight: 300;
 	cursor: pointer;
-	margin: 22px 0 0 18px;
+	margin: 22px 0 0 0px;
 	outline: none;
   border: 2px solid transparent;
 }
@@ -149,16 +141,17 @@ form #submit{
   background-color: rgba(81, 68, 63, 0.5);
 }
 .film > .desc img{
-	width: 48px;
-	height: 48px;
+
+	width: 42px;
+	height: 42px;
 }
 
 .film > .desc > .text {
 	color: #fff;
-	margin: 22px 0 0 22px;
-	width: 205px;
+	margin: 20px 0 0 20px;
+	width: 184px;
 }
-
+/*****************************************************************************************************************/
 section{
 	width: 100%
 }
@@ -167,13 +160,13 @@ section{
 	width: 95%;
 }
 section > h2{
-	border-bottom: 1px solid #ff4848;
-	color: #fff;
+	border-bottom: 1px solid rgb(233, 179, 17);
+	color: rgb(233, 179, 17);
 	line-height: 1.5em;
 	text-align: center;
 	width: 100%;
 }
-/*****************************************************************************************************************/
+
 .recents-movies{
 	margin-top: 20px;
 	margin-bottom: 20px;
