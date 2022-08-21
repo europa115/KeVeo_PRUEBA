@@ -4,7 +4,8 @@
 <head>
     <meta charset="utf-8">
     <title>Welcome to KeVeo</title>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css'>
     <link rel="stylesheet" href="./css/homeStyle.css">
 </head>
 <body>
@@ -66,48 +67,52 @@
                 <div class="section">
                     <div class="recents-movies">
                         <div class="recents-movie-container">
-                            <div th:each="film, iterator : ${listFilms}">
-                                <div th:if="${iterator.count lt 6}"  class="film">
-                                    <img th:src="${film.cover}" alt="">
-                                    <div class="desc">
-                                        <a th:href="@{'/film/filmInfo/' + ${film.id}}">
-                                            <button>INFO</button>
-                                        </a>
-                                        <hr>
-                                        <div class="text" th:text="${film.title}">
-                                        </div>
-                                        <div class="text">
+                            <div class="carousel-wrap">
+                                <div class="owl-carousel">
+                                    <div class="item" th:each="film, iterator : ${listFilms}">
+                                        <div  th:if="${iterator.count lt 10}" class="film" >
+                                            <img th:src="${film.cover}" alt="">
+                                            <div class="desc">
+                                                <a th:href="@{'/film/filmInfo/' + ${film.id}}">
+                                                    <button>INFO</button>
+                                                </a>
+                                                <hr>
+                                                <div class="text" th:text="${film.title}">
+                                                </div>
+                                                <div class="text">
 
-                                            Plataformas disponibles:
-                                            <p> </p>
+                                                    Plataformas disponibles:
+                                                    <p> </p>
 
-                                            <a th:each="num: ${film.platforms}">
+                                                    <a th:each="num: ${film.platforms}">
 
-                                                <a th:if="${num.toString() == 'Netflix'}"
-                                                   href="https://www.netflix.com/es/browse/genre/839338"
-                                                   target="_blank">
-                                                    <span><img src="./img/platform/netflix.png"></span></a>
+                                                        <a th:if="${num.toString() == 'Netflix'}"
+                                                           href="https://www.netflix.com/es/browse/genre/839338"
+                                                           target="_blank">
+                                                            <span><img src="./img/platform/netflix.png"></span></a>
 
-                                                <a th:if="${num.toString() == 'HBO Max'}"
-                                                   href="https://www.hbomax.com/" target="_blank">
-                                                    <span><img src="./img/platform/hbo.png"></span></a>
+                                                        <a th:if="${num.toString() == 'HBO Max'}"
+                                                           href="https://www.hbomax.com/" target="_blank">
+                                                            <span><img src="./img/platform/hbo.png"></span></a>
 
-                                                <a th:if="${num.toString() == 'Prime Video'}"
-                                                   href="https://www.primevideo.com/" target="_blank">
-                                                    <span><img src="./img/platform/prime.png"></span></a>
+                                                        <a th:if="${num.toString() == 'Prime Video'}"
+                                                           href="https://www.primevideo.com/" target="_blank">
+                                                            <span><img src="./img/platform/prime.png"></span></a>
 
-                                                <a th:if="${num.toString() == 'Disney+'}"
-                                                   href="https://www.disneyplus.com/" target="_blank">
-                                                    <span><img src="./img/platform/disney.png"></span></a>
-                                            </a>
-                                        </div>
-                                    </div>
+                                                        <a th:if="${num.toString() == 'Disney+'}"
+                                                           href="https://www.disneyplus.com/" target="_blank">
+                                                            <span><img src="./img/platform/disney.png"></span></a>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                     </div>
                                 </div>
-                            </div>
                             </div>
                         </div>
                     </div>
-            </section>
+                    </div>
+            </div>
+        </section>
 
         <!--*******************************************************************************************-->
 
