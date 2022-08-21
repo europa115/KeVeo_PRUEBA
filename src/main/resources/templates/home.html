@@ -69,8 +69,8 @@
                         <div class="recents-movie-container">
                             <div class="carousel-wrap">
                                 <div class="owl-carousel">
-                                    <div class="item" th:each="film, iterator : ${listFilms}">
-                                        <div  th:if="${iterator.count lt 10}" class="film" >
+                                    <div class="item"  th:if="${iterator.count lt 10}" th:each="film, iterator : ${listFilms}">
+                                        <div  class="film" >
                                             <img th:src="${film.cover}" alt="">
                                             <div class="desc">
                                                 <a th:href="@{'/film/filmInfo/' + ${film.id}}">
