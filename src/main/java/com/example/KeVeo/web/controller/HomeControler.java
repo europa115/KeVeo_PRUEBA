@@ -31,8 +31,12 @@ public class HomeControler extends AbstractController{
 
             final List<Genre> listGenres=filmService.listGenres();
             final List<FilmDTO> listFilms = this.filmService.findAll();
+            final List<FilmDTO> listFilmsYear=this.filmService.findByYear();
+        final List<FilmDTO> listFilmsIdDesc=this.filmService.findByIdDesc();
             model
                     .addAttribute("listFilms", listFilms)
+                    .addAttribute("listFilmsYear", listFilmsYear)
+                    .addAttribute("listFilmsIdDesc", listFilmsIdDesc)
                     .addAttribute("listGenres", listGenres);
 
 

@@ -39,6 +39,18 @@ public class FilmService extends AbstractBusinessService<Film,Integer, FilmDTO, 
         return this.getRepository().findAll(pageable).map(getServiceMapper()::toDto);
     }
 
+    public List<FilmDTO> findByYear(){
+
+        return getServiceMapper().toDto(this.getRepository().findByYear());
+
+    }
+
+    public List<FilmDTO> findByIdDesc(){
+
+        return getServiceMapper().toDto(this.getRepository().findByIdDesc());
+
+    }
+
     public List<Genre> listGenres() {
         return genreRepository.findAll();
     }
