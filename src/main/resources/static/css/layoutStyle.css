@@ -136,6 +136,20 @@ top:-8px;
     }
 
 }
+@media only screen  and (max-width: 880px){
+
+.navbar-primary.collapsed {
+  width: 0px;
+  background: rgb(20, 51, 91);
+}
+.collapsed + .content-wrapper {
+  margin-left: 0px;
+
+}
+ .navbar-primary {
+     display: none !important;
+  }
+}
 /********************************Second NAV BAR****************************************************/
 
 .scroll {
@@ -172,11 +186,4 @@ top:-8px;
 .scroll::-webkit-scrollbar {
   display: none;
 }
-.btngroup {
-  font-size: 0;
-  line-height: 1;
-  white-space: nowrap;
-  display: inline;
 
-}
-}
