@@ -77,6 +77,12 @@
         <div class='example-one-header scroll'>
             <ul class="nav navbar-nav navbar-right">
             <nav class='vertical-align-middle'>
+                <div class='nav-item' th:each="menuItem : ${menuList}">
+
+                    <a th:href="${menuItem.url}"><span th:class="${menuItem.icon}"></span>
+                        <span th:text="${menuItem.description}"></span></a>
+
+                </div>
                 <a class='nav-item'><span>Blog</span></a>
                 <a class='nav-item'><span>Portfolio</span></a>
                 <a class='nav-item'><span>About</span></a>
@@ -84,6 +90,7 @@
                 <a class='nav-item'><span>Portfolio</span></a>
                 <a class='nav-item'><span>About</span></a>
                 <a class='nav-item'><span>Contact</span></a>
+
             </nav>
                 </ul>
         </div>
@@ -121,8 +128,9 @@
     <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js'></script>
     <script>
         if (window.matchMedia("(min-width: 400px)").matches) {
-    $('.btn-expand-collapse').click(function(e) {
-    				$('.navbar-primary').toggleClass('collapsed');
+           // $('.navbar-primary').toggleClass('collapsed');
+            $('.btn-expand-collapse').click(function(e) {
+                            $('.navbar-primary').toggleClass('collapsed');
     });
     } else {
     $('.navbar-primary').toggleClass('collapsed');
