@@ -83,13 +83,20 @@
                         <span th:text="${menuItem.description}"></span></a>
 
                 </div>
-                <a class='nav-item'><span>Blog</span></a>
-                <a class='nav-item'><span>Portfolio</span></a>
-                <a class='nav-item'><span>About</span></a>
-                <a class='nav-item'><span>Contact</span></a>
-                <a class='nav-item'><span>Portfolio</span></a>
-                <a class='nav-item'><span>About</span></a>
-                <a class='nav-item'><span>Contact</span></a>
+                <a class="nav-item" th:href="@{/film(wordKey='Netflix')}">
+                    <img src="./img/platform/netflix.png" width="32" height="28">
+                    <span>Netflix</span></a>
+                <a class="nav-item" th:href="@{/film(wordKey='HBO Max')}">
+                    <img src="./img/platform/hbo.png" width="32" height="28">
+                    <span>HBO Max</span></a>
+                <a class="nav-item" th:href="@{/film(wordKey='Prime Video')}">
+                    <img src="./img/platform/prime.png" width="32" height="28">
+                    <span>Prime Video</span></a>
+                <a class="nav-item" th:href="@{/film(wordKey='Disney+')}">
+                    <img src="./img/platform/disney.png" width="32" height="28">
+                    <span>Disney+</span></a>
+
+
 
             </nav>
                 </ul>
@@ -128,7 +135,7 @@
     <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js'></script>
     <script>
         if (window.matchMedia("(min-width: 400px)").matches) {
-           // $('.navbar-primary').toggleClass('collapsed');
+            $('.navbar-primary').toggleClass('collapsed');
             $('.btn-expand-collapse').click(function(e) {
                             $('.navbar-primary').toggleClass('collapsed');
     });
