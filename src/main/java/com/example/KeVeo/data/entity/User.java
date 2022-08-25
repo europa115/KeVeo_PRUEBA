@@ -47,8 +47,13 @@ public class User implements Serializable {
     inverseJoinColumns = @JoinColumn(name = "Film_ID"))
     private List<Film> films;
 
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "users_comments", joinColumns = @JoinColumn(name = "User_ID"),
+            inverseJoinColumns = @JoinColumn(name = "Comment_ID"))
+    private List<Comment> comments;
+
     //******************************************Constructors************************************************************
-    public User(String userName, String password, Date date, ZonedDateTime registerDate, boolean active, String userSurname,
+    /*public User(String userName, String password, Date date, ZonedDateTime registerDate, boolean active, String userSurname,
                 String userEmail,String photo, List<Role> roles) {
         this.userName = userName;
         this.password = password;
@@ -59,7 +64,7 @@ public class User implements Serializable {
         this.userEmail = userEmail;
         this.photo=photo;
         this.roles = roles;
-    }
+    }*/
 
     public void addRole(Role role) {
         this.roles.add(role);

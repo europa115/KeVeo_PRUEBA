@@ -1,5 +1,6 @@
 package com.example.KeVeo.dto;
 
+import com.example.KeVeo.data.entity.Comment;
 import com.example.KeVeo.data.entity.Film;
 import com.example.KeVeo.data.entity.Role;
 import lombok.AllArgsConstructor;
@@ -29,5 +30,5 @@ public class UserDTO implements Serializable {
     private String photo;
     private List<Role> roles = new ArrayList<>();
     private List<Film> films= new ArrayList<>();
-
+    private List<Comment> comments= new ArrayList<>();
 }

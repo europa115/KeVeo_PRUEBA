@@ -52,5 +52,7 @@ public class Film implements Serializable {
     @JoinTable(name = "film_platforms", joinColumns = @JoinColumn(name = "Film_ID"),
             inverseJoinColumns = @JoinColumn(name = "Platform_ID"))
     private List<Platform> platforms;
+    @OneToMany(mappedBy = "film", cascade = CascadeType.ALL)
+    private List<Comment> comments;
 
 }
