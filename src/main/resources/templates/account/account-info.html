@@ -69,10 +69,10 @@
 
                         </div>
 
-                        <button type="submit" class="btn btn-primary" th:formaction="${#authentication.getPrincipal().getId} + '/account'">Update</button>
+                        <button type="submit" class="btn btn-primary confirm" th:formaction="${#authentication.getPrincipal().getId} + '/account'">Update</button>
                         <hr>
                         <div class="form-group" id="contrasena-group" >
-                            <a th:href="${#authentication.getPrincipal().getId} + '/account/changePassword'"><button type="button" class="btn btn-primary" >Cambiar contraseña</button></a>
+                            <a th:href="${#authentication.getPrincipal().getId} + '/account/changePassword'"><button type="button" class="btn btn-primary confirm" >Cambiar contraseña</button></a>
                         </div>
 
                         <!-- <input type="submit" class="form-control btn btn-primary " name="login-submit" id="login-submit"value="Ingresar"/>-->

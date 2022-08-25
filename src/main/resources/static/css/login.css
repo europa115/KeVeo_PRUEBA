@@ -58,7 +58,7 @@ body{
     content: "\f0e0";
 }
 
-button{
+button .confirm{
     width: 60%;
     margin: 5px 0 25px;
 }
@@ -69,9 +69,5 @@ button{
 
 .forgot a{
     color: white;
-}
-a{
-
-    color: rgb(233, 179, 17);
 }
 .choseColor{color: white}

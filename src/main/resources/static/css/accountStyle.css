@@ -92,7 +92,7 @@ body{
     content: "\f03e";
 }
 
-button{
+button .confirm{
     width: 60%;
     margin: 5px 0 25px;
 }
