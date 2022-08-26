@@ -27,7 +27,7 @@ public class Comment implements Serializable {
 
     //La entidad comentarios se terminara mas tarde. Relacion desde film oneToMany/Relacion desde de User ManyToOne
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Film film;
 
 }

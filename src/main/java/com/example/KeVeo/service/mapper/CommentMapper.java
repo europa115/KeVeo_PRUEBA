@@ -1,14 +1,12 @@
 package com.example.KeVeo.service.mapper;
 
 import com.example.KeVeo.data.entity.Comment;
-import com.example.KeVeo.data.entity.Film;
 import com.example.KeVeo.dto.CommentDTO;
-import com.example.KeVeo.dto.FilmDTO;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CommnetMapper extends AbstractServiceMapper<Comment, CommentDTO>{
+public class CommentMapper extends AbstractServiceMapper<Comment, CommentDTO>{
 
     private ModelMapper modelMapper = new ModelMapper();
 
