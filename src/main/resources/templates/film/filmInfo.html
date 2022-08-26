@@ -5,14 +5,14 @@
 <head>
     <meta charset="UTF-8">
     <title>INFO Película</title>
-
+    <link rel="stylesheet" type="text/css" href="static/css/infoStyle" th:href="@{/css/infoStyle.css}">
+    <link rel="stylesheet" type="text/css" href="static/css/layoutStyle.css" th:href="@{/css/layoutStyle.css}">
 
 </head>
 <body>
 
 <div layout:fragment="content">
-    <link rel="stylesheet" type="text/css" href="static/css/infoStyle" th:href="@{/css/infoStyle.css}">
-    <link rel="stylesheet" type="text/css" href="static/css/layoutStyle.css" th:href="@{/css/layoutStyle.css}">
+
     <main>
         <form th:action="@{'/'}" th:object="${film}" method="post">
         <!-- <div class="container"> -->
@@ -86,7 +86,42 @@
         <!-- </div> -->
         </form>
     </main>
-    <!-- partial -->
+    <div class="comments-section">
+        <div class="comments">
+            <h4>COMMENTS</h4>
+            <div id="comments-container">
+                <div class="comment">
+                    <div class="comment-user">
+                        <div class="avatar"><img src="https://i.pinimg.com/564x/58/6a/87/586a8788cd417189821cc7e40166dd04.jpg" alt="Riccardo"/></div><span class="user-details"><span class="username">Riccardo </span><span>on </span><span>MARCH 7, 2016</span></span>
+                    </div>
+                    <div class="comment-text">
+                        "Draft.js is a framework for building rich text editors in React, powered by an immutable model and abstracting over cross-browser differences."<br><br>
+                        <a href="https://facebook.github.io/draft-js/">Draft.js</a> home page.
+                    </div>
+                </div>
+                <div class="comment">
+                    <div class="comment-user">
+                        <div class="avatar"><img src="//s3-us-west-2.amazonaws.com/s.cdpn.io/49366/profile/profile-80_1.jpg" alt="Riccardo"/></div><span class="user-details"><span class="username">Riccardo </span><span>on </span><span>MARCH 7, 2016</span></span>
+                    </div>
+                    <div class="comment-text">
+                        This demo demonstrate a basic implementation of <strong>Draft.js</strong> <br>
+                        It's a powerfoul React framework. You can try styling your comment with the pleasure of see the effects live instead of the guard characters of markdown. <br><br><br>
+                        Watch the official presentation at the React.js Conf 2016. <a href="https://www.youtube.com/watch?v=feUYwoLhE_4">WATCH!!</a>
+                    </div>
+                </div>
+                <div class="comment">
+                    <div class="comment-user">
+                        <div class="avatar"><img src="//s3-us-west-2.amazonaws.com/s.cdpn.io/49366/profile/profile-80_1.jpg" alt="Riccardo"/></div><span class="user-details"><span class="username">Riccardo </span><span>on </span><span>MARCH 7, 2016</span></span>
+                    </div>
+                    <div class="comment-text">
+                        Try actions like keyboard shortcuts for inline styling. Also try tagging someone! Maybe me @rkpasia :) <br><br>
+                        Have fun.<br>
+                        Be cool.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </div>
 
