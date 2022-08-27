@@ -8,6 +8,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -20,14 +21,15 @@ public class Comment implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private Integer id;
-
+    @Lob
     private String content;
 
     private Date creation;
 
-    //La entidad comentarios se terminara mas tarde. Relacion desde film oneToMany/Relacion desde de User ManyToOne
-
     @ManyToOne(fetch = FetchType.LAZY)
     private Film film;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User user;
 
 }

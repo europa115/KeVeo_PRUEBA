@@ -89,13 +89,18 @@
     <br>
     <div class="comments-section">
         <div class="comments">
-            <h3>COMMENTS</h3>
+            <h3>COMENTARIOS</h3>
             <div id="comments-container">
 
                 <div class="comment" th:each="comment : ${listComments}">
                     <div class="comment-user">
-                        <div class="avatar"><img src="//s3-us-west-2.amazonaws.com/s.cdpn.io/49366/profile/profile-80_1.jpg" alt="Riccardo"/></div><span class="user-details">
-                        <span class="username">Riccardo </span><span>on </span><span th:text="${comment.creation}"></span></span>
+                        <div class="avatar">
+                            <img th:if="${comment.user.getPhoto() == null}"  th:src="@{/img/user.png}" />
+                            <img th:unless="${comment.user.getPhoto() == null}" th:src="@{'/imgUser/'+ ${comment.user.getPhoto()}}"/>
+
+                        </div>
+                        <span class="user-details">
+                        <span class="username" th:text="${comment.user.userName}"></span><span> on </span><span th:text="${comment.creation}"></span></span>
                     </div>
                     <div class="comment-text" th:text="${comment.content}">
 

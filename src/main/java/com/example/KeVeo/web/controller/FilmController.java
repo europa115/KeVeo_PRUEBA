@@ -5,6 +5,7 @@ import com.example.KeVeo.data.entity.Genre;
 import com.example.KeVeo.data.entity.Role;
 import com.example.KeVeo.data.entity.User;
 import com.example.KeVeo.data.repository.GenreRepository;
+import com.example.KeVeo.data.repository.UserRepository;
 import com.example.KeVeo.dto.CommentDTO;
 import com.example.KeVeo.dto.FilmDTO;
 import com.example.KeVeo.dto.UserDTO;
@@ -40,16 +41,19 @@ public class FilmController extends AbstractController<FilmDTO> {
     private FilmMapper filmMapper;
 
     private CommentService commentService;
+    private UserRepository userRepository;
 
     @Autowired
     protected FilmController(MenuService menuService, FilmService filmService,GenreRepository genreRepository,
-                             FilmMapper filmMapper,CommentService commentService) {
+                             FilmMapper filmMapper,CommentService commentService,UserRepository userRepository) {
         super(menuService);
 
         this.filmService = filmService;
         this.genreRepository=genreRepository;
         this.filmMapper=filmMapper;
         this.commentService=commentService;
+        this.userRepository=userRepository;
+
     }
 
     @GetMapping("/film")
@@ -71,12 +75,9 @@ public class FilmController extends AbstractController<FilmDTO> {
 
         FilmDTO filmDTO = filmService.findById(id).get();
         Film film= filmMapper.toEntity(filmDTO);
-        final User user = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         List<CommentDTO> listComments= commentService.findByFilmId(id);
-
         model
                 .addAttribute("film", film)
-                .addAttribute("user", user)
                 .addAttribute("listComments",listComments);
 
         return "film/filmInfo";

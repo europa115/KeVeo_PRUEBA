@@ -47,11 +47,8 @@ public class User implements Serializable {
     inverseJoinColumns = @JoinColumn(name = "Film_ID"))
     private List<Film> films;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "users_comments", joinColumns = @JoinColumn(name = "User_ID"),
-            inverseJoinColumns = @JoinColumn(name = "Comment_ID"))
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Comment> comments;
-
     //******************************************Constructors************************************************************
     /*public User(String userName, String password, Date date, ZonedDateTime registerDate, boolean active, String userSurname,
                 String userEmail,String photo, List<Role> roles) {

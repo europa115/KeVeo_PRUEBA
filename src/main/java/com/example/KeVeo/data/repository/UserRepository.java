@@ -17,6 +17,8 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     + " CONCAT(u.id, u.userName, u.userEmail)"
     + " LIKE %?1%")
     Page<User> findAll(Pageable pageable,String wordKey);
+
+
     Page<User> findByActiveTrue(Pageable pageable);
 
 }

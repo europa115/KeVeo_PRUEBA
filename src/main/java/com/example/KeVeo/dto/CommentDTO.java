@@ -1,6 +1,7 @@
 package com.example.KeVeo.dto;
 
 import com.example.KeVeo.data.entity.Film;
+import com.example.KeVeo.data.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,4 +20,5 @@ public class CommentDTO  implements Serializable {
     private String content;
     private Date creation;
     private Film film;
+    private User user;
 }
