@@ -22,7 +22,6 @@ public class Genre implements Serializable {
 
     private String name;
 
-
     @Override
     public String toString(){
         return this.name;
