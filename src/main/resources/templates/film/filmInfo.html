@@ -94,8 +94,9 @@
             <h3>COMENTARIOS</h3>
             <div id="comments-container">
 
+                <div th:if="${#authentication.getPrincipal() == 'anonymousUser'}" style="color:BLACK;"><p>Registratr o login</p></div>
 
-                    <form th:action="@{'/filmInfo/save/' + ${film.id}}"  th:object="${comment}" method="post" >
+                    <form th:unless="${#authentication.getPrincipal() == 'anonymousUser'}" th:action="@{'/filmInfo/save/' + ${film.id}}"  th:object="${comment}" method="post" >
                         <div class="comment">
                             <div class="comment-user">
                                 <div class="avatar">
