@@ -95,7 +95,7 @@
             <div id="comments-container">
 
 
-                    <form th:action="@{/filmInfo/save}" th:object="${comment}" method="post" style="max-width: 600px; margin: 0 auto;">
+                    <form th:action="@{'/filmInfo/save/' + ${film.id}}"  th:object="${comment}" method="post" >
                         <div class="comment">
                             <div class="comment-user">
                                 <div class="avatar">
@@ -107,13 +107,15 @@
                             </div>
                             <div class="comment-text">
                                 <textarea name ="text" th:field="${comment.content}" class="section text" placeholder="Escribe aquí, tu comentario u opinion sobre la película..."></textarea>
+                                <input type="hidden" name="id"  th:value="${comment.id}">
                                 <input type="hidden" name="film"  th:value="${film.id}">
                                 <input type="hidden" name="user" th:value="${#authentication.getPrincipal().id}">
                             </div>
+                            <div class="submit">
+                                <button type="submit" value="Submit">Añadir Comentario</button>
+                            </div>
                         </div>
-                        <div class="submit">
-                            <button type="submit" value="Submit">Añadir Comentario</button>
-                        </div>
+
                     </form>
 
 

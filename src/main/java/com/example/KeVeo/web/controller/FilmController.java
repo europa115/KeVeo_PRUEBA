@@ -15,6 +15,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -66,24 +67,24 @@ public class FilmController extends AbstractController<FilmDTO> {
 
     @GetMapping("/film/filmInfo/{id}")
     public String viewInfo(@PathVariable("id") Integer id, ModelMap model) {
-
+        CommentDTO commentDTO=new CommentDTO();
         FilmDTO filmDTO = filmService.findById(id).get();
         Film film= filmMapper.toEntity(filmDTO);
         List<CommentDTO> listComments= commentService.findByFilmId(id);
         model
                 .addAttribute("film", film)
-                .addAttribute("comment", new CommentDTO())
-                .addAttribute("listComments",listComments);
+                .addAttribute("listComments",listComments)
+                .addAttribute("comment", commentDTO);
 
         return "film/filmInfo";
     }
 
-    @PostMapping("/filmInfo/save")
-    public String saveComment(CommentDTO commentDTO) {
+    @PostMapping("/filmInfo/save/{id}")
+    public String saveComment(CommentDTO commentDTO,@PathVariable("id") Integer id) {
 
         commentService.save(commentDTO);
 
-        return "redirect:/filmInfo";
+        return "redirect:/film/filmInfo/{id}";
     }
 
 }
