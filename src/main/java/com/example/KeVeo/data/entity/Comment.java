@@ -4,9 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -24,7 +26,7 @@ public class Comment implements Serializable {
     @Lob
     private String content;
 
-    private Date creation;
+    private ZonedDateTime creation;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Film film;

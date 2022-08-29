@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.time.ZonedDateTime;
 import java.util.Date;
 
 @AllArgsConstructor
@@ -18,7 +19,7 @@ public class CommentDTO  implements Serializable {
 
     private Integer id;
     private String content;
-    private Date creation;
+    private ZonedDateTime creation = ZonedDateTime.now();;
     private Film film;
     private User user;
 }

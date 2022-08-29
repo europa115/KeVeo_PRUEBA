@@ -83,7 +83,9 @@
                 </div>
             </div>
             <!-- end movie-card -->
-        <!-- </div> -->
+        <!-- </div> --> <form th:action="@{/gestionFilm/save}" th:object="${film}"
+                              method="post" style="max-width: 600px; margin: 0 auto;">
+        </form>
         </form>
     </main>
     <br>
@@ -91,6 +93,30 @@
         <div class="comments">
             <h3>COMENTARIOS</h3>
             <div id="comments-container">
+
+
+                    <form th:action="@{/filmInfo/save}" th:object="${comment}" method="post" style="max-width: 600px; margin: 0 auto;">
+                        <div class="comment">
+                            <div class="comment-user">
+                                <div class="avatar">
+                                    <img th:if="${#authentication.getPrincipal().getPhoto == null}"  th:src="@{/img/user.png}" />
+                                    <img th:unless="${#authentication.getPrincipal().getPhoto == null}" th:src="@{'/imgUser/'+ ${#authentication.getPrincipal().getPhoto}}"/>
+                                </div>
+                                <span class="user-details">
+                                    <span class="username" th:text="${#authentication.getPrincipal().getUserName()}"></span><span> on </span><span th:text="${'2022-11-11'}"></span></span>
+                            </div>
+                            <div class="comment-text">
+                                <textarea name ="text" th:field="${comment.content}" class="section text" placeholder="Escribe aquí, tu comentario u opinion sobre la película..."></textarea>
+                                <input type="hidden" name="film"  th:value="${film.id}">
+                                <input type="hidden" name="user" th:value="${#authentication.getPrincipal().id}">
+                            </div>
+                        </div>
+                        <div class="submit">
+                            <button type="submit" value="Submit">Añadir Comentario</button>
+                        </div>
+                    </form>
+
+
 
                 <div class="comment" th:each="comment : ${listComments}">
                     <div class="comment-user">

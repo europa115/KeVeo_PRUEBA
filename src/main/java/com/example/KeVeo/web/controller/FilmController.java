@@ -2,23 +2,18 @@ package com.example.KeVeo.web.controller;
 
 import com.example.KeVeo.data.entity.Film;
 import com.example.KeVeo.data.entity.Genre;
-import com.example.KeVeo.data.entity.Role;
-import com.example.KeVeo.data.entity.User;
 import com.example.KeVeo.data.repository.GenreRepository;
 import com.example.KeVeo.data.repository.UserRepository;
 import com.example.KeVeo.dto.CommentDTO;
 import com.example.KeVeo.dto.FilmDTO;
-import com.example.KeVeo.dto.UserDTO;
 import com.example.KeVeo.service.CommentService;
 import com.example.KeVeo.service.FilmService;
 import com.example.KeVeo.service.MenuService;
 import com.example.KeVeo.service.mapper.FilmMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.repository.query.Param;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -26,8 +21,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.support.SessionStatus;
-import org.springframework.web.servlet.ModelAndView;
+
 
 import java.util.List;
 import java.util.Optional;
@@ -78,9 +72,18 @@ public class FilmController extends AbstractController<FilmDTO> {
         List<CommentDTO> listComments= commentService.findByFilmId(id);
         model
                 .addAttribute("film", film)
+                .addAttribute("comment", new CommentDTO())
                 .addAttribute("listComments",listComments);
 
         return "film/filmInfo";
+    }
+
+    @PostMapping("/filmInfo/save")
+    public String saveComment(CommentDTO commentDTO) {
+
+        commentService.save(commentDTO);
+
+        return "redirect:/filmInfo";
     }
 
 }
