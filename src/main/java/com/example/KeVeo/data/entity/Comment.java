@@ -8,7 +8,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 
@@ -26,7 +28,7 @@ public class Comment implements Serializable {
     @Lob
     private String content;
 
-    private ZonedDateTime creation;
+    private LocalDateTime creation;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Film film;
