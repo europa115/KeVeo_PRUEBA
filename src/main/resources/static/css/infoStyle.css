@@ -283,3 +283,12 @@ color:BLACK;
 font-size:18px;
 
 }
+.delete{
+margin-left:70%;
+
+}
+@media only screen  and (max-width: 880px){
+    .delete{
+    margin-left:34%;
+    }
+}
