@@ -94,7 +94,8 @@
             <h3>COMENTARIOS</h3>
             <div id="comments-container">
 
-                <div th:if="${#authentication.getPrincipal() == 'anonymousUser'}" style="color:BLACK;"><p>Registratr o login</p></div>
+                <div th:if="${#authentication.getPrincipal() == 'anonymousUser'}" class="log">
+                    <p>*Para poder comentar en esta película necesitas <a th:href="@{/register}">Registrarte</a> o <a th:href="@{/login}">Iniciar Sesión</a> en tu cuenta de KeVeo.</p></div>
 
                     <form th:unless="${#authentication.getPrincipal() == 'anonymousUser'}" th:action="@{'/filmInfo/save/' + ${film.id}}"  th:object="${comment}" method="post" >
                         <div class="comment">
@@ -104,16 +105,16 @@
                                     <img th:unless="${#authentication.getPrincipal().getPhoto == null}" th:src="@{'/imgUser/'+ ${#authentication.getPrincipal().getPhoto}}"/>
                                 </div>
                                 <span class="user-details">
-                                    <span class="username" th:text="${#authentication.getPrincipal().getUserName()}"></span><span> on </span><span th:text="${'2022-11-11'}"></span></span>
+                                    <span class="username" th:text="${#authentication.getPrincipal().getUserName()}"></span><span>  Comentar..</span></span>
                             </div>
                             <div class="comment-text">
-                                <textarea name ="text" th:field="${comment.content}" class="section text" placeholder="Escribe aquí, tu comentario u opinion sobre la película..."></textarea>
+                                <textarea name ="text" th:field="${comment.content}" class="section text" maxlength="1000" minlength="20" placeholder="Escribe aquí, tu comentario u opinion sobre la película..."></textarea>
                                 <input type="hidden" name="id"  th:value="${comment.id}">
                                 <input type="hidden" name="film"  th:value="${film.id}">
                                 <input type="hidden" name="user" th:value="${#authentication.getPrincipal().id}">
                             </div>
-                            <div class="submit">
-                                <button type="submit" value="Submit">Añadir Comentario</button>
+                            <div class="submit agree">
+                                <button type="submit" class="btn btn-success" value="Submit">Añadir Comentario</button>
                             </div>
                         </div>
 
