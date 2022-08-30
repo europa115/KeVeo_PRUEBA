@@ -126,10 +126,12 @@
                         </div>
                         <span class="user-details">
                         <span class="username" th:text="${comment.user.userName}"></span><span> publicado el </span><span th:text="${comment.creation}"></span></span>
-                        <span th:each="rol:${#authentication.getPrincipal().getRoles()}"class="delete">
+
+                        <div  th:if="${#authentication.getPrincipal() ne 'anonymousUser'}" class="delete">
+                        <span th:each="rol:${#authentication.getPrincipal().getRoles()}">
                             <button th:if="${rol.getRoleName() == 'ROLE_ADMIN'}"class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
                         </span>
-
+                        </div>
                     </div>
                     <div class="comment-text" th:text="${comment.content}">
 
