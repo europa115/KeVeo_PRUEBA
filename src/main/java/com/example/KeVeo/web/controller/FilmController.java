@@ -11,6 +11,7 @@ import com.example.KeVeo.service.FilmService;
 import com.example.KeVeo.service.MenuService;
 import com.example.KeVeo.service.mapper.FilmMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.repository.query.Param;
@@ -22,6 +23,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.ModelAndView;
 
 
 import java.util.List;
@@ -77,6 +80,23 @@ public class FilmController extends AbstractController<FilmDTO> {
                 .addAttribute("comment", commentDTO);
 
         return "film/filmInfo";
+    }
+
+    @PostMapping({ "/comment/delete/{id}/{idFilm}" })
+    public Object delete(@PathVariable(value = "id") Integer id,@PathVariable(value = "idFilm") Integer idFilm,
+                         SessionStatus status) {
+        try {
+            this.commentService.delete(id);
+        } catch (DataIntegrityViolationException exception) {
+            status.setComplete();
+            return new ModelAndView("error/errorHapus")
+                    .addObject("entityId", id)
+                    .addObject("entityName", "task")
+                    .addObject("errorCause", exception.getRootCause().getMessage())
+                    .addObject("backLink", "/film/filmInfo/{idFilm}");
+        }
+        status.setComplete();
+        return "redirect:/film/filmInfo/{idFilm}";
     }
 
     @PostMapping("/filmInfo/save/{id}")

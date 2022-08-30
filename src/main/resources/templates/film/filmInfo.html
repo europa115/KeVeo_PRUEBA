@@ -128,9 +128,11 @@
                         <span class="username" th:text="${comment.user.userName}"></span><span> publicado el </span><span th:text="${comment.creation}"></span></span>
 
                         <div  th:if="${#authentication.getPrincipal() ne 'anonymousUser'}" class="delete">
-                        <span th:each="rol:${#authentication.getPrincipal().getRoles()}">
-                            <button th:if="${rol.getRoleName() == 'ROLE_ADMIN'}"class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
-                        </span>
+                        <form action="#" class="form" th:action="@{'/'}" method="post" th:each="rol:${#authentication.getPrincipal().getRoles()}">
+                            <button th:if="${rol.getRoleName() == 'ROLE_ADMIN'}"class="btn btn-danger" type="submit" value="Delete" th:formaction="'/comment/delete/' + ${comment.id} + '/' + ${film.id}">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+                        </form>
                         </div>
                     </div>
                     <div class="comment-text" th:text="${comment.content}">
