@@ -7,13 +7,23 @@
     <title>INFO Película</title>
     <link rel="stylesheet" type="text/css" href="static/css/infoStyle" th:href="@{/css/infoStyle.css}">
     <link rel="stylesheet" type="text/css" href="static/css/layoutStyle.css" th:href="@{/css/layoutStyle.css}">
-
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <script type="text/javascript">
+$(document).ready(function() {
+    setTimeout(function() {
+        $(".alert").fadeOut(1500);
+    },1000);
+});
+</script>
 </head>
 <body>
 
 <div layout:fragment="content">
 
     <main>
+        <div th:if="${param.successful}" class="alert alert-success" role="alert" style="width:50%; margin-left:25%; text-align:center;">
+            Se ha añadido a tus favoritos.
+        </div>
         <form th:action="@{'/'}" th:object="${film}" method="post">
         <!-- <div class="container"> -->
         <div class="movie-card">
@@ -90,6 +100,7 @@
                               method="post" style="max-width: 600px; margin: 0 auto;">
         </form>
         </form>
+
     </main>
     <br>
     <div class="comments-section">

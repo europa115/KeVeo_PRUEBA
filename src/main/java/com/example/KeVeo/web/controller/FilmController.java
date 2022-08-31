@@ -114,7 +114,7 @@ public class FilmController extends AbstractController<FilmDTO> {
         userRepository.save(user);
 
 
-        return "redirect:/film/filmInfo/{id}";
+        return "redirect:/film/filmInfo/{id}?successful";
     }
 
     @PostMapping("/filmInfo/save/{id}")
