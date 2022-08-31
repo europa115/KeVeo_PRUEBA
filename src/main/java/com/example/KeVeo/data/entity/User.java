@@ -66,6 +66,9 @@ public class User implements Serializable {
     public void addRole(Role role) {
         this.roles.add(role);
     }
+    public void addFavourite(Film film) {
+        this.films.add(film);
+    }
 
 
 }

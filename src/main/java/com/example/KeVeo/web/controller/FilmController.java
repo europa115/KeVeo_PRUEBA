@@ -2,6 +2,7 @@ package com.example.KeVeo.web.controller;
 
 import com.example.KeVeo.data.entity.Film;
 import com.example.KeVeo.data.entity.Genre;
+import com.example.KeVeo.data.entity.User;
 import com.example.KeVeo.data.repository.GenreRepository;
 import com.example.KeVeo.data.repository.UserRepository;
 import com.example.KeVeo.dto.CommentDTO;
@@ -9,12 +10,14 @@ import com.example.KeVeo.dto.FilmDTO;
 import com.example.KeVeo.service.CommentService;
 import com.example.KeVeo.service.FilmService;
 import com.example.KeVeo.service.MenuService;
+import com.example.KeVeo.service.UserService;
 import com.example.KeVeo.service.mapper.FilmMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.repository.query.Param;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -40,10 +43,12 @@ public class FilmController extends AbstractController<FilmDTO> {
 
     private CommentService commentService;
     private UserRepository userRepository;
+    private UserService userService;
 
     @Autowired
     protected FilmController(MenuService menuService, FilmService filmService,GenreRepository genreRepository,
-                             FilmMapper filmMapper,CommentService commentService,UserRepository userRepository) {
+                             FilmMapper filmMapper,CommentService commentService,UserRepository userRepository,
+                             UserService userService) {
         super(menuService);
 
         this.filmService = filmService;
@@ -51,6 +56,7 @@ public class FilmController extends AbstractController<FilmDTO> {
         this.filmMapper=filmMapper;
         this.commentService=commentService;
         this.userRepository=userRepository;
+        this.userService=userService;
 
     }
 
@@ -97,6 +103,18 @@ public class FilmController extends AbstractController<FilmDTO> {
         }
         status.setComplete();
         return "redirect:/film/filmInfo/{idFilm}";
+    }
+
+    @PostMapping({ "/favourite/agree/{id}" })
+    public Object favourite(@PathVariable(value = "id") Integer id) {
+
+        Integer userId = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
+        User user = userRepository.findById(userId).get();
+        user.addFavourite(filmMapper.toEntity(filmService.findById(id).get()));
+        userRepository.save(user);
+
+
+        return "redirect:/film/filmInfo/{id}";
     }
 
     @PostMapping("/filmInfo/save/{id}")

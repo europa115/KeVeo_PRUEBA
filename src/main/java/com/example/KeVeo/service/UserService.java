@@ -1,10 +1,13 @@
 package com.example.KeVeo.service;
 
+
 import com.example.KeVeo.data.entity.Role;
 import com.example.KeVeo.data.entity.User;
 import com.example.KeVeo.data.repository.RoleRepository;
 import com.example.KeVeo.data.repository.UserRepository;
+import com.example.KeVeo.dto.FilmDTO;
 import com.example.KeVeo.dto.UserDTO;
+import com.example.KeVeo.service.mapper.FilmMapper;
 import com.example.KeVeo.service.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -13,6 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.transaction.Transactional;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -23,14 +27,17 @@ import java.util.List;
 public class UserService extends AbstractBusinessService<User, Integer, UserDTO, UserRepository, UserMapper> {
     private RoleRepository roleRepository;
     private PasswordEncoder passwordEncoder;
+    private FilmMapper filmMapper;
+
 
     @Autowired
     protected UserService(UserRepository repository, UserMapper serviceMapper, RoleRepository roleRepository,
-                          PasswordEncoder passwordEncoder) {
+                          PasswordEncoder passwordEncoder,FilmMapper filmMapper) {
         super(repository, serviceMapper);
 
         this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
+        this.filmMapper= filmMapper;
     }
 
     public void registerDefaultUser(UserDTO userDTO, MultipartFile photo){
@@ -94,16 +101,17 @@ public class UserService extends AbstractBusinessService<User, Integer, UserDTO,
         }
     }
 
-    /*public Page<UserDTO> findByActiveTrue(Pageable pageable) {
-            return getRepository().findByActiveTrue(pageable).map(getServiceMapper()::toDto);
-    }*/
-
     public Page<UserDTO> findAll(Pageable pageable,String wordKey) {
 
         if (wordKey !=null){
             return this.getRepository().findAll(pageable,wordKey).map(getServiceMapper()::toDto);
         }
         return this.getRepository().findAll(pageable).map(getServiceMapper()::toDto);
+    }
+
+    List<FilmDTO> findByFilms(Integer id){
+
+        return filmMapper.toDto(getRepository().findByFilms(id));
     }
 
 }

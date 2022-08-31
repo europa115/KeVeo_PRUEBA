@@ -19,7 +19,10 @@
         <div class="movie-card">
             <div class="poster-wrapper">
                 <div class="poster">
-                    <img th:src="${film.cover}" alt="poster"/>
+                    <img th:src="${film.cover}" alt="poster"/><i>
+                    <form action="#" class="form" th:action="@{'/'}" method="post">
+                        <button type="submit" value="Favourite" th:formaction="'/favourite/agree/' + ${film.id}">Prueba</button></form>
+                </i>
                 </div>
             </div>
             <!-- end poster-wrapper -->
