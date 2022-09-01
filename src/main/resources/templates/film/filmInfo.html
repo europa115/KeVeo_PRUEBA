@@ -25,24 +25,28 @@ $(document).ready(function() {
             Se ha añadido a tus favoritos.
         </div>
         <div th:if="${param.remove}" class="alert alert-success" role="alert" style="width:50%; margin-left:25%; text-align:center;">
-            Se ha eliminadoo de tus favoritos.
+            Se ha eliminado de tus favoritos.
         </div>
         <form th:action="@{'/'}" th:object="${film}" method="post">
         <!-- <div class="container"> -->
         <div class="movie-card">
             <div class="poster-wrapper">
                 <div class="poster">
-                    <img th:src="${film.cover}" alt="poster"/><i>
-                    <form action="#" class="form" th:action="@{'/'}" method="post">
-                        <button type="submit" value="Favourite" th:formaction="'/favourite/agree/' + ${film.id}">Añadir</button>
-                    </form>
-                    <form action="#" class="form" th:action="@{'/'}" method="post">
-                        <button type="submit" value="quitFavourite" th:formaction="'/favourite/remove/' + ${film.id}">Quitar</button>
-                    </form>
-                </i>
+                    <img th:src="${film.cover}" alt="poster"/>
+
                 </div>
             </div>
-            <!-- end poster-wrapper -->
+            <form action="#" class="form cnt-favorite" th:action="@{'/'}" method="post">
+
+            </form>
+            <form action="#" class="form cnt-favorite" th:action="@{'/'}" method="post">
+                <div>
+                    <button th:if="${user.favourite(film.id)}" type="submit" value="quitFavourite"  class="star-favorite"  th:formaction="'/favourite/remove/' + ${film.id}">
+                        <span class="glyphicon glyphicon-star"></span></button>
+                    <button th:unless="${user.favourite(film.id)}" type="submit" value="Favourite" class="star-favorite" th:formaction="'/favourite/agree/' + ${film.id}">
+                        <span class="glyphicon glyphicon-star-empty"></span></button>
+                </div>
+              </form>
             <div class="movie-info">
                 <div class="header-section">
                     <h2 th:text="${film.title}"></h2>

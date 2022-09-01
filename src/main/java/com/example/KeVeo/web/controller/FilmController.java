@@ -41,7 +41,7 @@ public class FilmController extends AbstractController<FilmDTO> {
     private GenreRepository genreRepository;
 
     private FilmMapper filmMapper;
-private FilmRepository filmRepository;
+
     private CommentService commentService;
     private UserRepository userRepository;
     private UserService userService;
@@ -49,7 +49,7 @@ private FilmRepository filmRepository;
     @Autowired
     protected FilmController(MenuService menuService, FilmService filmService,GenreRepository genreRepository,
                              FilmMapper filmMapper,CommentService commentService,UserRepository userRepository,
-                             UserService userService,FilmRepository filmRepository) {
+                             UserService userService) {
         super(menuService);
 
         this.filmService = filmService;
@@ -58,7 +58,7 @@ private FilmRepository filmRepository;
         this.commentService=commentService;
         this.userRepository=userRepository;
         this.userService=userService;
-        this.filmRepository=filmRepository;
+
 
     }
 
@@ -78,6 +78,8 @@ private FilmRepository filmRepository;
 
     @GetMapping("/film/filmInfo/{id}")
     public String viewInfo(@PathVariable("id") Integer id, ModelMap model) {
+        Integer userId = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
+        User user = userRepository.findById(userId).get();
         CommentDTO commentDTO=new CommentDTO();
         FilmDTO filmDTO = filmService.findById(id).get();
         Film film= filmMapper.toEntity(filmDTO);
@@ -85,6 +87,7 @@ private FilmRepository filmRepository;
         model
                 .addAttribute("film", film)
                 .addAttribute("listComments",listComments)
+                .addAttribute("user",user)
                 .addAttribute("comment", commentDTO);
 
         return "film/filmInfo";
@@ -109,7 +112,6 @@ private FilmRepository filmRepository;
 
     @PostMapping({ "/favourite/agree/{id}" })
     public Object favourite(@PathVariable(value = "id") Integer id) {
-
         Integer userId = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
         User user = userRepository.findById(userId).get();
         user.addFavourite(filmMapper.toEntity(filmService.findById(id).get()));
