@@ -78,7 +78,10 @@ public class FilmController extends AbstractController<FilmDTO> {
 
     @GetMapping("/film/filmInfo/{id}")
     public String viewInfo(@PathVariable("id") Integer id, ModelMap model) {
-        Integer userId = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
+        Integer userId ;
+        if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
+            userId=3;
+        }else userId=((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
         User user = userRepository.findById(userId).get();
         CommentDTO commentDTO=new CommentDTO();
         FilmDTO filmDTO = filmService.findById(id).get();
@@ -112,7 +115,10 @@ public class FilmController extends AbstractController<FilmDTO> {
 
     @PostMapping({ "/favourite/agree/{id}" })
     public Object favourite(@PathVariable(value = "id") Integer id) {
-        Integer userId = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
+        Integer userId ;
+        if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
+            userId=3;
+        }else userId=((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
         User user = userRepository.findById(userId).get();
         user.addFavourite(filmMapper.toEntity(filmService.findById(id).get()));
         userRepository.save(user);
@@ -123,7 +129,10 @@ public class FilmController extends AbstractController<FilmDTO> {
 
    @PostMapping({ "/favourite/remove/{id}" })
     public Object quitFavourite(@PathVariable(value = "id") Integer id) {
-       Integer userId = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
+       Integer userId ;
+       if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
+           userId=3;
+       }else userId=((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
        User user = userRepository.findById(userId).get();
         userRepository.deleteFavourite(id,user.getId());
 
