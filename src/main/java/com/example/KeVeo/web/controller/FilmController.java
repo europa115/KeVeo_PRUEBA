@@ -3,6 +3,7 @@ package com.example.KeVeo.web.controller;
 import com.example.KeVeo.data.entity.Film;
 import com.example.KeVeo.data.entity.Genre;
 import com.example.KeVeo.data.entity.User;
+import com.example.KeVeo.data.repository.FilmRepository;
 import com.example.KeVeo.data.repository.GenreRepository;
 import com.example.KeVeo.data.repository.UserRepository;
 import com.example.KeVeo.dto.CommentDTO;
@@ -40,7 +41,7 @@ public class FilmController extends AbstractController<FilmDTO> {
     private GenreRepository genreRepository;
 
     private FilmMapper filmMapper;
-
+private FilmRepository filmRepository;
     private CommentService commentService;
     private UserRepository userRepository;
     private UserService userService;
@@ -48,7 +49,7 @@ public class FilmController extends AbstractController<FilmDTO> {
     @Autowired
     protected FilmController(MenuService menuService, FilmService filmService,GenreRepository genreRepository,
                              FilmMapper filmMapper,CommentService commentService,UserRepository userRepository,
-                             UserService userService) {
+                             UserService userService,FilmRepository filmRepository) {
         super(menuService);
 
         this.filmService = filmService;
@@ -57,6 +58,7 @@ public class FilmController extends AbstractController<FilmDTO> {
         this.commentService=commentService;
         this.userRepository=userRepository;
         this.userService=userService;
+        this.filmRepository=filmRepository;
 
     }
 
@@ -115,6 +117,15 @@ public class FilmController extends AbstractController<FilmDTO> {
 
 
         return "redirect:/film/filmInfo/{id}?successful";
+    }
+
+   @PostMapping({ "/favourite/remove/{id}" })
+    public Object quitFavourite(@PathVariable(value = "id") Integer id) {
+       Integer userId = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
+       User user = userRepository.findById(userId).get();
+        userRepository.deleteFavourite(id,user.getId());
+
+       return "redirect:/film/filmInfo/{id}?remove";
     }
 
     @PostMapping("/filmInfo/save/{id}")

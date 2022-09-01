@@ -24,6 +24,9 @@ $(document).ready(function() {
         <div th:if="${param.successful}" class="alert alert-success" role="alert" style="width:50%; margin-left:25%; text-align:center;">
             Se ha añadido a tus favoritos.
         </div>
+        <div th:if="${param.remove}" class="alert alert-success" role="alert" style="width:50%; margin-left:25%; text-align:center;">
+            Se ha eliminadoo de tus favoritos.
+        </div>
         <form th:action="@{'/'}" th:object="${film}" method="post">
         <!-- <div class="container"> -->
         <div class="movie-card">
@@ -31,7 +34,11 @@ $(document).ready(function() {
                 <div class="poster">
                     <img th:src="${film.cover}" alt="poster"/><i>
                     <form action="#" class="form" th:action="@{'/'}" method="post">
-                        <button type="submit" value="Favourite" th:formaction="'/favourite/agree/' + ${film.id}">Prueba</button></form>
+                        <button type="submit" value="Favourite" th:formaction="'/favourite/agree/' + ${film.id}">Añadir</button>
+                    </form>
+                    <form action="#" class="form" th:action="@{'/'}" method="post">
+                        <button type="submit" value="quitFavourite" th:formaction="'/favourite/remove/' + ${film.id}">Quitar</button>
+                    </form>
                 </i>
                 </div>
             </div>
