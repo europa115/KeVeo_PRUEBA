@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns="http://www.w3.org/1999/html"
+      xmlns:sd="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Peliculas</title>
+</head>
+<body>
+<div layout:fragment="content">
+
+    <!-- Nuestro css-->
+    <link rel="stylesheet" type="text/css" href="static/css/favoriteStyle.css" th:href="@{/css/favoriteStyle.css}">
+
+    <div class="container">
+        <span sd:page-size-selector="javascript"></span>
+
+        <h1 class="neonText">
+            Favoritos
+        </h1>
+        <br>
+
+
+
+        <br>
+
+        <div th:each="film: ${listFavourites}">
+            <div class="film">
+                <img th:src="${film.cover}" alt="">
+                <div class="desc">
+                    <a th:href="@{'/film/filmInfo/' + ${film.id}}"><button>INFO</button></a>
+                    <hr>
+                    <div class="text" th:text="${film.title}">
+
+                    </div>
+
+                    <div class="text" >
+
+                        Plataformas disponibles:
+
+                        <a th:each="num: ${film.platforms}">
+
+                            <a th:if="${num.toString() == 'Netflix'}" href="https://www.netflix.com/es/browse/genre/839338" target="_blank">
+                                <span><img src="./img/platform/netflix.png"></span></a>
+
+                            <a th:if="${num.toString() == 'HBO Max'}" href="https://www.hbomax.com/" target="_blank">
+                                <span><img src="./img/platform/hbo.png"></span></a>
+
+                            <a th:if="${num.toString() == 'Prime Video'}" href="https://www.primevideo.com/" target="_blank">
+                                <span><img src="./img/platform/prime.png"></span></a>
+
+                            <a th:if="${num.toString() == 'Disney+'}" href="https://www.disneyplus.com/" target="_blank">
+                                <span><img src="./img/platform/disney.png"></span></a>
+                        </a>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div th:if="${not #lists.isEmpty(listFavourites.content)}">
+        <div class="text-center">
+            <nav>
+                <ul class="pagination" sd:pagination="full">
+                    <div th:if="${listFavourites.totalPages > 0}" class="pagination"
+                         th:each="pageNumber : ${pageNumbers}">
+                        <li th:class="${pageNumber==listFavourites.number + 1} ? active">
+                            <a href="#"
+                               th:href="@{/film(size=${listFavourites.size}, page=${pageNumber})}"
+                               th:text=${pageNumber}></a>
+                        </li>
+                    </div>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

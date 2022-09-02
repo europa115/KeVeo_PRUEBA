@@ -60,4 +60,9 @@ public class FilmService extends AbstractBusinessService<Film,Integer, FilmDTO, 
     public List<Platform> listPlatforms() {
         return platformRepository.findAll();
     }
+
+    public Page<FilmDTO> findAllFavourite(Pageable pageable, Integer id) {
+
+        return this.getRepository().findAllFavourite(pageable,id).map(getServiceMapper()::toDto);
+    }
 }

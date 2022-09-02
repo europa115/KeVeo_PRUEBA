@@ -1,0 +1,210 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300italic,300,400italic,600,600italic,700,800,800italic,700italic&subset=latin,greek,greek-ext,latin-ext);
+@import url(https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+* {
+	margin: 0 auto;
+	padding: 0;
+}
+
+body {
+	font-family: 'Open Sans', sans-serif;
+	background: url(../img/star.jpg) no-repeat center center fixed;
+}
+
+.film {
+	position: relative;
+	z-index: 1;
+	background: #ddd;
+	width: 220px;
+	height: 320px;
+	float: left;
+	margin: 22px;
+	cursor: pointer;
+	border-bottom-left-radius: 20px;
+	border-bottom-right-radius: 20px;
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
+	overflow: hidden;
+}
+
+.film img {
+	width: 220px;
+	height: 320px;
+}
+
+
+.film > .desc {
+    opacity: 0;
+ 	transition: all 520ms ease;
+}
+
+.film:hover > .desc {
+	position: relative;
+	z-index: 2;
+    margin-top: -280px;
+	background: rgba(0, 0, 0, 0.7);
+	width: 9cm;
+	height: 8cm;
+	opacity: 1;
+    backdrop-filter: blur(12px);
+}
+
+.film > .desc button {
+	background: rgba(67, 66, 77, 0.8);
+	transition: all 250ms ease;
+	padding: 15px 44px 15px 44px;
+	border-radius: 60px;
+	border: 0;
+	color: #fff;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 21px;
+	font-weight: 300;
+	cursor: pointer;
+	margin: 22px 0 0 18px;
+	outline: none;
+  border: 2px solid transparent;
+}
+
+.film > .desc button:hover {
+	background: transparent;
+  border: 2px solid rgba(67, 66, 77, 0.9);
+}
+
+.film > .desc hr {
+	margin-top: 15px;
+	border: none;
+  height: 1px;
+  background-color: rgba(81, 68, 63, 0.5);
+}
+.film > .desc img{
+	width: 48px;
+	height: 48px;
+}
+
+.film > .desc > .text {
+	color: #fff;
+	margin: 22px 0 0 22px;
+	width: 205px;
+}
+/*Neon titulo peliculas*/
+.neonText {
+  color: #fff;
+  text-shadow:
+    0 0 7px #fff,
+    0 0 10px #fff,
+    0 0 21px #f8c407,
+    0 0 41px #f8c407,
+    0 0 46px #f8c407,
+    0 0 51px #f8c407,
+    0 0 75px #f8c407;
+}
+@import url(https://fonts.googleapis.com/css?family=Raleway:700);
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+/*Boton principal para desplegar*/
+.btn-gender{
+font-size: 1rem;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  text-transform: uppercase;
+  color:rgb(233, 179, 17) ;
+  background: transparent;
+  display: inline-block;
+  padding: 0.5em 1.25em;
+  outline: 0;
+  box-shadow:
+      0 0 2px #fff,
+      0 0 5px #fff;
+
+}
+/*Stilo desplegables*/
+@import url(https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+.btngroup {
+  font-size: 0;
+  line-height: 1;
+  white-space: nowrap;
+  display: inline;
+}
+.btngroup--a {
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  text-transform: uppercase;
+  text-color: #f8c407
+  background: transparent;
+  display: inline-block;
+  padding: 0.5em 1.25em;
+  outline: 0;
+
+
+}
+
+.btngroup--a:link {
+  color: #bdc3c7;
+}
+.btngroup--a:visted {
+  color: #bdc3c7;
+}
+.btngroup--a:hover {
+  background: #34495e;
+  color: #fff;
+}
+.btngroup--a:active {
+  background: #fff;
+  color: #34495e;
+}
+/*Stilo barra buscar*/
+
+.search {
+   width: 35%;
+    position: relative;
+    /*left: -375px;*/
+    left: -33%;
+}
+.search:before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  font-family: 'FontAwesome';
+  content:'\f002';
+  background: #e5b60b;
+  text-align: center;
+  color: #fff;
+  border-radius: 5px;
+  -webkit-font-smoothing: subpixel-antialiased;
+  font-smooth: always;
+}
+
+.searchTerm {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;
+  border: 5px solid #e5b60b;
+  padding: 5px;
+  height: 40px;
+  border-radius: 5px;
+  outline: none;
+}
+
+.searchButton {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  opacity: 0;
+  cursor: pointer;
+}
+@media only screen and (max-width: 400px) {
+  .search {
+     width: 70%;
+      position: relative;
+      /*left: -375px;*/
+      left: -15%;
+  }
+
+}
