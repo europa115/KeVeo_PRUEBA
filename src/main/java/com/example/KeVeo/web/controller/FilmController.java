@@ -87,10 +87,12 @@ public class FilmController extends AbstractController<FilmDTO> {
         FilmDTO filmDTO = filmService.findById(id).get();
         Film film= filmMapper.toEntity(filmDTO);
         List<CommentDTO> listComments= commentService.findByFilmId(id);
+        Double punctuationFilm=filmService.findFinalPunctuation(id);
         model
                 .addAttribute("film", film)
                 .addAttribute("listComments",listComments)
                 .addAttribute("user",user)
+                .addAttribute("punctuationFilm",punctuationFilm)
                 .addAttribute("comment", commentDTO);
 
         return "film/filmInfo";

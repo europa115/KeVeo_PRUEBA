@@ -65,4 +65,10 @@ public class FilmService extends AbstractBusinessService<Film,Integer, FilmDTO, 
 
         return this.getRepository().findAllFavourite(pageable,id).map(getServiceMapper()::toDto);
     }
+
+    public Double findFinalPunctuation(Integer id){
+
+        return getRepository().findFinalPunctuation(id);
+
+    }
 }

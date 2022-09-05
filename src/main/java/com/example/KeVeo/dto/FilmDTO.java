@@ -3,6 +3,7 @@ package com.example.KeVeo.dto;
 import com.example.KeVeo.data.entity.Comment;
 import com.example.KeVeo.data.entity.Genre;
 import com.example.KeVeo.data.entity.Platform;
+import com.example.KeVeo.data.entity.Punctuation;
 import groovyjarjarantlr4.v4.runtime.misc.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -29,9 +30,8 @@ public class FilmDTO  implements Serializable {
     private String synopsis;
     private String trailer;
     private boolean active;
-    // private Integer puntuation;
-    // private boolean favorites;
     private List<Genre> genres= new ArrayList<>();
     private List<Platform> platforms= new ArrayList<>();
     private List<Comment> comments;
+    private List<Punctuation> punctuations;
 }

@@ -49,7 +49,6 @@
 
 
                                      <img th:unless="${#authentication.getPrincipal().getPhoto == null}"
-                                    src="'C://Users//esteb//Documents//recursos//imgUser/'+ ${#authentication.getPrincipal().getPhoto"
                                     th:src="@{'/imgUser/'+ ${#authentication.getPrincipal().getPhoto}}"></span>
 
                             <i th:if="${#authentication.getPrincipal() == 'anonymousUser'}" th:href="@{/login}">

@@ -55,4 +55,9 @@ public class Film implements Serializable {
     @OneToMany(mappedBy = "film", cascade = CascadeType.ALL)
     private List<Comment> comments;
 
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "films_punctuations", joinColumns = @JoinColumn(name = "Film_ID"),
+            inverseJoinColumns = @JoinColumn(name = "Punctuation_ID"))
+    private List<Punctuation> punctuations;
+
 }

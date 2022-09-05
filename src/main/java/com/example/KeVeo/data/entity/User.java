@@ -49,19 +49,9 @@ public class User implements Serializable {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Comment> comments;
-    //******************************************Constructors************************************************************
-    /*public User(String userName, String password, Date date, ZonedDateTime registerDate, boolean active, String userSurname,
-                String userEmail,String photo, List<Role> roles) {
-        this.userName = userName;
-        this.password = password;
-        this.date = date;
-        this.registerDate = registerDate;
-        this.active = active;
-        this.userSurname = userSurname;
-        this.userEmail = userEmail;
-        this.photo=photo;
-        this.roles = roles;
-    }*/
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Punctuation> punctuations;
 
     public void addRole(Role role) {
         this.roles.add(role);

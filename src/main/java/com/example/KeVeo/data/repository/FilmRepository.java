@@ -28,5 +28,8 @@ public interface FilmRepository extends JpaRepository<Film, Integer> {
     @Transactional
     @Query(value="SELECT f.* FROM film AS f INNER JOIN user_films AS uf ON f.id = uf.film_id INNER JOIN user AS u ON uf.user_id = u.id WHERE u.id LIKE %?1%", nativeQuery = true)
     Page<Film> findAllFavourite(Pageable pageable,Integer id);
+    @Query(value="SELECT FLOOR(ROUND(AVG(p.score),1)*2+0.5)/2 FROM Punctuation AS p INNER JOIN films_punctuations AS fp ON p.id = fp.punctuation_id INNER JOIN film AS f ON fp.film_id = f.id WHERE f.id LIKE %?1%",
+    nativeQuery = true)
+    Double findFinalPunctuation(Integer id);
 
 }
