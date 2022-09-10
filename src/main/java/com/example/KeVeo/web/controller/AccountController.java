@@ -31,7 +31,6 @@ public class AccountController extends AbstractController<UserDTO> {
     private UserMapper userMapper;
     private UserService userService;
     private UserRepository userRepository;
-
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
@@ -49,12 +48,8 @@ public class AccountController extends AbstractController<UserDTO> {
         Authentication authentication = context.getAuthentication();
 
         if (authentication == null) {
-
             return "/login";
-
         } else return "account/account-info";
-
-
     }
 
     @PostMapping({"/{id}/account"})
@@ -77,7 +72,6 @@ public class AccountController extends AbstractController<UserDTO> {
 
     @GetMapping("/{id}/account/changePassword")
     public String viewChangePassword(@PathVariable(value = "id") Integer id) {
-
 
         return "account/changePassword";
     }

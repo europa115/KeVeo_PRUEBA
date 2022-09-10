@@ -33,30 +33,23 @@ import java.util.Optional;
 public class GestionUserController extends AbstractController<UserDTO>{
 
     private UserService userService;
-    private RoleRepository roleRepository;
     private UserMapper userMapper;
-    private UserRepository userRepository;
-
 
     @Autowired
-    protected GestionUserController(MenuService menuService,UserService userService,RoleRepository roleRepository,
-                                    UserMapper userMapper,UserRepository userRepository) {
+    protected GestionUserController(MenuService menuService,UserService userService, UserMapper userMapper) {
         super(menuService);
-        this.userService=userService;
-        this.roleRepository=roleRepository;
-        this.userMapper=userMapper;
-        this.userRepository=userRepository;
-    }
 
+        this.userService=userService;
+        this.userMapper=userMapper;
+    }
 
     @GetMapping("/gestionUser")
     public String getAll(@RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size,
                          Model model, @Param("wordKey") String wordKey) {
-        final User user = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());//no creo que sea necesario
+
         final Page<UserDTO> listUsers = this.userService.findAll(PageRequest.of(page.orElse(1) - 1,
                 size.orElse(10)), wordKey);
         model
-                .addAttribute("username", user.getUserName())
                 .addAttribute("wordKey",wordKey)
                 .addAttribute("listUsers", listUsers)
                 .addAttribute(pageNumbersAttributeKey, getPageNumbers(listUsers));
@@ -73,20 +66,18 @@ public class GestionUserController extends AbstractController<UserDTO>{
         return "gestionUser/edit";
     }
 
-//El metodo de borrar no esta hecho exactamente para borrar sino lo que hace es cambiar la actividad a 0/false
+//Creacion de un borrado logico
     @PostMapping({ "/gestionUser/{id}" })
     public Object delete(@PathVariable(value = "id") Integer id, SessionStatus status) {
         try {
            UserDTO userDTO= this.userService.findById(id).get();
-           User user=userMapper.toEntity(userDTO);
-           user.setActive(false);
-           userRepository.save(user);
+           userDTO.setActive(false);
+           this.userService.save(userDTO);
 
         } catch (DataIntegrityViolationException exception) {
             status.setComplete();
             return new ModelAndView("error/errorHapus")
                     .addObject("entityId", id)
-                    .addObject("entityName", "user")
                     .addObject("errorCause", exception.getRootCause().getMessage())
                     .addObject("backLink", "/gestionUser");
         }
@@ -97,8 +88,7 @@ public class GestionUserController extends AbstractController<UserDTO>{
     @PostMapping("/gestionUser/save")
     public String saveUser(UserDTO userDto) {
 
-        User user=userMapper.toEntity(userDto);
-        userService.save(user);
+       userService.save(userDto);
 
         return "redirect:/gestionUser";
     }

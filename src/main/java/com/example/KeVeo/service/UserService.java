@@ -16,7 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.transaction.Transactional;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -44,8 +44,6 @@ public class UserService extends AbstractBusinessService<User, Integer, UserDTO,
         Role roleUser = roleRepository.findByRoleName("ROLE_USER");
         User entity=getServiceMapper().toEntity(userDTO);
         if(!photo.isEmpty()){
-           // Path directoryImage= Paths.get("src//main//resources//static/imgUser");
-           // String AbsoluteRoute=directoryImage.toFile().getAbsolutePath();
             String AbsoluteRoute="C://Users//esteb//Documents//recursos//imgUser";
             try{
                 byte[] bytesImg= photo.getBytes();
@@ -81,8 +79,6 @@ public class UserService extends AbstractBusinessService<User, Integer, UserDTO,
 
     public void changePhoto(MultipartFile photo, UserDTO userDTO){
         if(!photo.isEmpty()){
-           // Path directoryImage= Paths.get("src//main//resources//static/imgUser/");
-            //String AbsoluteRoute=directoryImage.toFile().getAbsolutePath();
             String AbsoluteRoute="C://Users//esteb//Documents//recursos//imgUser";
 
             try{

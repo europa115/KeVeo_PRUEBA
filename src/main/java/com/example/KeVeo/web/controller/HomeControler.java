@@ -39,11 +39,7 @@ public class HomeControler extends AbstractController{
                     .addAttribute("listFilmsIdDesc", listFilmsIdDesc)
                     .addAttribute("listGenres", listGenres);
 
-
         return "home";
     }
-
-
-
 
 }
