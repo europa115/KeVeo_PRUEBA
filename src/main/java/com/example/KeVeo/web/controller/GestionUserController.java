@@ -88,7 +88,7 @@ public class GestionUserController extends AbstractController<UserDTO>{
     @PostMapping("/gestionUser/save")
     public String saveUser(UserDTO userDto) {
 
-       userService.save(userDto);
+        userService.save(userMapper.toEntity(userDto));
 
         return "redirect:/gestionUser";
     }
