@@ -80,16 +80,6 @@ public class GestionFilmController extends AbstractController<FilmDTO> {
     }
 
 
-    @GetMapping("gestionFilm/show/{id}")
-    public String viewFilm(@PathVariable(value = "id") Integer id, ModelMap model){
-
-        FilmDTO filmDTO = filmService.findById(id).get();
-        Film film= filmMapper.toEntity(filmDTO);
-
-        model.addAttribute("film", film);
-        return "film/filmInfo";
-    }
-
     //Es un borrado logico con active=FALSE
     @PostMapping({ "/gestionFilm/{id}" })
     public Object delete(@PathVariable(value = "id") Integer id, SessionStatus status) {
