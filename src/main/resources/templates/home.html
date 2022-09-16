@@ -16,115 +16,60 @@
             <h2>Populares</h2>
             <div class="popular-movies">
                 <div class="movie-container">
-                    <div class="film-effect"  th:each="film, iterator : ${listFilms}">
-                            <div th:if="${iterator.count lt 10}"  class="film">
-                                <img th:src="${film.cover}" alt="">
-                                <div class="desc">
-                                    <a th:href="@{'/film/filmInfo/' + ${film.id}}">
-                                                <button>INFO</button>
+                    <div class="film-effect" th:each="film, iterator : ${listFilms}">
+                        <div th:if="${iterator.count lt 10}" class="film">
+                            <img th:src="${film.cover}" alt="">
+                            <div class="desc">
+                                <a th:href="@{'/film/filmInfo/' + ${film.id}}">
+                                    <button>INFO</button>
+                                </a>
+                                <hr>
+                                <div class="text" th:text="${film.title}">
+                                </div>
+                                <div class="text">
+
+                                    Plataformas disponibles:
+                                    <p></p>
+
+                                    <a th:each="num: ${film.platforms}">
+
+                                        <a th:if="${num.toString() == 'Netflix'}"
+                                           href="https://www.netflix.com/es/browse/genre/839338"
+                                           target="_blank">
+                                            <span><img src="./img/platform/netflix.png"></span></a>
+
+                                        <a th:if="${num.toString() == 'HBO Max'}"
+                                           href="https://www.hbomax.com/" target="_blank">
+                                            <span><img src="./img/platform/hbo.png"></span></a>
+
+                                        <a th:if="${num.toString() == 'Prime Video'}"
+                                           href="https://www.primevideo.com/" target="_blank">
+                                            <span><img src="./img/platform/prime.png"></span></a>
+
+                                        <a th:if="${num.toString() == 'Disney+'}"
+                                           href="https://www.disneyplus.com/" target="_blank">
+                                            <span><img src="./img/platform/disney.png"></span></a>
                                     </a>
-                                    <hr>
-                                    <div class="text" th:text="${film.title}">
-                                    </div>
-                                    <div class="text">
-
-                                        Plataformas disponibles:
-                                        <p> </p>
-
-                                        <a th:each="num: ${film.platforms}">
-
-                                            <a th:if="${num.toString() == 'Netflix'}"
-                                               href="https://www.netflix.com/es/browse/genre/839338"
-                                               target="_blank">
-                                                <span><img src="./img/platform/netflix.png"></span></a>
-
-                                            <a th:if="${num.toString() == 'HBO Max'}"
-                                               href="https://www.hbomax.com/" target="_blank">
-                                                <span><img src="./img/platform/hbo.png"></span></a>
-
-                                            <a th:if="${num.toString() == 'Prime Video'}"
-                                               href="https://www.primevideo.com/" target="_blank">
-                                                <span><img src="./img/platform/prime.png"></span></a>
-
-                                            <a th:if="${num.toString() == 'Disney+'}"
-                                               href="https://www.disneyplus.com/" target="_blank">
-                                                <span><img src="./img/platform/disney.png"></span></a>
-                                        </a>
-                                    </div>
                                 </div>
                             </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-
-
-            <!--Nueva SECCION------------------------------------------------------------------------>
-
-            <section>
-                <h2>Nuevos Estrenos</h2>
-                <div class="section">
-                    <div class="recents-movies">
-                        <div class="recents-movie-container">
-                            <div class="carousel-wrap">
-                                <div class="owl-carousel">
-                                    <div class="item"  th:if="${iterator.count lt 10}" th:each="film, iterator : ${listFilmsYear}">
-                                        <div  class="film" >
-                                            <img th:src="${film.cover}" alt="">
-                                            <div class="desc">
-                                                <a th:href="@{'/film/filmInfo/' + ${film.id}}">
-                                                    <button>INFO</button>
-                                                </a>
-                                                <hr>
-                                                <div class="text" th:text="${film.title}">
-                                                </div>
-                                                <div class="text">
-
-                                                    Plataformas disponibles:
-                                                    <p> </p>
-
-                                                    <a th:each="num: ${film.platforms}">
-
-                                                        <a th:if="${num.toString() == 'Netflix'}"
-                                                           href="https://www.netflix.com/es/browse/genre/839338"
-                                                           target="_blank">
-                                                            <span><img src="./img/platform/netflix.png"></span></a>
-
-                                                        <a th:if="${num.toString() == 'HBO Max'}"
-                                                           href="https://www.hbomax.com/" target="_blank">
-                                                            <span><img src="./img/platform/hbo.png"></span></a>
-
-                                                        <a th:if="${num.toString() == 'Prime Video'}"
-                                                           href="https://www.primevideo.com/" target="_blank">
-                                                            <span><img src="./img/platform/prime.png"></span></a>
-
-                                                        <a th:if="${num.toString() == 'Disney+'}"
-                                                           href="https://www.disneyplus.com/" target="_blank">
-                                                            <span><img src="./img/platform/disney.png"></span></a>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    </div>
-            </div>
-        </section>
-
-        <!--*******************************Añadidas RECIENTEMENTE************************************************************-->
+        <!--Nueva SECCION------>
 
         <section>
-            <h2>Añadidas Recientemente</h2>
+            <h2>Nuevos Estrenos</h2>
             <div class="section">
                 <div class="recents-movies">
                     <div class="recents-movie-container">
                         <div class="carousel-wrap">
                             <div class="owl-carousel">
-                                <div class="item"  th:if="${iterator.count lt 10}" th:each="film, iterator : ${listFilmsIdDesc}">
-                                    <div  class="film" >
+                                <div class="item" th:if="${iterator.count lt 10}"
+                                     th:each="film, iterator : ${listFilmsYear}">
+                                    <div class="film">
                                         <img th:src="${film.cover}" alt="">
                                         <div class="desc">
                                             <a th:href="@{'/film/filmInfo/' + ${film.id}}">
@@ -136,7 +81,7 @@
                                             <div class="text">
 
                                                 Plataformas disponibles:
-                                                <p> </p>
+                                                <p></p>
 
                                                 <a th:each="num: ${film.platforms}">
 
@@ -167,7 +112,62 @@
                 </div>
             </div>
         </section>
-        </div>
+
+        <!--*******************************Añadidas RECIENTEMENTE************************************************************-->
+
+        <section>
+            <h2>Añadidas Recientemente</h2>
+            <div class="section">
+                <div class="recents-movies">
+                    <div class="recents-movie-container">
+                        <div class="carousel-wrap">
+                            <div class="owl-carousel">
+                                <div class="item" th:if="${iterator.count lt 10}"
+                                     th:each="film, iterator : ${listFilmsIdDesc}">
+                                    <div class="film">
+                                        <img th:src="${film.cover}" alt="">
+                                        <div class="desc">
+                                            <a th:href="@{'/film/filmInfo/' + ${film.id}}">
+                                                <button>INFO</button>
+                                            </a>
+                                            <hr>
+                                            <div class="text" th:text="${film.title}">
+                                            </div>
+                                            <div class="text">
+
+                                                Plataformas disponibles:
+                                                <p></p>
+
+                                                <a th:each="num: ${film.platforms}">
+
+                                                    <a th:if="${num.toString() == 'Netflix'}"
+                                                       href="https://www.netflix.com/es/browse/genre/839338"
+                                                       target="_blank">
+                                                        <span><img src="./img/platform/netflix.png"></span></a>
+
+                                                    <a th:if="${num.toString() == 'HBO Max'}"
+                                                       href="https://www.hbomax.com/" target="_blank">
+                                                        <span><img src="./img/platform/hbo.png"></span></a>
+
+                                                    <a th:if="${num.toString() == 'Prime Video'}"
+                                                       href="https://www.primevideo.com/" target="_blank">
+                                                        <span><img src="./img/platform/prime.png"></span></a>
+
+                                                    <a th:if="${num.toString() == 'Disney+'}"
+                                                       href="https://www.disneyplus.com/" target="_blank">
+                                                        <span><img src="./img/platform/disney.png"></span></a>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
+</div>
 </body>
 </html>

@@ -20,7 +20,6 @@ public interface FilmRepository extends JpaRepository<Film, Integer> {
             + " LIKE %?1% ORDER BY f.id"
     )
     Page<Film> findAll(Pageable pageable, String wordKey);
-
     @Query("SELECT f FROM Film f ORDER BY f.year DESC")
     List<Film> findByYear();
     @Query("SELECT f FROM Film f ORDER BY f.id DESC")

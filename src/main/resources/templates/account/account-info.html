@@ -19,8 +19,6 @@
     <!-- Nuestro css-->
     <link rel="stylesheet" type="text/css" href="static/css/login.css" th:href="@{/css/accountStyle.css}">
 
-
-
     <div class="modal-dialog text-center">
         <div class="col-sm-8 main-section">
             <div class="modal-content">
@@ -37,47 +35,48 @@
 
                 </div>
 
-                    <form class="col-12" th:action="@{/account/save}" method="post" enctype="multipart/form-data" th:object="${user}">
-                        <div class="img-title">
-                        <img src="static/img/titleAccount.png" th:src="@{/img/titleAccount.png}" />
-                        </div>
-                        <br>
-                        <br>
-                        <br>
+                <form class="col-12" th:action="@{/account/save}" method="post" enctype="multipart/form-data"
+                      th:object="${user}">
+                    <div class="img-title">
+                        <img src="static/img/titleAccount.png" th:src="@{/img/titleAccount.png}"/>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <div class="form-group" id="user-group">
+                        <span th:text="${#authentication.getPrincipal().getUserName}"></span>
+                    </div>
+                    <hr>
+                    <div class="form-group" id="user-group">
+                        <span th:text="${#authentication.getPrincipal().getUserSurname}"></span>
+                    </div>
+                    <hr>
+                    <div class="form-group" id="email-group">
+                        <span th:text="${#authentication.getPrincipal().getUserEmail}"></span>
+                    </div>
+                    <hr>
+                    <div class="form-group" id="calendar-group">
+                        <span th:text="${#authentication.getPrincipal().getDate}"></span>
+                    </div>
+                    <hr>
+                    <div class="form-group" id="file-group">
 
+                        <input
+                                type="file" name="file" id="file" class="form-control">
 
-                        <div class="form-group" id="user-group" >
-                            <span th:text="${#authentication.getPrincipal().getUserName}"></span>
-                        </div>
-                        <hr>
-                        <div class="form-group" id="user-group" >
-                            <span th:text="${#authentication.getPrincipal().getUserSurname}"></span>
-                        </div>
-                        <hr>
-                        <div class="form-group" id="email-group" >
-                            <span th:text="${#authentication.getPrincipal().getUserEmail}"></span>
-                        </div>
-                        <hr>
-                        <div class="form-group" id="calendar-group" >
-                            <span th:text="${#authentication.getPrincipal().getDate}"></span>
-                        </div>
-                        <hr>
-                        <div class="form-group" id="file-group">
+                    </div>
 
-                            <input
-                                    type="file" name="file" id="file" class="form-control">
+                    <button type="submit" class="btn btn-primary confirm"
+                            th:formaction="${#authentication.getPrincipal().getId} + '/account'">Update
+                    </button>
+                    <hr>
+                    <div class="form-group" id="contrasena-group">
+                        <a th:href="${#authentication.getPrincipal().getId} + '/account/changePassword'">
+                            <button type="button" class="btn btn-primary confirm">Cambiar contraseña</button>
+                        </a>
+                    </div>
 
-                        </div>
-
-                        <button type="submit" class="btn btn-primary confirm" th:formaction="${#authentication.getPrincipal().getId} + '/account'">Update</button>
-                        <hr>
-                        <div class="form-group" id="contrasena-group" >
-                            <a th:href="${#authentication.getPrincipal().getId} + '/account/changePassword'"><button type="button" class="btn btn-primary confirm" >Cambiar contraseña</button></a>
-                        </div>
-
-                        <!-- <input type="submit" class="form-control btn btn-primary " name="login-submit" id="login-submit"value="Ingresar"/>-->
-                    </form>
-
+                </form>
 
                 <div class="form-group">
                     <span><FONT SIZE="4">Si deseas eliminar tu cuenta </FONT><a th:href="@{/login}">pulsa
@@ -92,7 +91,6 @@
             </div>
         </div>
     </div>
-
 </div>
 </body>
 </html>

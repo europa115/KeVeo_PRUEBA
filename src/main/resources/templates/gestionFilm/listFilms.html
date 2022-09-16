@@ -12,29 +12,32 @@
 <div layout:fragment="content">
     <div class="container">
         <span sd:page-size-selector="javascript"></span>
-        <link rel="stylesheet" type="text/css" href="static/css/tableFilmStyle.css" th:href="@{/css/tableFilmStyle.css}">
+        <link rel="stylesheet" type="text/css" href="static/css/tableFilmStyle.css"
+              th:href="@{/css/tableFilmStyle.css}">
         <br>
         <h1>
             GESTIÓN DE PELÍCULAS
         </h1>
 
         <br>
-        <a th:href="@{gestionFilm/create}" style="float:right"><button class="btn btn-success"><span class="glyphicon glyphicon-film"></span>&nbsp;&nbsp;AÑADIR PELÍCULA</button></a>
+        <a th:href="@{gestionFilm/create}" style="float:right">
+            <button class="btn btn-success"><span class="glyphicon glyphicon-film"></span>&nbsp;&nbsp;AÑADIR PELÍCULA
+            </button>
+        </a>
         <br>
         <form class="example" th:action="gestionFilm">
-            <input type="text" style="width:20%" placeholder="Buscar por..  " name="wordKey" id="wordKey" th:value="${wordKey}">
+            <input type="text" style="width:20%" placeholder="Buscar por..  " name="wordKey" id="wordKey"
+                   th:value="${wordKey}">
             &nbsp;
-            <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-search"></span> Buscar..</button>
+            <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-search"></span> Buscar..
+            </button>
             &nbsp;
             <input type="button" class="btn btn-danger" onclick="cleanFields()" value="X">
-            <!--<button onclick="cleanFields()" ><span class="glyphicon glyphicon-remove"></span></button>-->
 
         </form>
 
         <br>
         <form action="#" class="form" th:action="@{'/'}" method="post">
-
-
 
             <table class="table table-striped table-bordered" border="2">
                 <thead class="table-dark">
@@ -61,10 +64,18 @@
                     <td th:text="${film.title}">Titulo</td>
                     <td th:text="${film.year}">Año</td>
                     <td th:text="${film.duration}">Duracion</td>
-                    <td><div style="width:120px; height:2px; vertical-align:middle;" th:text="${film.cover}"></div></td>
-                    <td class="withScroll"><div style="height:2px; vertical-align:middle;" th:text="${film.casting}"></div></td>
-                    <td class="withScroll"><div style="height:2px; vertical-align:middle;" th:text="${film.synopsis}"></div></td>
-                    <td><div style="width:70px; height:2px; vertical-align:middle;" th:text="${film.trailer}"></div></td>
+                    <td>
+                        <div style="width:120px; height:2px; vertical-align:middle;" th:text="${film.cover}"></div>
+                    </td>
+                    <td class="withScroll">
+                        <div style="height:2px; vertical-align:middle;" th:text="${film.casting}"></div>
+                    </td>
+                    <td class="withScroll">
+                        <div style="height:2px; vertical-align:middle;" th:text="${film.synopsis}"></div>
+                    </td>
+                    <td>
+                        <div style="width:70px; height:2px; vertical-align:middle;" th:text="${film.trailer}"></div>
+                    </td>
                     <td th:text="${film.genres}">Generos</td>
                     <td th:text="${film.platforms}">Plataformas</td>
                     <td><a th:href="@{'/gestionFilm/edit/' + ${film.id}}">
@@ -85,13 +96,11 @@
 
                 </tr>
                 <tr th:if="${#lists.isEmpty(listFilm.content)}">
-                    <td colspan="13" class="text-center" th:text="'No hay peliculas que coincidan con '+ ${wordKey}"></td>
+                    <td colspan="13" class="text-center"
+                        th:text="'No hay peliculas que coincidan con '+ ${wordKey}"></td>
                 </tr>
                 </tbody>
             </table>
-
-
-
         </form>
     </div>
 
@@ -102,7 +111,8 @@
                     <div th:if="${listFilm.totalPages > 0}" class="pagination"
                          th:each="pageNumber : ${pageNumbers}">
                         <li th:class="${pageNumber==listFilm.number + 1} ? active">
-                                <a href="#" th:href="@{/gestionFilm(size=${listFilm.size}, page=${pageNumber}, wordKey=${wordKey})}"
+                            <a href="#"
+                               th:href="@{/gestionFilm(size=${listFilm.size}, page=${pageNumber}, wordKey=${wordKey})}"
                                th:text=${pageNumber}></a>
                         </li>
                     </div>
@@ -110,16 +120,12 @@
             </nav>
         </div>
     </div>
-    <!--"@{'/gestionUser/delete/' + ${user.id}}"-->
-
     <script type="text/javascript">
     function cleanFields(){
     window.location='/gestionFilm';
     }
+
     </script>
-    <!-- Latest compiled and minified JavaScript -->
-
 </div>
-
 </body>
 </html>

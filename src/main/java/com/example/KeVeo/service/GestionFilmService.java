@@ -15,7 +15,6 @@ public class GestionFilmService extends AbstractBusinessService<Film, Integer, F
         super(repository, serviceMapper);
     }
 
-
     @Override
     public FilmDTO save(FilmDTO filmDTO){
        final Film entity=getServiceMapper().toEntity(filmDTO);

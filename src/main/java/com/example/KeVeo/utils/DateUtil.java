@@ -11,8 +11,6 @@ import java.util.Date;
 public class DateUtil {
     private static final DateTimeFormatter DATE_FORMATER = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
 
-
-
     public static String dateToString(LocalDateTime date) {
         return date != null ? date.format(DATE_FORMATER) : null;
     }

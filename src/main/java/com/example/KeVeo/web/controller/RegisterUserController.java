@@ -21,7 +21,6 @@ public class RegisterUserController extends AbstractController{
         this.userService=userService;
     }
 
-
     @ModelAttribute("user")
     public UserDTO returnNewUserDTO() {
 

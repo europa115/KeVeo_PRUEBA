@@ -19,9 +19,7 @@ public class Genre implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private Integer id;
-
     private String name;
-
     @Override
     public String toString(){
         return this.name;

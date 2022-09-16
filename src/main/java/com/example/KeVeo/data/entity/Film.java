@@ -30,18 +30,12 @@ public class Film implements Serializable {
     private Integer duration;
     @NotNull
     private String cover;
-
     private String casting;
     @Lob
     private String synopsis;
-
     private String trailer;
-
     private boolean active;
 
-   // private Integer puntuation;
-
-   // private boolean favorites;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "film_genres", joinColumns = @JoinColumn(name = "Film_ID"),

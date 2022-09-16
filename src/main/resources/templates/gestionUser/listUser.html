@@ -6,8 +6,6 @@
 <head>
     <meta charset="utf-8">
     <title>KeVeo/GestiónUsuarios</title>
-    <!-- Latest compiled and minified CSS -->
-
 </head>
 <body>
 <div layout:fragment="content">
@@ -22,12 +20,13 @@
         <br>
         <br>
         <form class="example" th:action="gestionUser">
-            <input type="text" style="width:20%" placeholder="Buscar por..   ID,Nombre,Email.." name="wordKey" id="wordKey" th:value="${wordKey}">
+            <input type="text" style="width:20%" placeholder="Buscar por..   ID,Nombre,Email.." name="wordKey"
+                   id="wordKey" th:value="${wordKey}">
             &nbsp;
-            <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-search"></span> Buscar..</button>
+            <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-search"></span> Buscar..
+            </button>
             &nbsp;
             <input type="button" class="btn btn-danger" onclick="cleanFields()" value="X">
-            <!--<button onclick="cleanFields()" ><span class="glyphicon glyphicon-remove"></span></button>-->
 
         </form>
 
@@ -83,7 +82,8 @@
                     <div th:if="${listUsers.totalPages > 0}" class="pagination"
                          th:each="pageNumber : ${pageNumbers}">
                         <li th:class="${pageNumber==listUsers.number + 1} ? active">
-                            <a href="#" th:href="@{/gestionUser(size=${listUsers.size}, page=${pageNumber}, wordKey=${wordKey})}"
+                            <a href="#"
+                               th:href="@{/gestionUser(size=${listUsers.size}, page=${pageNumber}, wordKey=${wordKey})}"
                                th:text=${pageNumber}></a>
                         </li>
                     </div>
@@ -91,16 +91,13 @@
             </nav>
         </div>
     </div>
-    <!--"@{'/gestionUser/delete/' + ${user.id}}"-->
 
     <script type="text/javascript">
     function cleanFields(){
     window.location='/gestionUser';
     }
+
     </script>
-    <!-- Latest compiled and minified JavaScript -->
-
 </div>
-
 </body>
 </html>

@@ -20,7 +20,6 @@
     <link rel="stylesheet" type="text/css" href="static/css/login.css" th:href="@{/css/register.css}">
 
 
-
     <div class="modal-dialog text-center">
         <div class="col-sm-8 main-section">
             <div class="modal-content">
@@ -28,58 +27,58 @@
                     <img src="static/img/register/userAvengers.jpg" th:src="@{/img/register/userAvengers.jpg}"/>
                 </div>
 
-                <form class="col-12" th:action="@{/register}" method="post" enctype="multipart/form-data" th:object="${user}">
+                <form class="col-12" th:action="@{/register}" method="post" enctype="multipart/form-data"
+                      th:object="${user}">
 
                     <img src="static/img/uneteTitle.png" th:src="@{/img/register/uneteTitle.png}"/>
                     <br>
                     <br>
                     <br>
                     <div class="form-group" id="user-group">
-                        <input type="text"  placeholder="Nombre" class="form-control" th:field="*{userName}"
-                            required autofocus="autofocus">
+                        <input type="text" placeholder="Nombre" class="form-control" th:field="*{userName}"
+                               required autofocus="autofocus">
                     </div>
 
                     <div class="form-group" id="user-group">
-                       <input class="form-control" placeholder="Apellido" th:field="*{userSurname}"
-                            required autofocus="autofocus">
+                        <input class="form-control" placeholder="Apellido" th:field="*{userSurname}"
+                               required autofocus="autofocus">
                     </div>
 
                     <div class="form-group" id="email-group">
                         <input
-                            id="email" type="email" class="form-control" placeholder="Email" th:field="*{userEmail}"
-                            required autofocus="autofocus">
+                                id="email" type="email" class="form-control" placeholder="Email" th:field="*{userEmail}"
+                                required autofocus="autofocus">
                     </div>
 
                     <div class="form-group" id="calendar-group">
                         <input
-                            type="date" id="date" class="form-control" th:field="*{date}"
-                            required autofocus="autofocus">
+                                type="date" id="date" class="form-control" th:field="*{date}"
+                                required autofocus="autofocus">
                     </div>
 
                     <div class="form-group" id="file-group">
 
                         <input
                                 type="file" name="file" id="file" class="form-control"
-                                >
+                        >
                     </div>
 
                     <div class="form-group" id="contrasena-group">
                         <input type="password" class="form-control" placeholder="Contraseña" th:field="*{password}"
-                            required autofocus="autofocus">
+                               required autofocus="autofocus">
                     </div>
 
                     <div class="form-group" id="contrasena-group">
                         <input
-                            type="password" id="confirm_password" placeholder="Confirmar Contraseña" class="form-control"
-                            required autofocus="autofocus">
+                                type="password" id="confirm_password" placeholder="Confirmar Contraseña"
+                                class="form-control"
+                                required autofocus="autofocus">
                     </div>
 
                     <button type="submit" class="form-control btn-primary comfirm"><i class="fas fa-sign-in-alt"
-                                                                              name="login-submit"
-                                                                              id="login-submit"></i> Registrar
+                                                                                      name="login-submit"
+                                                                                      id="login-submit"></i> Registrar
                     </button>
-                    <!-- <input type="submit" class="form-control btn btn-primary " name="login-submit" id="login-submit"value="Ingresar"/>-->
-
                 </form>
                 <div class="form-group">
 					<span>Si ya estas registrado <a th:href="@{/login}">conectate

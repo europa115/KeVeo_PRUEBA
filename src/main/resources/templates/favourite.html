@@ -20,40 +20,41 @@
             Favoritos
         </h1>
         <br>
-
-
-
         <br>
 
         <div th:each="film: ${listFavourites}">
             <div class="film">
                 <img th:src="${film.cover}" alt="">
                 <div class="desc">
-                    <a th:href="@{'/film/filmInfo/' + ${film.id}}"><button>INFO</button></a>
+                    <a th:href="@{'/film/filmInfo/' + ${film.id}}">
+                        <button>INFO</button>
+                    </a>
                     <hr>
                     <div class="text" th:text="${film.title}">
 
                     </div>
 
-                    <div class="text" >
+                    <div class="text">
 
                         Plataformas disponibles:
 
                         <a th:each="num: ${film.platforms}">
 
-                            <a th:if="${num.toString() == 'Netflix'}" href="https://www.netflix.com/es/browse/genre/839338" target="_blank">
+                            <a th:if="${num.toString() == 'Netflix'}"
+                               href="https://www.netflix.com/es/browse/genre/839338" target="_blank">
                                 <span><img src="./img/platform/netflix.png"></span></a>
 
                             <a th:if="${num.toString() == 'HBO Max'}" href="https://www.hbomax.com/" target="_blank">
                                 <span><img src="./img/platform/hbo.png"></span></a>
 
-                            <a th:if="${num.toString() == 'Prime Video'}" href="https://www.primevideo.com/" target="_blank">
+                            <a th:if="${num.toString() == 'Prime Video'}" href="https://www.primevideo.com/"
+                               target="_blank">
                                 <span><img src="./img/platform/prime.png"></span></a>
 
-                            <a th:if="${num.toString() == 'Disney+'}" href="https://www.disneyplus.com/" target="_blank">
+                            <a th:if="${num.toString() == 'Disney+'}" href="https://www.disneyplus.com/"
+                               target="_blank">
                                 <span><img src="./img/platform/disney.png"></span></a>
                         </a>
-
 
                     </div>
                 </div>
@@ -78,7 +79,6 @@
             </nav>
         </div>
     </div>
-
 </div>
 </body>
 </html>

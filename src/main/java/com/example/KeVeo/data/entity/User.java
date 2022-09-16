@@ -41,7 +41,6 @@ public class User implements Serializable {
     private String photo;
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Role> roles;
-
     @ManyToMany(cascade = CascadeType.ALL)     //Un poco de dudas con lazy y cascade
     @JoinTable(name = "user_films", joinColumns = @JoinColumn(name = "User_ID"),
     inverseJoinColumns = @JoinColumn(name = "Film_ID"))
@@ -62,14 +61,13 @@ public class User implements Serializable {
 
     //metodo creado para comprobar los favoritos con thymeleaf
     public boolean favourite(Integer id){
-        boolean prueba=false;
+        boolean favourite=false;
         for(Film film:this.films){
 
             if(id==film.getId()){
-                prueba=true;
+                favourite=true;
             }
         }
-
-        return prueba;
+        return favourite;
     }
 }

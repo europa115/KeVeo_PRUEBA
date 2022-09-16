@@ -11,12 +11,10 @@ public class FilmMapper extends AbstractServiceMapper<Film, FilmDTO>{
 
     private ModelMapper modelMapper = new ModelMapper();
 
-
     public Film toEntity(FilmDTO filmDTO) {
 
         return modelMapper.map(filmDTO, Film.class);
     }
-
 
     public FilmDTO toDto(Film film) {
 

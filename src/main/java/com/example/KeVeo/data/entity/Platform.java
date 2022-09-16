@@ -20,7 +20,6 @@ public class Platform implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private Integer id;
-
     @NotNull
     private String name;
 

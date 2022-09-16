@@ -27,7 +27,6 @@ public class Comment implements Serializable {
     private Integer id;
     @Lob
     private String content;
-
     private LocalDateTime creation;
 
     @ManyToOne(fetch = FetchType.LAZY)

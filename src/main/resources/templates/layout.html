@@ -34,7 +34,6 @@
                                   placeholder="Que estas buscando?" class="form-input">
                         <input type="submit" value="Buscar.." class="button" style="color:rgb(20, 51, 91);"></a></li>
 
-
                     <!--Enseña la imagen correspondiente en el navbar-->
                     <li class="locationAvatar">
                         <a href="/account">
@@ -44,22 +43,21 @@
 
 
                                     <img th:if="${#authentication.getPrincipal().getPhoto == null}"
-                                     src="static/img/user.png"
-                                        th:src="@{/img/user.png}">
-
+                                         src="static/img/user.png"
+                                         th:src="@{/img/user.png}">
 
                                      <img th:unless="${#authentication.getPrincipal().getPhoto == null}"
-                                    th:src="@{'/imgUser/'+ ${#authentication.getPrincipal().getPhoto}}"></span>
+                                          th:src="@{'/imgUser/'+ ${#authentication.getPrincipal().getPhoto}}"></span>
 
                             <i th:if="${#authentication.getPrincipal() == 'anonymousUser'}" th:href="@{/login}">
                                 <span>Login/Registro</span></i>
-                            <i th:unless="${#authentication.getPrincipal() == 'anonymousUser'}" th:href="@{/acounnt}"><span
+                            <i th:unless="${#authentication.getPrincipal() == 'anonymousUser'}"
+                               th:href="@{/acounnt}"><span
                                     th:text="${#authentication.getPrincipal().getUserName()}"></span>
                             </i>
 
-                        </a> </li>
+                        </a></li>
                     <!--Enseña el nombre correspondiente en el navbar-->
-
 
                     <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 
@@ -67,8 +65,8 @@
             </div>
         </div>
     </nav>
-        <div class='example-one-header scroll'>
-            <ul class="nav navbar-nav navbar-right">
+    <div class='example-one-header scroll'>
+        <ul class="nav navbar-nav navbar-right">
             <nav class='vertical-align-middle'>
                 <div class='nav-item' th:each="menuItem : ${menuList}">
 
@@ -90,16 +88,14 @@
                     <span>Disney+</span></a>
 
             </nav>
-                </ul>
-        </div>
-
-
-
+        </ul>
+    </div>
     <nav class="navbar-primary">
         <a href="#" class="btn-expand-collapse"><span class="glyphicon glyphicon-menu-left"></span></a>
         <ul class="navbar-primary-menu">
             <li class="treeview" th:each="menuItem : ${menuList}">
-                <a th:href="${menuItem.url}"><span th:class="${menuItem.icon}"></span><span class="nav-label" th:text="${menuItem.description}"></span></a>
+                <a th:href="${menuItem.url}"><span th:class="${menuItem.icon}"></span><span class="nav-label"
+                                                                                            th:text="${menuItem.description}"></span></a>
             </li>
         </ul>
     </nav>
@@ -119,6 +115,7 @@
     } else {
     $('.navbar-primary').toggleClass('collapsed');
     }
+
     </script>
     <!--Este Scrip permite añadir Read more en textos-->
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
@@ -159,11 +156,13 @@
         return false;
     });
 });
+
     </script>
     <!--Script Home Secction Carrusel-->
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/owl.carousel.min.js'></script>
-    <script src='https://use.fontawesome.com/826a7e3dce.js'></script><script  src="./js/sectionHomeScript.js"></script>
+    <script src='https://use.fontawesome.com/826a7e3dce.js'></script>
+    <script src="./js/sectionHomeScript.js"></script>
 </div>
 </body>
 </html>

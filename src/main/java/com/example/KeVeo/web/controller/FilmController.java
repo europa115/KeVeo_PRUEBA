@@ -37,11 +37,8 @@ import java.util.Optional;
 public class FilmController extends AbstractController<FilmDTO> {
 
     private FilmService filmService;
-
     private GenreRepository genreRepository;
-
     private FilmMapper filmMapper;
-
     private CommentService commentService;
     private UserRepository userRepository;
     private UserService userService;

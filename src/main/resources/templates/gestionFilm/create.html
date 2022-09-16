@@ -4,117 +4,115 @@
       layout:decorate="~{layout}"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" xmlns:sd="http://www.w3.org/1999/xhtml">
 <head>
-  <meta charset="utf-8">
-  <title>Añadir Películas</title>
-  <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" type="text/css" href="static/css/formStyle.css" th:href="@{/css/formStyle.css}">
+    <meta charset="utf-8">
+    <title>Añadir Películas</title>
+    <link rel="stylesheet" type="text/css" href="static/css/formStyle.css" th:href="@{/css/formStyle.css}">
 </head>
 <body>
 <div layout:fragment="content">
 
+    <link rel="stylesheet" type="text/css" href="static/css/layoutStyle.css" th:href="@{/css/layoutStyle.css}">
 
-  <link rel="stylesheet" type="text/css" href="static/css/layoutStyle.css" th:href="@{/css/layoutStyle.css}">
+    <div class="container text-center">
+        <div class="wrap">
+            <div class="background">
+                <form th:action="@{/gestionFilm/save}" th:object="${film}"
+                      method="post" style="max-width: 600px; margin: 0 auto;">
+                    <div class="title">
+                        <h1>Añadir Película</h1>
+                    </div>
+                    &nbsp;
+                    <div class="m-3">
+                        <div class="form-group row">
+                            <label class="col-4 col-form-label">Titulo Pelicula</label>
+                            <div class="col-8">
+                                <input type="text" th:field="${film.title}" class="form-control" required/>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="form-group row">
+                            <label class="col-4 col-form-label">Año</label>
+                            <div class="col-8">
+                                <input type="text" id="año" th:field="${film.year}" class="form-control"/>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="form-group row">
+                            <label class="col-4 col-form-label">Duración</label>
+                            <div class="col-8">
+                                <input type="text" id="duration" th:field="${film.duration}" class="form-control"/>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="form-group row">
+                            <label class="col-4 col-form-label">Portada</label>
+                            <div class="col-8">
+                                <input type="text" th:field="${film.cover}" class="form-control"/>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="form-group row">
+                            <label class="col-4 col-form-label">Casting</label>
+                            <div class="col-8">
 
+                                <textarea name="text" th:field="${film.casting}" class="section text"
+                                          id="casting"></textarea>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="form-group row">
+                            <label class="col-4 col-form-label">Sinopsis</label>
+                            <div class="col-8">
+                                <textarea name="text" th:field="${film.synopsis}" class="section text"
+                                          id="synopsis"></textarea>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="form-group row">
+                            <label class="col-4 col-form-label">Trailer</label>
+                            <div class="col-8">
+                                <input type="text" th:field="${film.trailer}" class="form-control"/>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="form-group row">
+                            <label class="col-4 col-form-label">Activo</label>
+                            <div class="col-8" style="color:rgb(233, 179, 17);">
+                                <input type="radio" th:field="${film.active}" th:text="Activar" value="true"
+                                       class="m-2"/>&nbsp;&nbsp;
+                                <input type="radio" th:field="${film.active}" th:text="Desactivar" value="false"
+                                       class="m-2"/>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="form-group row">
+                            <label class="col-4 col-form-label">Generos</label>
+                            <div class="col-8" style="color:rgb(233, 179, 17);">
+                                <th:block th:each="genre: ${listGenres}">
+                                    <input type="checkbox" th:field="${film.genres}"
+                                           th:text="${genre.name}" th:value="${genre.id}"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </th:block>
+                            </div>
+                        </div>
 
-  <div class="container text-center">
-    <div class="wrap">
-      <div class="background">
-        <form th:action="@{/gestionFilm/save}" th:object="${film}"
-              method="post" style="max-width: 600px; margin: 0 auto;">
-          <div class="title">
-            <h1>Añadir Película</h1>
-          </div>
-          &nbsp;
-          <div class="m-3">
-            <div class="form-group row">
-              <label class="col-4 col-form-label">Titulo Pelicula</label>
-              <div class="col-8">
-                <input type="text" th:field="${film.title}" class="form-control" required/>
-              </div>
+                        <hr>
+                        <div class="form-group row">
+                            <label class="col-4 col-form-label">Plataformas</label>
+                            <div class="col-8" style="color:rgb(233, 179, 17);">
+                                <th:block th:each="platform: ${listPlatforms}">
+                                    <input type="checkbox" th:field="${film.platforms}"
+                                           th:text="${platform.name}" th:value="${platform.id}"/>&nbsp;&nbsp;
+                                </th:block>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="submit">
+                        <button type="submit" value="Submit">Añadir</button>
+                    </div>
+                </form>
             </div>
-            <hr>
-            <div class="form-group row">
-              <label class="col-4 col-form-label">Año</label>
-              <div class="col-8">
-                <input type="text" id="año" th:field="${film.year}" class="form-control"/>
-              </div>
-            </div>
-            <hr>
-            <div class="form-group row">
-              <label class="col-4 col-form-label">Duración</label>
-              <div class="col-8">
-                <input type="text" id="duration" th:field="${film.duration}" class="form-control"/>
-              </div>
-            </div>
-            <hr>
-            <div class="form-group row">
-              <label class="col-4 col-form-label">Portada</label>
-              <div class="col-8">
-                <input type="text" th:field="${film.cover}" class="form-control"/>
-              </div>
-            </div>
-            <hr>
-            <div class="form-group row">
-              <label class="col-4 col-form-label">Casting</label>
-              <div class="col-8">
-
-                <textarea name ="text" th:field="${film.casting}" class="section text" id="casting" ></textarea>
-              </div>
-            </div>
-            <hr>
-            <div class="form-group row">
-              <label class="col-4 col-form-label">Sinopsis</label>
-              <div class="col-8">
-                <!-- <input type="text" id="comment"  class="form-control"/>-->
-                <textarea name ="text" th:field="${film.synopsis}" class="section text" id="synopsis" ></textarea>
-              </div>
-            </div>
-            <hr>
-            <div class="form-group row">
-              <label class="col-4 col-form-label">Trailer</label>
-              <div class="col-8">
-                <input type="text" th:field="${film.trailer}" class="form-control"/>
-              </div>
-            </div>
-            <hr>
-            <div class="form-group row">
-              <label class="col-4 col-form-label">Activo</label>
-              <div class="col-8" style="color:rgb(233, 179, 17);">
-                <input type="radio" th:field="${film.active}" th:text="Activar" value="true" class="m-2"/>&nbsp;&nbsp;
-                <input type="radio" th:field="${film.active}" th:text="Desactivar" value="false" class="m-2"/>
-              </div>
-            </div>
-            <hr>
-            <div class="form-group row">
-              <label class="col-4 col-form-label">Generos</label>
-              <div class="col-8" style="color:rgb(233, 179, 17);">
-                <th:block th:each="genre: ${listGenres}">
-                  <input type="checkbox" th:field="${film.genres}"
-                         th:text="${genre.name}" th:value="${genre.id}" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                </th:block>
-              </div>
-            </div>
-
-            <hr>
-            <div class="form-group row">
-              <label class="col-4 col-form-label">Plataformas</label>
-              <div class="col-8" style="color:rgb(233, 179, 17);">
-                <th:block th:each="platform: ${listPlatforms}">
-                  <input type="checkbox" th:field="${film.platforms}"
-                         th:text="${platform.name}" th:value="${platform.id}" />&nbsp;&nbsp;
-                </th:block>
-              </div>
-            </div>
-
-
-          </div>
-          <div class="submit">
-            <button type="submit" value="Submit">Añadir</button>
-          </div>
-        </form>
-      </div>
+        </div>
     </div>
-  </div>
 </div>
 </body>
 </html>

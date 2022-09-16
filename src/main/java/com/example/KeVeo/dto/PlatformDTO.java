@@ -14,6 +14,5 @@ import java.io.Serializable;
 public class PlatformDTO  implements Serializable {
 
     private Integer id;
-
     private String name;
 }

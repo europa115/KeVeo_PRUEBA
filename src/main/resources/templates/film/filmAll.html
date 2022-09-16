@@ -10,7 +10,6 @@
 <body>
 <div layout:fragment="content">
 
-    <!-- Nuestro css-->
     <link rel="stylesheet" type="text/css" href="static/css/coverStyle.css" th:href="@{/css/coverStyle.css}">
 
     <div class="container">
@@ -20,19 +19,18 @@
             Películas
         </h1>
         <br>
-
         <div class="btn-group">
             <button type="button" class="btn-gender">Generos</button>
             <button type="button" class="btn-gender dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">
                 <span class="caret"></span>
             </button>
-            <div class="dropdown-menu" >
+            <div class="dropdown-menu">
 
-               <div th:each="genre: ${listGenres}">
+                <div th:each="genre: ${listGenres}">
                 <span class="btngroup">
             <a class="btngroup--a" th:href="@{/film(wordKey=${genre.name})}" th:text="${genre.name}"></a>
             </span>
-               </div>
+                </div>
             </div>
         </div>&nbsp;&nbsp;
 
@@ -41,7 +39,7 @@
             <button type="button" class="btn-gender dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">
                 <span class="caret"></span>
             </button>
-            <div class="dropdown-menu" >
+            <div class="dropdown-menu">
 
                 <div>
                 <span class="btngroup">
@@ -70,70 +68,70 @@
         <br>
         <br>
 
-        <!-- partial:index.partial.html -->
         <form class="search" th:action="film">
             <input class="searchTerm" placeholder="Buscar ..." name="wordKey"
-                   id="wordKey" th:value="${wordKey}"/><input class="searchButton" type="submit" />
-
+                   id="wordKey" th:value="${wordKey}"/><input class="searchButton" type="submit"/>
         </form>
 
         <br>
-
         <br>
 
-            <div th:each="film: ${listFilms}">
-                <div class="film">
-                    <img th:src="${film.cover}" alt="">
-                    <div class="desc">
-                        <a th:href="@{'/film/filmInfo/' + ${film.id}}"><button>INFO</button></a>
-                        <hr>
-                        <div class="text" th:text="${film.title}">
+        <div th:each="film: ${listFilms}">
+            <div class="film">
+                <img th:src="${film.cover}" alt="">
+                <div class="desc">
+                    <a th:href="@{'/film/filmInfo/' + ${film.id}}">
+                        <button>INFO</button>
+                    </a>
+                    <hr>
+                    <div class="text" th:text="${film.title}">
 
-                        </div>
+                    </div>
 
-                        <div class="text" >
+                    <div class="text">
 
-                            Plataformas disponibles:
+                        Plataformas disponibles:
 
-                            <a th:each="num: ${film.platforms}">
+                        <a th:each="num: ${film.platforms}">
 
-                              <a th:if="${num.toString() == 'Netflix'}" href="https://www.netflix.com/es/browse/genre/839338" target="_blank">
-                                  <span><img src="./img/platform/netflix.png"></span></a>
+                            <a th:if="${num.toString() == 'Netflix'}"
+                               href="https://www.netflix.com/es/browse/genre/839338" target="_blank">
+                                <span><img src="./img/platform/netflix.png"></span></a>
 
-                                <a th:if="${num.toString() == 'HBO Max'}" href="https://www.hbomax.com/" target="_blank">
-                                    <span><img src="./img/platform/hbo.png"></span></a>
+                            <a th:if="${num.toString() == 'HBO Max'}" href="https://www.hbomax.com/" target="_blank">
+                                <span><img src="./img/platform/hbo.png"></span></a>
 
-                                <a th:if="${num.toString() == 'Prime Video'}" href="https://www.primevideo.com/" target="_blank">
-                                    <span><img src="./img/platform/prime.png"></span></a>
+                            <a th:if="${num.toString() == 'Prime Video'}" href="https://www.primevideo.com/"
+                               target="_blank">
+                                <span><img src="./img/platform/prime.png"></span></a>
 
-                                <a th:if="${num.toString() == 'Disney+'}" href="https://www.disneyplus.com/" target="_blank">
-                                    <span><img src="./img/platform/disney.png"></span></a>
-                            </a>
-
-
-                        </div>
+                            <a th:if="${num.toString() == 'Disney+'}" href="https://www.disneyplus.com/"
+                               target="_blank">
+                                <span><img src="./img/platform/disney.png"></span></a>
+                        </a>
                     </div>
                 </div>
             </div>
+        </div>
 
     </div>
 
-        <div th:if="${not #lists.isEmpty(listFilms.content)}">
-            <div class="text-center">
-                <nav>
-                    <ul class="pagination" sd:pagination="full">
-                        <div th:if="${listFilms.totalPages > 0}" class="pagination"
-                             th:each="pageNumber : ${pageNumbers}">
-                            <li th:class="${pageNumber==listFilms.number + 1} ? active">
-                                <a href="#"
-                                   th:href="@{/film(size=${listFilms.size}, page=${pageNumber}, wordKey=${wordKey})}"
-                                   th:text=${pageNumber}></a>
-                            </li>
-                        </div>
-                    </ul>
-                </nav>
-            </div>
+    <div th:if="${not #lists.isEmpty(listFilms.content)}">
+        <div class="text-center">
+            <nav>
+                <ul class="pagination" sd:pagination="full">
+                    <div th:if="${listFilms.totalPages > 0}" class="pagination"
+                         th:each="pageNumber : ${pageNumbers}">
+                        <li th:class="${pageNumber==listFilms.number + 1} ? active">
+                            <a href="#"
+                               th:href="@{/film(size=${listFilms.size}, page=${pageNumber}, wordKey=${wordKey})}"
+                               th:text=${pageNumber}></a>
+                        </li>
+                    </div>
+                </ul>
+            </nav>
         </div>
+    </div>
 
 </div>
 </body>

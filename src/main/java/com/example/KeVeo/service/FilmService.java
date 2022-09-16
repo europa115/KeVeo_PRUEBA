@@ -3,7 +3,6 @@ package com.example.KeVeo.service;
 import com.example.KeVeo.data.entity.Film;
 import com.example.KeVeo.data.entity.Genre;
 import com.example.KeVeo.data.entity.Platform;
-import com.example.KeVeo.data.entity.Role;
 import com.example.KeVeo.data.repository.FilmRepository;
 import com.example.KeVeo.data.repository.GenreRepository;
 import com.example.KeVeo.data.repository.PlatformRepository;
@@ -14,8 +13,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-
-import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
