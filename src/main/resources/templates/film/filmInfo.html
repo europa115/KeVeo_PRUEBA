@@ -111,6 +111,15 @@ $(document).ready(function() {
         </form>
 
     </main>
+    <form  th:action="@{'/filmInfo/savePunctuation/' + ${film.id}}"  th:object="${punctuation}" method="post" >
+        <input type="hidden" name="id"  th:value="${punctuation.id}">
+        <input type="hidden" name="score"  value="3.5">
+        <input type="hidden" name="user" th:value="${#authentication.getPrincipal().id}">
+            <div class="submit agree">
+                <button type="submit" class="btn btn-success" value="Submit">Puntuar</button>
+            </div>
+
+    </form>
     <br>
     <div class="comments-section">
         <div class="comments">

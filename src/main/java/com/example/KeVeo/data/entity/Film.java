@@ -54,4 +54,6 @@ public class Film implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "Punctuation_ID"))
     private List<Punctuation> punctuations;
 
+    public void addPunctuation(Punctuation punctuation){this.punctuations.add(punctuation);}
+
 }
