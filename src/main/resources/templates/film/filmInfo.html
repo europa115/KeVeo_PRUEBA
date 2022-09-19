@@ -57,9 +57,10 @@ $(document).ready(function() {
                     </p>
 
                     <div class="extra">
-                        <div class="ratings"><p> &#9733; &#9733; &#9733; &#9733; &#9734; 8.0</p>
-                            <a th:text="${punctuationFilm}"></a>
-                        </div>
+                        <div class="stars" th:data-percent="${punctuationFilm}">
+
+                        </div><span th:if="${punctuationFilm}==null">Sin puntuar.</span>
+                        <span th:unless="${punctuationFilm}==null" th:text="${punctuationFilm} + ' Stars'"></span>
 
                     </div>
                 </div>
