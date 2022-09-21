@@ -144,16 +144,9 @@ public class FilmController extends AbstractController<FilmDTO> {
     }
 
     @PostMapping("/filmInfo/save/{id}")
-    public String saveComment(CommentDTO commentDTO,@PathVariable("id") Integer id) {
+    public String saveComment(CommentDTO commentDTO,PunctuationDTO punctuationDTO,@PathVariable("id") Integer id) {
 
         commentService.save(commentDTO);
-
-        return "redirect:/film/filmInfo/{id}";
-    }
-
-    @PostMapping("/filmInfo/savePunctuation/{id}")
-    public String savePunctuation(PunctuationDTO punctuationDTO, @PathVariable("id") Integer id) {
-
         punctuationService.save(punctuationDTO);
         FilmDTO filmDTO =filmService.findById(id).get();
         Film entity=filmMapper.toEntity(filmDTO);

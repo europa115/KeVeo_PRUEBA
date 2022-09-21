@@ -58,11 +58,11 @@ $(document).ready(function() {
 
                     <div class="extra">
                         <div class="stars" th:data-percent="${punctuationFilm}">
-
                         </div><span th:if="${punctuationFilm}==null">Sin puntuar.</span>
                         <span th:unless="${punctuationFilm}==null" th:text="${punctuationFilm} + ' Stars'"></span>
 
                     </div>
+
                 </div>
 
                <div>
@@ -111,15 +111,7 @@ $(document).ready(function() {
         </form>
 
     </main>
-    <form  th:action="@{'/filmInfo/savePunctuation/' + ${film.id}}"  th:object="${punctuation}" method="post" >
-        <input type="hidden" name="id"  th:value="${punctuation.id}">
-        <input type="hidden" name="score"  value="3.5">
-        <input type="hidden" name="user" th:value="${#authentication.getPrincipal().id}">
-            <div class="submit agree">
-                <button type="submit" class="btn btn-success" value="Submit">Puntuar</button>
-            </div>
 
-    </form>
     <br>
     <div class="comments-section">
         <div class="comments">
@@ -145,6 +137,19 @@ $(document).ready(function() {
                                 <input type="hidden" name="film"  th:value="${film.id}">
                                 <input type="hidden" name="user" th:value="${#authentication.getPrincipal().id}">
                             </div>
+
+                            <form  th:action="@{'/filmInfo/savePunctuation/' + ${film.id}}"  th:object="${punctuation}" method="post" class="punctuation">
+                                <input type="hidden" name="id"  th:value="${punctuation.id}">
+
+                                <!--        <input type="hidden" name="score"  value=rating>-->
+                                <input type="hidden" name="user" th:value="${#authentication.getPrincipal().id}">
+                                <input type="hidden" name="score" id="myStar" value="">
+                                <div id="app" class="puntuaction">
+                                    <star-rating :increment="0.5":star-size="20" @update:rating="rating = $event" ></star-rating>
+                                    <a>{{currentRatingText}}</a>
+                                </div>
+                            </form>
+
                             <div class="submit agree">
                                 <button type="submit" class="btn btn-success" value="Submit">Añadir Comentario</button>
                             </div>
@@ -195,7 +200,47 @@ $(document).ready(function() {
             </div>
         </div>
     </div>
+<script src='https://unpkg.com/vue@3.0.0/dist/vue.global.js'></script>
+    <script src='https://unpkg.com/vue-star-rating@2.1.0/dist/VueStarRating.umd.min.js'></script><script>
+const app = Vue.createApp({
+  methods: {
+    showCurrentRating(rating) {
+      this.currentSelectedRating =
+        rating === 0
+          ? this.currentSelectedRating
+          : "Click to select " + rating + " stars";
+    },
+    setCurrentSelectedRating(rating) {
+      this.currentSelectedRating = "You have Selected: " + rating + " stars";
+    }
+  },
+  computed: {
+    currentRatingText() {
+    document.getElementById('myStar').value = this.rating;
+      return this.rating
+        ? "Tu valoracion es " + this.rating + " stars"
+        : "Sin puntuar";
+    },
+    mouseOverRatingText() {
+      return this.mouseOverRating
+        ? "Click to select " + this.mouseOverRating + " stars"
+        : "No Rating";
+    }
+  },
+  data() {
+    return {
+      rating: null,
+      resetableRating: 2,
+      currentRating: "No Rating",
+      mouseOverRating: null
+    };
+  }
+});
+app.component("star-rating", VueStarRating.default);
 
+app.mount("#app");
+
+</script>
 </div>
 
 </body>

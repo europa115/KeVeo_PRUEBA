@@ -385,59 +385,7 @@ font-size: 50px;
 		width:100%;
 }
 /*****Puntuar******/
-@import url(https://fonts.googleapis.com/css?family=Raleway:700);
-*, *:before, *:after {
-  box-sizing: border-box;
-}
-/*Boton principal para desplegar*/
-.btn-gender{
-font-size: 1rem;
-  letter-spacing: 0.1em;
-  text-decoration: none;
-  text-transform: uppercase;
-  color:rgb(233, 179, 17) ;
-  background: transparent;
-  display: inline-block;
-  padding: 0.5em 1.25em;
-  outline: 0;
-  box-shadow:
-      0 0 2px #fff,
-      0 0 5px #fff;
-
-}
-/*Stilo desplegables*/
-@import url(https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
-.btngroup {
-  font-size: 0;
-  line-height: 1;
-  white-space: nowrap;
-  display: inline;
-}
-.btngroup--a {
-  font-size: 1rem;
-  letter-spacing: 0.1em;
-  text-decoration: none;
-  text-transform: uppercase;
-  text-color: #f8c407
-  background: transparent;
-  display: inline-block;
-  padding: 0.5em 1.25em;
-  outline: 0;
-
-
+.puntuaction {
+margin-left:30px;
 }
 
-.btngroup--a:link {
-  color: #bdc3c7;
-}
-.btngroup--a:visted {
-  color: #bdc3c7;
-}
-.btngroup--a:hover {
-  background: #34495e;
-  color: #fff;
-}
-.btngroup--a:active {
-  background: #fff;
-  color: #34495e;
-}
