@@ -132,7 +132,7 @@ $(document).ready(function() {
                                     <span class="username" th:text="${#authentication.getPrincipal().getUserName()}"></span><span>  Comentar..</span></span>
                             </div>
                             <div class="comment-text">
-                                <textarea name ="text" th:field="${comment.content}" class="section text" maxlength="1000" minlength="5" placeholder="Escribe aquí, tu comentario u opinion sobre la película..."></textarea>
+                                <textarea name ="text" th:field="${comment.content}" class="section text" maxlength="1000" minlength="5" placeholder="Escribe aquí, tu comentario u opinion sobre la película..." required></textarea>
                                 <input type="hidden" name="id"  th:value="${comment.id}">
                                 <input type="hidden" name="film"  th:value="${film.id}">
                                 <input type="hidden" name="user" th:value="${#authentication.getPrincipal().id}">
@@ -141,8 +141,8 @@ $(document).ready(function() {
                             <form  th:action="@{'/filmInfo/savePunctuation/' + ${film.id}}"  th:object="${punctuation}" method="post" class="punctuation">
                                 <input type="hidden" name="id"  th:value="${punctuation.id}">
                                 <input type="hidden" name="score" id="myStar" value="">
-                                <div id="app" class="puntuaction">
-                                    <star-rating :increment="0.5":star-size="20" @update:rating="rating = $event" ></star-rating>
+                                <div id="app" class="puntuaction" >
+                                    <star-rating :increment="0.5":star-size="20":rating="0.5" @update:rating="rating = $event" ></star-rating>
                                     <a>{{currentRatingText}}</a>
                                 </div>
                                 <input type="hidden" name="user" th:value="${#authentication.getPrincipal().id}">
@@ -174,8 +174,10 @@ $(document).ready(function() {
 
                     </div>
                     <div th:each="punctuation:${listPunctuations}">
-                        <div th:if="${punctuation.user == comment.user}" class="stars" th:data-percent="${punctuation.score}"></div>
-
+                        <div th:if="${punctuation.user == comment.user}">
+                        <div  class="stars" th:data-percent="${punctuation.score}" style="margin-left:2.5%;"></div>
+                        <span th:text="${punctuation.score} + ' Stars'"></span>
+                    </div>
                      </div>
                 </div>
 
@@ -231,7 +233,7 @@ const app = Vue.createApp({
   },
   data() {
     return {
-      rating: null,
+      rating: 0.5,
       resetableRating: 2,
       currentRating: "No Rating",
       mouseOverRating: null
