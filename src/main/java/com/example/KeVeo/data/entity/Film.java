@@ -56,4 +56,15 @@ public class Film implements Serializable {
 
     public void addPunctuation(Punctuation punctuation){this.punctuations.add(punctuation);}
 
+    public boolean commentUser(Integer id){
+        boolean commentUser=false;
+        for(Comment comment:this.comments){
+
+            if(id==comment.getUser().getId()){
+                commentUser=true;
+            }
+        }
+        return commentUser;
+    }
+
 }

@@ -119,40 +119,60 @@ $(document).ready(function() {
             <div id="comments-container">
 
                 <div th:if="${#authentication.getPrincipal() == 'anonymousUser'}" class="log">
-                    <p>*Para poder comentar en esta película necesitas <a th:href="@{/register}">Registrarte</a> o <a th:href="@{/login}">Iniciar Sesión</a> en tu cuenta de KeVeo.</p>
+                    <p>*Para poder comentar en esta película necesitas <a th:href="@{/register}">Registrarte</a> o <a
+                            th:href="@{/login}">Iniciar Sesión</a> en tu cuenta de KeVeo.</p>
                 </div>
-                    <form th:unless="${#authentication.getPrincipal() == 'anonymousUser'}" th:action="@{'/filmInfo/save/' + ${film.id}}"  th:object="${comment}" method="post" >
-                        <div class="comment">
-                            <div class="comment-user">
-                                <div class="avatar">
-                                    <img th:if="${#authentication.getPrincipal().getPhoto == null}"  th:src="@{/img/user.png}" />
-                                    <img th:unless="${#authentication.getPrincipal().getPhoto == null}" th:src="@{'/imgUser/'+ ${#authentication.getPrincipal().getPhoto}}"/>
-                                </div>
-                                <span class="user-details">
-                                    <span class="username" th:text="${#authentication.getPrincipal().getUserName()}"></span><span>  Comentar..</span></span>
-                            </div>
-                            <div class="comment-text">
-                                <textarea name ="text" th:field="${comment.content}" class="section text" maxlength="1000" minlength="5" placeholder="Escribe aquí, tu comentario u opinion sobre la película..." required></textarea>
-                                <input type="hidden" name="id"  th:value="${comment.id}">
-                                <input type="hidden" name="film"  th:value="${film.id}">
-                                <input type="hidden" name="user" th:value="${#authentication.getPrincipal().id}">
-                            </div>
+                <div th:unless="${#authentication.getPrincipal() == 'anonymousUser'}">
 
-                            <form  th:action="@{'/filmInfo/savePunctuation/' + ${film.id}}"  th:object="${punctuation}" method="post" class="punctuation">
-                                <input type="hidden" name="id"  th:value="${punctuation.id}">
-                                <input type="hidden" name="score" id="myStar" value="">
-                                <div id="app" class="puntuaction" >
-                                    <star-rating :increment="0.5":star-size="20":rating="0.5" @update:rating="rating = $event" ></star-rating>
-                                    <a>{{currentRatingText}}</a>
+                        <div th:if="${film.commentUser(user.id)}" class="log">
+                            <p>*Ya has comentado y puntuado esta pelicula. Muchas gracias por tu aporte a la comunidad de KeVeo!</p>
+                        </div>
+                            <form th:unless="${film.commentUser(user.id)}" th:action="@{'/filmInfo/save/' + ${film.id}}" th:object="${comment}" method="post">
+                                <div class="comment">
+                                    <div class="comment-user">
+                                        <div class="avatar">
+                                            <img th:if="${#authentication.getPrincipal().getPhoto == null}"
+                                                 th:src="@{/img/user.png}"/>
+                                            <img th:unless="${#authentication.getPrincipal().getPhoto == null}"
+                                                 th:src="@{'/imgUser/'+ ${#authentication.getPrincipal().getPhoto}}"/>
+                                        </div>
+                                        <span class="user-details">
+                                    <span class="username"
+                                          th:text="${#authentication.getPrincipal().getUserName()}"></span><span>  Comentar..</span></span>
+                                    </div>
+                                    <div class="comment-text">
+                                        <textarea name="text" th:field="${comment.content}" class="section text"
+                                                  maxlength="1000" minlength="5"
+                                                  placeholder="Escribe aquí, tu comentario u opinion sobre la película..."
+                                                  required></textarea>
+                                        <input type="hidden" name="id" th:value="${comment.id}">
+                                        <input type="hidden" name="film" th:value="${film.id}">
+                                        <input type="hidden" name="user"
+                                               th:value="${#authentication.getPrincipal().id}">
+                                    </div>
+
+                                    <form th:action="@{'/filmInfo/savePunctuation/' + ${film.id}}"
+                                          th:object="${punctuation}" method="post" class="punctuation">
+                                        <input type="hidden" name="id" th:value="${punctuation.id}">
+                                        <input type="hidden" name="score" id="myStar" value="">
+                                        <div id="app" class="puntuaction">
+                                            <star-rating :increment="0.5" :star-size="20" :rating="0.5"
+                                                         @update:rating="rating = $event"></star-rating>
+                                            <a>{{currentRatingText}}</a>
+                                        </div>
+                                        <input type="hidden" name="user"
+                                               th:value="${#authentication.getPrincipal().id}">
+                                    </form>
+
+                                    <div class="submit agree">
+                                        <button type="submit" class="btn btn-success" value="Submit">Añadir Comentario
+                                        </button>
+                                    </div>
                                 </div>
-                                <input type="hidden" name="user" th:value="${#authentication.getPrincipal().id}">
                             </form>
 
-                            <div class="submit agree">
-                                <button type="submit" class="btn btn-success" value="Submit">Añadir Comentario</button>
-                            </div>
-                        </div>
-                    </form>
+
+                </div>
                 <div class="comment" th:each="comment : ${listComments}">
                     <div class="comment-user">
                         <div class="avatar">
