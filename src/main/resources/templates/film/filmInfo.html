@@ -140,14 +140,12 @@ $(document).ready(function() {
 
                             <form  th:action="@{'/filmInfo/savePunctuation/' + ${film.id}}"  th:object="${punctuation}" method="post" class="punctuation">
                                 <input type="hidden" name="id"  th:value="${punctuation.id}">
-
-                                <!--        <input type="hidden" name="score"  value=rating>-->
-                                <input type="hidden" name="user" th:value="${#authentication.getPrincipal().id}">
                                 <input type="hidden" name="score" id="myStar" value="">
                                 <div id="app" class="puntuaction">
                                     <star-rating :increment="0.5":star-size="20" @update:rating="rating = $event" ></star-rating>
                                     <a>{{currentRatingText}}</a>
                                 </div>
+                                <input type="hidden" name="user" th:value="${#authentication.getPrincipal().id}">
                             </form>
 
                             <div class="submit agree">
@@ -175,6 +173,10 @@ $(document).ready(function() {
                     <div class="comment-text" th:text="${comment.content}">
 
                     </div>
+                    <div th:each="punctuation:${listPunctuations}">
+                        <div th:if="${punctuation.user == comment.user}" class="stars" th:data-percent="${punctuation.score}"></div>
+
+                     </div>
                 </div>
 
 

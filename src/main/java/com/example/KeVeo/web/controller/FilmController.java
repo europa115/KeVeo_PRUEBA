@@ -2,9 +2,11 @@ package com.example.KeVeo.web.controller;
 
 import com.example.KeVeo.data.entity.Film;
 import com.example.KeVeo.data.entity.Genre;
+import com.example.KeVeo.data.entity.Punctuation;
 import com.example.KeVeo.data.entity.User;
 import com.example.KeVeo.data.repository.FilmRepository;
 import com.example.KeVeo.data.repository.GenreRepository;
+import com.example.KeVeo.data.repository.PunctuationRepository;
 import com.example.KeVeo.data.repository.UserRepository;
 import com.example.KeVeo.dto.CommentDTO;
 import com.example.KeVeo.dto.FilmDTO;
@@ -43,11 +45,14 @@ public class FilmController extends AbstractController<FilmDTO> {
     private UserService userService;
     private PunctuationService punctuationService;
     private PunctuationMapper punctuationMapper;
+private FilmRepository filmRepository;
+    private PunctuationRepository punctuationRepository;
 
     @Autowired
     protected FilmController(MenuService menuService, FilmService filmService,GenreRepository genreRepository,
                              FilmMapper filmMapper,CommentService commentService,UserRepository userRepository,
-                             UserService userService,PunctuationService punctuationService,PunctuationMapper punctuationMapper) {
+                             UserService userService,PunctuationService punctuationService,PunctuationMapper punctuationMapper,
+                             PunctuationRepository punctuationRepository, FilmRepository filmRepository) {
         super(menuService);
 
         this.filmService = filmService;
@@ -58,6 +63,8 @@ public class FilmController extends AbstractController<FilmDTO> {
         this.userService=userService;
         this.punctuationService=punctuationService;
         this.punctuationMapper=punctuationMapper;
+        this.punctuationRepository=punctuationRepository;
+        this.filmRepository=filmRepository;
 
 
     }
@@ -89,9 +96,12 @@ public class FilmController extends AbstractController<FilmDTO> {
         List<CommentDTO> listComments= commentService.findByFilmId(id);
         Double punctuationFilm=filmService.findFinalPunctuation(id);
         PunctuationDTO punctuationDTO=new PunctuationDTO();
+        List<Punctuation> listPunctuations=filmService.findByPunctuations(id);
+
         model
                 .addAttribute("film", film)
                 .addAttribute("listComments",listComments)
+                .addAttribute("listPunctuations",listPunctuations)
                 .addAttribute("user",user)
                 .addAttribute("punctuationFilm",punctuationFilm)
                 .addAttribute("comment", commentDTO)
@@ -147,7 +157,6 @@ public class FilmController extends AbstractController<FilmDTO> {
     public String saveComment(CommentDTO commentDTO,PunctuationDTO punctuationDTO,@PathVariable("id") Integer id) {
 
         commentService.save(commentDTO);
-        punctuationService.save(punctuationDTO);
         FilmDTO filmDTO =filmService.findById(id).get();
         Film entity=filmMapper.toEntity(filmDTO);
         entity.addPunctuation(punctuationMapper.toEntity(punctuationDTO));
