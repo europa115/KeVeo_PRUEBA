@@ -116,9 +116,9 @@ private FilmRepository filmRepository;
                          SessionStatus status) {
         try {
             this.commentService.delete(idComment);
-            this.filmRepository.deletePunctuation(idFilm,idPunctuation);
+            this.filmService.deletePunctuation(idFilm,idPunctuation);
             //Necesito borra primero registro de la tabla de films_punctuations para poder eliminar punctuation
-            this.punctuationRepository.deletePunctuation(idPunctuation);
+            this.punctuationService.delete(idPunctuation);
         } catch (DataIntegrityViolationException exception) {
             status.setComplete();
             return new ModelAndView("error/errorHapus")

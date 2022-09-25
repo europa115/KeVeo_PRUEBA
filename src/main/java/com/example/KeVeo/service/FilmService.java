@@ -95,4 +95,9 @@ public class FilmService extends AbstractBusinessService<Film,Integer, FilmDTO, 
 
         return listPunctuations;
     }
+
+    public void deletePunctuation(Integer idFilm, Integer idPuncuation){
+        getRepository().deletePunctuation(idFilm,idPuncuation);
+    }
+
 }

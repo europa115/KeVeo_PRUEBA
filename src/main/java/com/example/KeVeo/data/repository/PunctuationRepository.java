@@ -10,8 +10,4 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 public interface PunctuationRepository extends JpaRepository<Punctuation,Integer> {
 
-    @Modifying
-    @Transactional
-    @Query(value="delete from Punctuation where id LIKE %?1%", nativeQuery = true)
-    void deletePunctuation(Integer id);
 }
