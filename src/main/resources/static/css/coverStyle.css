@@ -199,6 +199,10 @@ font-size: 1rem;
   opacity: 0;
   cursor: pointer;
 }
+.searchResult {
+ color:WHITE;
+ font-size:18px;
+}
 @media only screen and (max-width: 400px) {
   .search {
      width: 70%;

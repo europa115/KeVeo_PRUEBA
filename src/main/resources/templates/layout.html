@@ -30,9 +30,18 @@
 
                 <ul class="nav navbar-nav navbar-user navbar-right">
                     <!--Etiqueta buscador añadida a la fuerza-->
-                    <li><a><input type="search" name="search" style="color:rgb(20, 51, 91);"
-                                  placeholder="Que estas buscando?" class="form-input">
-                        <input type="submit" value="Buscar.." class="button" style="color:rgb(20, 51, 91);"></a></li>
+                    <li><a>
+
+                        <form  th:action="film" style="color:rgb(20, 51, 91);" autocomplete="on">
+                            <input type="search" placeholder="Buscar ..." name="wordKey"
+                                   id="wordKey" th:value="${wordKey}"/>
+                            <input type="submit" value="Buscar.." class="button" style="color:rgb(20, 51, 91);">
+                        </form>
+
+
+<!--                        <input type="search" name="search" style="color:rgb(20, 51, 91);"-->
+<!--                                  placeholder="Que estas buscando?" class="form-input">-->
+                        </a></li>
 
                     <!--Enseña la imagen correspondiente en el navbar-->
                     <li class="locationAvatar">

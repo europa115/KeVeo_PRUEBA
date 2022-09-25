@@ -10,17 +10,6 @@ header{
 	width: 100%;
 }
 
-form{
-
-	border-top: 1px solid #ff3737;
-	position: absolute;
-	padding:10px 15px;
-	display: flex;
-	right: -100px;
-}
-form #submit{
-	display: none;
-}
 
 .slider{
 	margin: 10px auto;

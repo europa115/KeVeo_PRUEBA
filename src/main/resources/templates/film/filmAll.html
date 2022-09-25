@@ -74,8 +74,13 @@
         </form>
 
         <br>
+        <div th:unless="${wordKey == null OR wordKey.isEmpty()}" class="searchResult">
+            <p th:unless="${#lists.isEmpty(listFilms.content)}" th:text="${'Resultados para la busqueda ' +wordKey +'.'}"></p>
+            <p th:if="${#lists.isEmpty(listFilms.content)}" th:text="${'No hay resultados para la busqueda ' +wordKey+'.'}"></p>
+        </div>
         <br>
 
+<!--        <div th:if="${wordKey!= null OR wordKey.isEmpty()}" style="color:WHITE">-->
         <div th:each="film: ${listFilms}">
             <div class="film">
                 <img th:src="${film.cover}" alt="">
