@@ -110,16 +110,19 @@ private FilmRepository filmRepository;
         return "film/filmInfo";
     }
 
-    @PostMapping({ "/comment/delete/{id}/{idFilm}" })
-    public Object delete(@PathVariable(value = "id") Integer id,@PathVariable(value = "idFilm") Integer idFilm,
+    @PostMapping({ "/comment/delete/{idComment}/{idPunctuation}/{idFilm}" })
+    public Object delete(@PathVariable(value = "idComment") Integer idComment,@PathVariable(value = "idPunctuation") Integer idPunctuation,
+                         @PathVariable(value = "idFilm") Integer idFilm,
                          SessionStatus status) {
         try {
-            this.commentService.delete(id);
+            this.commentService.delete(idComment);
+            this.filmRepository.deletePunctuation(idFilm,idPunctuation);
+            //Necesito borra primero registro de la tabla de films_punctuations para poder eliminar punctuation
+            this.punctuationRepository.deletePunctuation(idPunctuation);
         } catch (DataIntegrityViolationException exception) {
             status.setComplete();
             return new ModelAndView("error/errorHapus")
-                    .addObject("entityId", id)
-                    .addObject("entityName", "task")
+                    .addObject("entityId", idComment)
                     .addObject("errorCause", exception.getRootCause().getMessage())
                     .addObject("backLink", "/film/filmInfo/{idFilm}");
         }

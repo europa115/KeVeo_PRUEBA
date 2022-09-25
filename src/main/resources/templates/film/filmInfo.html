@@ -184,7 +184,7 @@ $(document).ready(function() {
 
                         <div  th:if="${#authentication.getPrincipal() ne 'anonymousUser'}" class="delete">
                         <form action="#" class="form" th:action="@{'/'}" method="post" th:each="rol:${#authentication.getPrincipal().getRoles()}">
-                            <button th:if="${rol.getRoleName() == 'ROLE_ADMIN'}"class="btn btn-danger" type="submit" value="Delete" th:formaction="'/comment/delete/' + ${comment.id} + '/' + ${film.id}">
+                            <button th:if="${rol.getRoleName() == 'ROLE_ADMIN'}"class="btn btn-danger" type="submit" value="Delete" th:formaction="'/comment/delete/' + ${comment.id} + '/' + ${comment.id} + '/' + ${film.id}">
                                 <span class="glyphicon glyphicon-trash"></span>
                             </button>
                         </form>

@@ -5,6 +5,7 @@ import com.example.KeVeo.data.entity.Punctuation;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,5 +33,9 @@ public interface FilmRepository extends JpaRepository<Film, Integer> {
     @Query(value="SELECT p.id,p.score,p.user_id FROM Punctuation AS p INNER JOIN films_punctuations AS fp ON p.id = fp.punctuation_id INNER JOIN film AS f ON fp.film_id = f.id WHERE f.id LIKE %?1%",
     nativeQuery = true)
     List<Object[]> findByPunctuations(Integer id);
+    @Modifying
+    @Transactional
+    @Query(value="delete from films_punctuations where film_id LIKE %?1% and punctuation_id LIKE %?2%", nativeQuery = true)
+    void deletePunctuation(Integer idFilm, Integer idPuncuation);
 
 }
