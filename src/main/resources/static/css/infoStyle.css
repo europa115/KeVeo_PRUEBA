@@ -51,6 +51,7 @@ h6 {
 
 h2 {
   font-size: 30px;
+  display:inline-block;
 }
 
 h3 {
@@ -62,7 +63,7 @@ h3 {
 /*movie-card*/
 .movie-card {
   display: grid;
-  grid-template-columns: 2fr 400px 0.7fr 670px 2fr;
+  grid-template-columns: 2fr 450px 0.7fr 670px 2fr;
   grid-template-areas: ". p . m .";
 }
 @media screen and (max-width: 1024px) {
@@ -298,18 +299,11 @@ margin-left:70%;
 /********************Favoritos**********************/
 
 .cnt-favorite{
- float:left;
+/* float:left;*/
  position: absolute;
- margin-left:32%;
- margin-top:0px;
+ display:inline-block;
 }
-@media only screen  and (max-width: 880px){
-    .cnt-favorite{
-     float:left;
-     position: absolute;
-     margin-left:64%;
-    }
-}
+
 .star-favorite{
 background-color: transparent;
 border-color:transparent;
@@ -317,7 +311,7 @@ color:rgb(233, 179, 17);
 
 }
 .star-favorite .glyphicon{
-font-size: 50px;
+font-size: 38px;
 }
 /********RATING***************************************************************************************/
 .stars {

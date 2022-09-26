@@ -36,24 +36,30 @@ $(document).ready(function() {
 
                 </div>
             </div>
-            <form action="#" class="form cnt-favorite" th:action="@{'/'}" method="post">
 
-            </form>
-            <form action="#" class="form cnt-favorite" th:action="@{'/'}" method="post">
-                <div>
-                    <button th:if="${user.favourite(film.id)}" type="submit" value="quitFavourite"  class="star-favorite"  th:formaction="'/favourite/remove/' + ${film.id}">
-                        <span class="glyphicon glyphicon-star"></span></button>
-                    <button th:unless="${user.favourite(film.id)}" type="submit" value="Favourite" class="star-favorite" th:formaction="'/favourite/agree/' + ${film.id}">
-                        <span class="glyphicon glyphicon-star-empty"></span></button>
-                </div>
-              </form>
             <div class="movie-info">
                 <div class="header-section">
-                    <h2 th:text="${film.title}"></h2>
+                    <div>
+                    <h2 th:text="${film.title}"></h2><form action="#" class="form cnt-favorite" th:action="@{'/'}" method="post">
+                        <div style="display:inline-block">
+                            <button th:if="${user.favourite(film.id)}" type="submit" value="quitFavourite"
+                                    class="star-favorite" th:formaction="'/favourite/remove/' + ${film.id}">
+                                <span class="glyphicon glyphicon-star"></span></button>
+                            <button th:unless="${user.favourite(film.id)}" type="submit" value="Favourite"
+                                    class="star-favorite" th:formaction="'/favourite/agree/' + ${film.id}">
+                                <span class="glyphicon glyphicon-star-empty"></span></button>
+                        </div>
+                    </form></div>
+
+
+
+
+
                     <p>
                         <span th:each="genre: ${film.genres}">
                             <i th:text="${genre.name} + ' / '"></i>
-                        </span><i th:text="${film.year} + ' / ' + ${film.duration} + 'min'"></i>
+
+                    </span><i th:text="${film.year} + ' / ' + ${film.duration} + 'min'"></i>
                     </p>
 
                     <div class="extra">

@@ -17,7 +17,7 @@
             <div class="popular-movies">
                 <div class="movie-container">
                     <div class="film-effect" th:each="film, iterator : ${listFilms}">
-                        <div th:if="${iterator.count lt 10}" class="film">
+                        <div th:if="${iterator.count lt 13}" class="film">
                             <img th:src="${film.cover}" alt="">
                             <div class="desc">
                                 <a th:href="@{'/film/filmInfo/' + ${film.id}}">
