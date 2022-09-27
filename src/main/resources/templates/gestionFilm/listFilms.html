@@ -65,7 +65,7 @@
                     <td th:text="${film.year}">Año</td>
                     <td th:text="${film.duration}">Duracion</td>
                     <td>
-                        <div style="width:120px; height:2px; vertical-align:middle;" th:text="${film.cover}"></div>
+                        <img th:src="${film.cover}" class="poster"/>
                     </td>
                     <td class="withScroll">
                         <div style="height:2px; vertical-align:middle;" th:text="${film.casting}"></div>

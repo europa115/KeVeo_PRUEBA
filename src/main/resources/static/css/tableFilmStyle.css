@@ -11,6 +11,11 @@ td{
     word-wrap: break-word;
 
 }
+.poster{
+    width: 90px;
+    height: 110px;
+
+}
 .withScroll {
     overflow:scroll;
     text-align:center;
