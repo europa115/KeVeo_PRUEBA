@@ -28,23 +28,25 @@ public class UserService extends AbstractBusinessService<User, Integer, UserDTO,
     private RoleRepository roleRepository;
     private PasswordEncoder passwordEncoder;
     private FilmMapper filmMapper;
+    private AWSS3ServiceImpl awss3Service;
 
 
     @Autowired
     protected UserService(UserRepository repository, UserMapper serviceMapper, RoleRepository roleRepository,
-                          PasswordEncoder passwordEncoder,FilmMapper filmMapper) {
+                          PasswordEncoder passwordEncoder,FilmMapper filmMapper,AWSS3ServiceImpl awss3Service) {
         super(repository, serviceMapper);
 
         this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
         this.filmMapper= filmMapper;
+        this.awss3Service=awss3Service;
     }
 
     public void registerDefaultUser(UserDTO userDTO, MultipartFile photo){
         Role roleUser = roleRepository.findByRoleName("ROLE_USER");
         User entity=getServiceMapper().toEntity(userDTO);
         if(!photo.isEmpty()){
-            String AbsoluteRoute="C://Users//esteb//Documents//recursos//imgUser";
+           /* String AbsoluteRoute="C://Users//esteb//Documents//recursos//imgUser";
             try{
                 byte[] bytesImg= photo.getBytes();
                 Path completRoute=Paths.get(AbsoluteRoute+"//"+photo.getOriginalFilename());
@@ -54,7 +56,9 @@ public class UserService extends AbstractBusinessService<User, Integer, UserDTO,
 
             }catch (IOException e) {
                 throw new RuntimeException(e);
-            }
+            }*/
+            awss3Service.uploadFile(photo);
+            entity.setPhoto(this.awss3Service.getNewFileName());
 
         }
         entity.addRole(roleUser);
@@ -79,20 +83,21 @@ public class UserService extends AbstractBusinessService<User, Integer, UserDTO,
 
     public void changePhoto(MultipartFile photo, UserDTO userDTO){
         if(!photo.isEmpty()){
-            String AbsoluteRoute="C://Users//esteb//Documents//recursos//imgUser";
+//            String AbsoluteRoute="C://Users//esteb//Documents//recursos//imgUser";
 
-            try{
-                byte[] bytesImg= photo.getBytes();
-                Path completRoute=Paths.get(AbsoluteRoute+"//"+photo.getOriginalFilename());
-                Files.write(completRoute,bytesImg);
+//            try{
+//                byte[] bytesImg= photo.getBytes();
+//                Path completRoute=Paths.get(AbsoluteRoute+"//"+photo.getOriginalFilename());
+//                Files.write(completRoute,bytesImg);
+            awss3Service.uploadFile(photo);
 
-                userDTO.setPhoto(photo.getOriginalFilename());
+                userDTO.setPhoto(this.awss3Service.getNewFileName());
 
                 getRepository().save(getServiceMapper().toEntity(userDTO));
 
-            }catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+//            }catch (IOException e) {
+//                throw new RuntimeException(e);
+//            }
 
         }
     }

@@ -52,7 +52,7 @@
                                          th:src="@{/img/user.png}">
 
                                      <img th:unless="${#authentication.getPrincipal().getPhoto == null}"
-                                          th:src="@{'/imgUser/'+ ${#authentication.getPrincipal().getPhoto}}"></span>
+                                          th:src="@{'https://pruebakeveo.s3.amazonaws.com/'+ ${#authentication.getPrincipal().getPhoto}}"></span>
 
                             <i th:if="${#authentication.getPrincipal() == 'anonymousUser'}" th:href="@{/login}">
                                 <span>Login/Registro</span></i>

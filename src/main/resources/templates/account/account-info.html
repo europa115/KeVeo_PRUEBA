@@ -31,7 +31,7 @@
 
                     <img th:unless="${#authentication.getPrincipal().getPhoto == null}"
                          src="'static/imgUser/'+ ${#authentication.getPrincipal().getPhoto"
-                         th:src="@{'/imgUser/'+ ${#authentication.getPrincipal().getPhoto}}">
+                         th:src="@{'https://pruebakeveo.s3.amazonaws.com/'+ ${#authentication.getPrincipal().getPhoto}}">
 
                 </div>
 
