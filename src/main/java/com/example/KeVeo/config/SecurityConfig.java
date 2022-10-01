@@ -36,7 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    public void configure(final AuthenticationManagerBuilder auth) throws Exception {
+    public void configure(final AuthenticationManagerBuilder auth){
         auth.authenticationProvider(authenticationProvider);
     }
 
@@ -81,7 +81,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    public void configure(final WebSecurity web) throws Exception {
+    public void configure(final WebSecurity web){
         // Ignore static resources and webjars from Spring Security
         web.ignoring()
                 .antMatchers("/js/**")

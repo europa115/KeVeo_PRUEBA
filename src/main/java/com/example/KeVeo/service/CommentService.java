@@ -1,7 +1,6 @@
 package com.example.KeVeo.service;
 
 import com.example.KeVeo.data.entity.Comment;
-import com.example.KeVeo.data.entity.User;
 import com.example.KeVeo.data.repository.CommentRepository;
 import com.example.KeVeo.data.repository.FilmRepository;
 import com.example.KeVeo.dto.CommentDTO;

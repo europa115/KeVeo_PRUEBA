@@ -1,21 +1,13 @@
 package com.example.KeVeo.data.entity;
 
 import lombok.*;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.web.multipart.MultipartFile;
-
 import javax.persistence.*;
-import java.io.IOException;
 import java.io.Serializable;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.List;
-
+import java.util.Objects;
 
 @Entity
 @AllArgsConstructor
@@ -64,7 +56,7 @@ public class User implements Serializable {
         boolean favourite=false;
         for(Film film:this.films){
 
-            if(id==film.getId()){
+            if(Objects.equals(id, film.getId())){
                 favourite=true;
             }
         }

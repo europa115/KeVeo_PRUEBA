@@ -10,8 +10,8 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 public abstract class AbstractBusinessService<E, ID, DTO, REPO extends JpaRepository<E, ID>, MAPPER extends AbstractServiceMapper<E, DTO>> {
-    private REPO repository;
-    private MAPPER serviceMapper;
+    private final REPO repository;
+    private final MAPPER serviceMapper;
 
     protected AbstractBusinessService(REPO repository,
                                       MAPPER serviceMapper) {

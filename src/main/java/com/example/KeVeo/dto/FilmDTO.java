@@ -4,13 +4,11 @@ import com.example.KeVeo.data.entity.Comment;
 import com.example.KeVeo.data.entity.Genre;
 import com.example.KeVeo.data.entity.Platform;
 import com.example.KeVeo.data.entity.Punctuation;
-import groovyjarjarantlr4.v4.runtime.misc.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;

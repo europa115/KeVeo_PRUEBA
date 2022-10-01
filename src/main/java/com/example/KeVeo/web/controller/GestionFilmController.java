@@ -3,7 +3,6 @@ package com.example.KeVeo.web.controller;
 import com.example.KeVeo.data.entity.Film;
 import com.example.KeVeo.data.entity.Genre;
 import com.example.KeVeo.data.entity.Platform;
-import com.example.KeVeo.data.repository.FilmRepository;
 import com.example.KeVeo.dto.FilmDTO;
 import com.example.KeVeo.service.FilmService;
 import com.example.KeVeo.service.MenuService;
@@ -29,19 +28,16 @@ import java.util.Optional;
 @Controller
 public class GestionFilmController extends AbstractController<FilmDTO> {
 
-    private FilmService filmService;
-    private FilmMapper filmMapper;
-    private FilmRepository filmRepository;
+    private final FilmService filmService;
+    private final FilmMapper filmMapper;
 
     @Autowired
-    protected GestionFilmController(MenuService menuService,FilmService filmService,FilmMapper filmMapper
-            ,FilmRepository filmRepository) {
+    protected GestionFilmController(MenuService menuService,FilmService filmService,FilmMapper filmMapper) {
         super(menuService);
+
         this.filmService=filmService;
         this.filmMapper=filmMapper;
-        this.filmRepository=filmRepository;
     }
-
 
     @GetMapping("/gestionFilm")
     public String getAll(@RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size,
@@ -93,7 +89,7 @@ public class GestionFilmController extends AbstractController<FilmDTO> {
             return new ModelAndView("error/errorHapus")
                     .addObject("entityId", id)
                     .addObject("entityName", "filmDTO")
-                    .addObject("errorCause", exception.getRootCause().getMessage())
+                    .addObject("errorCause", exception.getRootCause())
                     .addObject("backLink", "/gestionFilm");
         }
         status.setComplete();

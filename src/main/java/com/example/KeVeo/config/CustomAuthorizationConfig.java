@@ -14,7 +14,6 @@ import java.util.List;
 
 @Configuration
 public class CustomAuthorizationConfig {
-
     @Description("ConsensusBased AccessDecisionManager for Authorization voting")
     @Bean
     public AccessDecisionManager accessDecisionManager(

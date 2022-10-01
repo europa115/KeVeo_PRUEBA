@@ -8,13 +8,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
 
 @Controller
 @RequestMapping("/register")
 public class RegisterUserController extends AbstractController{
 
-   private UserService userService;
+   private final UserService userService;
     @Autowired
     protected RegisterUserController(MenuService menuService, UserService userService) {
         super(menuService);

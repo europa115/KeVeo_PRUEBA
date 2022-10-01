@@ -2,7 +2,6 @@ package com.example.KeVeo.service;
 
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.PutObjectRequest;
-import com.example.KeVeo.service.AWSS3Service;
 
 
 import lombok.Getter;

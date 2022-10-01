@@ -24,14 +24,13 @@
             <div class="modal-content">
                 <div class="col-12 user-img">
 
-                    <img th:if="${#authentication.getPrincipal().getPhoto == null}"
+                    <img th:if="${user.getPhoto() == null}"
                          src="static/img/user.png"
                          th:src="@{/img/user.png}">
 
 
-                    <img th:unless="${#authentication.getPrincipal().getPhoto == null}"
-                         src="'static/imgUser/'+ ${#authentication.getPrincipal().getPhoto"
-                         th:src="@{'https://pruebakeveo.s3.amazonaws.com/'+ ${#authentication.getPrincipal().getPhoto}}">
+                    <img th:unless="${user.getPhoto() == null}"
+                         th:src="@{'https://pruebakeveo.s3.amazonaws.com/'+ ${user.getPhoto()}}">
 
                 </div>
 
@@ -44,19 +43,19 @@
                     <br>
                     <br>
                     <div class="form-group" id="user-group">
-                        <span th:text="${#authentication.getPrincipal().getUserName}"></span>
+                        <span th:text="${user.getUserName}"></span>
                     </div>
                     <hr>
-                    <div class="form-group" id="user-group">
-                        <span th:text="${#authentication.getPrincipal().getUserSurname}"></span>
+                    <div class="form-group" id="userlast-group">
+                        <span th:text="${user.getUserSurname}"></span>
                     </div>
                     <hr>
                     <div class="form-group" id="email-group">
-                        <span th:text="${#authentication.getPrincipal().getUserEmail}"></span>
+                        <span th:text="${user.getUserEmail}"></span>
                     </div>
                     <hr>
                     <div class="form-group" id="calendar-group">
-                        <span th:text="${#authentication.getPrincipal().getDate}"></span>
+                        <span th:text="${user.getDate}"></span>
                     </div>
                     <hr>
                     <div class="form-group" id="file-group">
@@ -67,11 +66,11 @@
                     </div>
 
                     <button type="submit" class="btn btn-primary confirm"
-                            th:formaction="${#authentication.getPrincipal().getId} + '/account'">Update
+                            th:formaction="${user.getId} + '/account'">Update
                     </button>
                     <hr>
                     <div class="form-group" id="contrasena-group">
-                        <a th:href="${#authentication.getPrincipal().getId} + '/account/changePassword'">
+                        <a th:href="${user.getId} + '/account/changePassword'">
                             <button type="button" class="btn btn-primary confirm">Cambiar contraseña</button>
                         </a>
                     </div>

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserMapper extends AbstractServiceMapper<User, UserDTO> {
-    private ModelMapper modelMapper = new ModelMapper();
+    private final ModelMapper modelMapper = new ModelMapper();
 
     public UserDTO toDto(User user) {
 

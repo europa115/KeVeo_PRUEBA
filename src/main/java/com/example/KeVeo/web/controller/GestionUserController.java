@@ -4,8 +4,6 @@ package com.example.KeVeo.web.controller;
 
 import com.example.KeVeo.data.entity.Role;
 import com.example.KeVeo.data.entity.User;
-import com.example.KeVeo.data.repository.RoleRepository;
-import com.example.KeVeo.data.repository.UserRepository;
 import com.example.KeVeo.dto.UserDTO;
 import com.example.KeVeo.service.MenuService;
 import com.example.KeVeo.service.UserService;
@@ -15,7 +13,6 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.repository.query.Param;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -32,8 +29,8 @@ import java.util.Optional;
 @Controller
 public class GestionUserController extends AbstractController<UserDTO>{
 
-    private UserService userService;
-    private UserMapper userMapper;
+    private final UserService userService;
+    private final UserMapper userMapper;
 
     @Autowired
     protected GestionUserController(MenuService menuService,UserService userService, UserMapper userMapper) {

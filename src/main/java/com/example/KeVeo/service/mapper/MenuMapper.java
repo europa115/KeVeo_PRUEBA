@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class MenuMapper extends AbstractServiceMapper<Menu, MenuDTO> {
 
-    private ModelMapper modelMapper = new ModelMapper();
+    private final ModelMapper modelMapper = new ModelMapper();
 
     @Override
     public Menu toEntity(MenuDTO menuDTO) {

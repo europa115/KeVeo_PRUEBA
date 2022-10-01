@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class RolMapper extends AbstractServiceMapper<Role, RoleDTO> {
 
-    private ModelMapper modelMapper = new ModelMapper();
+    private final ModelMapper modelMapper = new ModelMapper();
 
     @Override
     public RoleDTO toDto(Role role) {

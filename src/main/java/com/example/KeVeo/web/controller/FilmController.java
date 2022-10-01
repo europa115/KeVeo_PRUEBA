@@ -4,9 +4,6 @@ import com.example.KeVeo.data.entity.Film;
 import com.example.KeVeo.data.entity.Genre;
 import com.example.KeVeo.data.entity.Punctuation;
 import com.example.KeVeo.data.entity.User;
-import com.example.KeVeo.data.repository.FilmRepository;
-import com.example.KeVeo.data.repository.GenreRepository;
-import com.example.KeVeo.data.repository.PunctuationRepository;
 import com.example.KeVeo.data.repository.UserRepository;
 import com.example.KeVeo.dto.CommentDTO;
 import com.example.KeVeo.dto.FilmDTO;
@@ -35,38 +32,28 @@ import java.util.Optional;
 @Controller
 public class FilmController extends AbstractController<FilmDTO> {
 
-    private FilmService filmService;
-    private GenreRepository genreRepository;
-    private FilmMapper filmMapper;
-    private CommentService commentService;
-    private UserRepository userRepository;
-    private UserService userService;
-    private PunctuationService punctuationService;
-    private PunctuationMapper punctuationMapper;
-private FilmRepository filmRepository;
-    private PunctuationRepository punctuationRepository;
+    private final FilmService filmService;
+    private final FilmMapper filmMapper;
+    private final CommentService commentService;
+    private final UserRepository userRepository;
+    private final PunctuationService punctuationService;
+    private final PunctuationMapper punctuationMapper;
+
 
     @Autowired
-    protected FilmController(MenuService menuService, FilmService filmService,GenreRepository genreRepository,
-                             FilmMapper filmMapper,CommentService commentService,UserRepository userRepository,
-                             UserService userService,PunctuationService punctuationService,PunctuationMapper punctuationMapper,
-                             PunctuationRepository punctuationRepository, FilmRepository filmRepository) {
+    protected FilmController(MenuService menuService, FilmService filmService, FilmMapper filmMapper,
+                             CommentService commentService,UserRepository userRepository,
+                             PunctuationService punctuationService,PunctuationMapper punctuationMapper) {
         super(menuService);
 
         this.filmService = filmService;
-        this.genreRepository=genreRepository;
         this.filmMapper=filmMapper;
         this.commentService=commentService;
         this.userRepository=userRepository;
-        this.userService=userService;
         this.punctuationService=punctuationService;
         this.punctuationMapper=punctuationMapper;
-        this.punctuationRepository=punctuationRepository;
-        this.filmRepository=filmRepository;
-
 
     }
-
     @GetMapping("/film")
     public String getAll(@RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size,
                          Model model, @Param("wordKey") String wordKey) {
@@ -156,7 +143,6 @@ private FilmRepository filmRepository;
 
     @PostMapping("/filmInfo/save/{id}")
     public String saveComment(CommentDTO commentDTO,PunctuationDTO punctuationDTO,@PathVariable("id") Integer id) {
-
         commentService.save(commentDTO);
         FilmDTO filmDTO =filmService.findById(id).get();
         Film entity=filmMapper.toEntity(filmDTO);

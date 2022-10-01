@@ -13,7 +13,6 @@ import com.example.KeVeo.service.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -23,15 +22,12 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-
-
-
 @Controller
 public class AccountController extends AbstractController<UserDTO> {
-    private UserMapper userMapper;
-    private UserService userService;
-    private UserRepository userRepository;
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final UserMapper userMapper;
+    private final UserService userService;
+    private final UserRepository userRepository;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
     protected AccountController(MenuService menuService, UserMapper userMapper, UserService userService, UserRepository userRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
@@ -43,13 +39,12 @@ public class AccountController extends AbstractController<UserDTO> {
     }
 
     @GetMapping("/account")
-    public String getLogin() {
-        SecurityContext context = SecurityContextHolder.getContext();
-        Authentication authentication = context.getAuthentication();
-
-        if (authentication == null) {
-            return "/login";
-        } else return "account/account-info";
+    public String getLogin(Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UserDTO userDTO = this.userService.findById(((User) authentication.getPrincipal()).getId()).get();
+        model.addAttribute("user",userDTO);
+        if (authentication == null) return "/login";
+        else return "account/account-info";
     }
 
     @PostMapping({"/{id}/account"})
@@ -67,6 +62,7 @@ public class AccountController extends AbstractController<UserDTO> {
                     .addObject("backLink", "/gestionUser");
         }
         status.setComplete();
+
         return "redirect:/account";
     }
 
@@ -82,23 +78,15 @@ public class AccountController extends AbstractController<UserDTO> {
         UserDTO userDTO = userService.findById(((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId()).get();
 
         if (bCryptPasswordEncoder.matches(oldPassword, userDTO.getPassword())) {
-
             userDTO.setPassword(bCryptPasswordEncoder.encode(newPassword));
-
             this.userRepository.save(userMapper.toEntity(userDTO));
-
             model.addAttribute("successful", true);
-
         } else {
-
             model.addAttribute("errors", true);
-
             return "/account/changePassword";
         }
-
         return "account/changePassword";
 
     }
-
 
 }

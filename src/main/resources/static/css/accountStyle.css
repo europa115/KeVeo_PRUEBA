@@ -76,6 +76,9 @@ body{
 .form-group#user-group::before{
     content: "\f007";
 }
+.form-group#userlast-group::before{
+    content: "\f007";
+}
 
 .form-group#contrasena-group::before{
     content: "\f023";

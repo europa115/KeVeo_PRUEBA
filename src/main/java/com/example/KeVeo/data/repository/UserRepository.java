@@ -14,13 +14,14 @@ import java.util.List;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
-    public User findByUserEmailAndActiveTrue(String useremail);
+    User findByUserEmailAndActiveTrue(String useremail);
 
     @Query("SELECT u FROM User u WHERE"
     + " CONCAT(u.id, u.userName, u.userEmail)"
     + " LIKE %?1%")
     Page<User> findAll(Pageable pageable,String wordKey);
-    Page<User> findByActiveTrue(Pageable pageable);
+
+   // Page<User> findByActiveTrue(Pageable pageable);
 
     List<Film> findByFilms(Integer id);
     @Modifying

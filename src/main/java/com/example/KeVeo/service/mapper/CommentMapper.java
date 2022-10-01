@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class CommentMapper extends AbstractServiceMapper<Comment, CommentDTO>{
 
-    private ModelMapper modelMapper = new ModelMapper();
+    private final ModelMapper modelMapper = new ModelMapper();
 
     @Override
     public Comment toEntity(CommentDTO commentDTO) {

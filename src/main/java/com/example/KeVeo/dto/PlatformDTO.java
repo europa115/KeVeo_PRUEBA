@@ -1,6 +1,5 @@
 package com.example.KeVeo.dto;
 
-import groovyjarjarantlr4.v4.runtime.misc.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

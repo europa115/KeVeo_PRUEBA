@@ -17,9 +17,7 @@ public class RoleDTO implements Serializable {
     private String roleName;
 
     public RoleDTO(String roleName) {
-
         this.roleName = roleName;
-
     }
 
 }

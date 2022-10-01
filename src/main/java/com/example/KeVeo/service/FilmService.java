@@ -9,13 +9,11 @@ import com.example.KeVeo.data.repository.GenreRepository;
 import com.example.KeVeo.data.repository.PlatformRepository;
 import com.example.KeVeo.data.repository.UserRepository;
 import com.example.KeVeo.dto.FilmDTO;
-import com.example.KeVeo.dto.PunctuationDTO;
 import com.example.KeVeo.service.mapper.FilmMapper;
 import com.example.KeVeo.service.mapper.PunctuationMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -24,12 +22,10 @@ import java.util.List;
 @Service
 public class FilmService extends AbstractBusinessService<Film,Integer, FilmDTO, FilmRepository, FilmMapper>{
 
-    private GenreRepository genreRepository;
-    private PlatformRepository platformRepository;
-
-    private PunctuationMapper punctuationMapper;
-
-    private UserRepository userRepository;
+    private final GenreRepository genreRepository;
+    private final PlatformRepository platformRepository;
+    private final PunctuationMapper punctuationMapper;
+    private final UserRepository userRepository;
 
     @Autowired
     protected FilmService(FilmRepository repository, FilmMapper serviceMapper,GenreRepository genreRepository,
@@ -82,7 +78,7 @@ public class FilmService extends AbstractBusinessService<Film,Integer, FilmDTO, 
     }
 
     public List<Punctuation> findByPunctuations(Integer id){
-//
+
         List<Object[]> listObjects= getRepository().findByPunctuations(id);
         List<Punctuation> listPunctuations=new ArrayList<>();
 

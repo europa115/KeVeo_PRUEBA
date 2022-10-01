@@ -4,7 +4,6 @@ import com.example.KeVeo.data.entity.Menu;
 import com.example.KeVeo.data.entity.Role;
 import com.example.KeVeo.data.entity.User;
 import com.example.KeVeo.data.repository.MenuRepository;
-import com.example.KeVeo.data.repository.RoleRepository;
 import com.example.KeVeo.data.repository.UserRepository;
 import com.example.KeVeo.dto.MenuDTO;
 import com.example.KeVeo.service.mapper.MenuMapper;
@@ -16,16 +15,13 @@ import java.util.List;
 
 @Service
 public class MenuService extends AbstractBusinessService<Menu, Integer, MenuDTO, MenuRepository, MenuMapper> {
-
     private final UserRepository userRepository;
-    private final RoleRepository roleRepository;
 
     @Autowired
-    protected MenuService(MenuRepository repository, MenuMapper serviceMapper,
-                          UserRepository userRepository, RoleRepository roleRepository) {
+    protected MenuService(MenuRepository repository, MenuMapper serviceMapper, UserRepository userRepository) {
         super(repository, serviceMapper);
+
         this.userRepository = userRepository;
-        this.roleRepository = roleRepository;
     }
 
     public List<MenuDTO> getMenuForUserId(Integer userId) {

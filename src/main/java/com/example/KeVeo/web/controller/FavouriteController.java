@@ -18,7 +18,7 @@ import java.util.Optional;
 
 @Controller
 public class FavouriteController extends AbstractController<FilmDTO>{
-    private FilmService filmService;
+    private final FilmService filmService;
 
     @Autowired
     protected FavouriteController(MenuService menuService,FilmService filmService) {
