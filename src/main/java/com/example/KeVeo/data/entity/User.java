@@ -58,9 +58,7 @@ public class User implements Serializable {
     //metodo creado para comprobar los favoritos con thymeleaf
     public boolean favourite(Integer id){
         boolean favourite=false;
-        for(Film film:this.films){
-            if(Objects.equals(id, film.getId())) favourite=true;
-        }
+        for(Film film:this.films) if(Objects.equals(id, film.getId())) favourite=true;
         return favourite;
     }
 }

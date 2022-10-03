@@ -58,12 +58,7 @@ public class Film implements Serializable {
 
     public boolean commentUser(Integer id){
         boolean commentUser=false;
-        for(Comment comment:this.comments){
-
-            if(id==comment.getUser().getId()){
-                commentUser=true;
-            }
-        }
+        for(Comment comment:this.comments){ if(id==comment.getUser().getId()) commentUser=true;}
         return commentUser;
     }
 
