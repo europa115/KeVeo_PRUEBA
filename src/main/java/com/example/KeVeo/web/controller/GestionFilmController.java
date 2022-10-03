@@ -1,12 +1,12 @@
 package com.example.KeVeo.web.controller;
 
 import com.example.KeVeo.data.entity.Film;
-import com.example.KeVeo.data.entity.Genre;
 import com.example.KeVeo.data.entity.Platform;
 import com.example.KeVeo.dto.FilmDTO;
+import com.example.KeVeo.dto.GenreDTO;
 import com.example.KeVeo.service.FilmService;
 import com.example.KeVeo.service.MenuService;
-import com.example.KeVeo.service.mapper.FilmMapper;
+import com.example.KeVeo.service.mapper.FilmServiceMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
@@ -29,14 +29,14 @@ import java.util.Optional;
 public class GestionFilmController extends AbstractController<FilmDTO> {
 
     private final FilmService filmService;
-    private final FilmMapper filmMapper;
+    private final FilmServiceMapper filmServiceMapper;
 
     @Autowired
-    protected GestionFilmController(MenuService menuService,FilmService filmService,FilmMapper filmMapper) {
+    protected GestionFilmController(MenuService menuService, FilmService filmService, FilmServiceMapper filmServiceMapper) {
         super(menuService);
 
         this.filmService=filmService;
-        this.filmMapper=filmMapper;
+        this.filmServiceMapper = filmServiceMapper;
     }
 
     @GetMapping("/gestionFilm")
@@ -53,8 +53,8 @@ public class GestionFilmController extends AbstractController<FilmDTO> {
     @GetMapping("/gestionFilm/edit/{id}")
     public String edit(@PathVariable("id") Integer id, ModelMap model) {
         FilmDTO filmDTO = filmService.findById(id).get();
-        Film film= filmMapper.toEntity(filmDTO);
-        List<Genre> listGenres = filmService.listGenres();
+        Film film= filmServiceMapper.toEntity(filmDTO);
+        List<GenreDTO> listGenres = filmService.listGenres();
         List<Platform> listPlatforms= filmService.listPlatforms();
         model.addAttribute("film", film);
         model.addAttribute("listGenres", listGenres);
@@ -65,7 +65,7 @@ public class GestionFilmController extends AbstractController<FilmDTO> {
 
     @GetMapping("gestionFilm/create")
     public String createFilm(ModelMap model){
-        List<Genre> listGenres = filmService.listGenres();
+        List<GenreDTO> listGenres = filmService.listGenres();
         List<Platform> listPlatforms= filmService.listPlatforms();
 
         model.addAttribute("listGenres", listGenres);

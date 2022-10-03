@@ -2,33 +2,25 @@ package com.example.KeVeo.service;
 
 import com.example.KeVeo.data.entity.Comment;
 import com.example.KeVeo.data.repository.CommentRepository;
-import com.example.KeVeo.data.repository.FilmRepository;
 import com.example.KeVeo.dto.CommentDTO;
 import com.example.KeVeo.dto.UserDTO;
-import com.example.KeVeo.service.mapper.CommentMapper;
-import com.example.KeVeo.service.mapper.FilmMapper;
-import com.example.KeVeo.service.mapper.UserMapper;
+import com.example.KeVeo.service.mapper.CommentServiceMapper;
+import com.example.KeVeo.service.mapper.UserServiceMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class CommentService extends AbstractBusinessService<Comment,Integer, CommentDTO, CommentRepository, CommentMapper> {
+public class CommentService extends AbstractBusinessService<Comment,Integer, CommentDTO, CommentRepository, CommentServiceMapper> {
 
-    FilmRepository filmRepository;
-    FilmMapper filmMapper;
-
-    UserMapper userMapper;
+    private final UserServiceMapper userServiceMapper;
 
     @Autowired
-    protected CommentService(CommentRepository repository, CommentMapper serviceMapper, FilmRepository filmRepository,
-                             FilmMapper filmMapper,UserMapper userMapper) {
+    protected CommentService(CommentRepository repository, CommentServiceMapper serviceMapper, UserServiceMapper userServiceMapper) {
         super(repository, serviceMapper);
 
-        this.filmRepository=filmRepository;
-        this.filmMapper=filmMapper;
-        this.userMapper=userMapper;
+        this.userServiceMapper = userServiceMapper;
     }
 
 
@@ -40,7 +32,7 @@ public class CommentService extends AbstractBusinessService<Comment,Integer, Com
 
     public UserDTO findByUserId(Integer id){
 
-        return userMapper.toDto(getRepository().findByUserId(id));
+        return userServiceMapper.toDto(getRepository().findByUserId(id));
     }
 
 }

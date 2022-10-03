@@ -183,7 +183,7 @@ $(document).ready(function() {
                     <div class="comment-user">
                         <div class="avatar">
                             <img th:if="${comment.user.getPhoto() == null}"  th:src="@{/img/user.png}" />
-                            <img th:unless="${comment.user.getPhoto() == null}" th:src="@{'https://pruebakeveo.s3.amazonaws.com/'+ ${user.getPhoto()}}"/>
+                            <img th:unless="${comment.user.getPhoto() == null}" th:src="@{'https://pruebakeveo.s3.amazonaws.com/'+ ${comment.user.getPhoto()}}"/>
                         </div>
                         <span class="user-details">
                         <span class="username" th:text="${comment.user.userName}"></span><span> publicado el </span><span th:text="${comment.creation}"></span></span>

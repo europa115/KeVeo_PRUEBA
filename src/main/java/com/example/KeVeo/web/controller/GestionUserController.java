@@ -7,7 +7,7 @@ import com.example.KeVeo.data.entity.User;
 import com.example.KeVeo.dto.UserDTO;
 import com.example.KeVeo.service.MenuService;
 import com.example.KeVeo.service.UserService;
-import com.example.KeVeo.service.mapper.UserMapper;
+import com.example.KeVeo.service.mapper.UserServiceMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
@@ -30,14 +30,14 @@ import java.util.Optional;
 public class GestionUserController extends AbstractController<UserDTO>{
 
     private final UserService userService;
-    private final UserMapper userMapper;
+    private final UserServiceMapper userServiceMapper;
 
     @Autowired
-    protected GestionUserController(MenuService menuService,UserService userService, UserMapper userMapper) {
+    protected GestionUserController(MenuService menuService,UserService userService, UserServiceMapper userServiceMapper) {
         super(menuService);
 
         this.userService=userService;
-        this.userMapper=userMapper;
+        this.userServiceMapper = userServiceMapper;
     }
 
     @GetMapping("/gestionUser")
@@ -55,11 +55,11 @@ public class GestionUserController extends AbstractController<UserDTO>{
     @GetMapping("/gestionUser/edit/{id}")
         public String edit(@PathVariable("id") Integer id, ModelMap model) {
         UserDTO userDto = userService.findById(id).get();
-        User user= userMapper.toEntity(userDto);
+        User user= userServiceMapper.toEntity(userDto);
         List<Role> listRoles = userService.listRoles();
-        model.addAttribute("user", user);
-        model.addAttribute("listRoles", listRoles);
-
+        model
+                .addAttribute("user", user)
+                .addAttribute("listRoles", listRoles);
         return "gestionUser/edit";
     }
 
@@ -85,7 +85,7 @@ public class GestionUserController extends AbstractController<UserDTO>{
     @PostMapping("/gestionUser/save")
     public String saveUser(UserDTO userDto) {
 
-        userService.save(userMapper.toEntity(userDto));
+        userService.save(userServiceMapper.toEntity(userDto));
 
         return "redirect:/gestionUser";
     }

@@ -6,7 +6,7 @@ import com.example.KeVeo.data.entity.User;
 import com.example.KeVeo.data.repository.MenuRepository;
 import com.example.KeVeo.data.repository.UserRepository;
 import com.example.KeVeo.dto.MenuDTO;
-import com.example.KeVeo.service.mapper.MenuMapper;
+import com.example.KeVeo.service.mapper.MenuServiceMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,11 +14,11 @@ import java.util.Collection;
 import java.util.List;
 
 @Service
-public class MenuService extends AbstractBusinessService<Menu, Integer, MenuDTO, MenuRepository, MenuMapper> {
+public class MenuService extends AbstractBusinessService<Menu, Integer, MenuDTO, MenuRepository, MenuServiceMapper> {
     private final UserRepository userRepository;
 
     @Autowired
-    protected MenuService(MenuRepository repository, MenuMapper serviceMapper, UserRepository userRepository) {
+    protected MenuService(MenuRepository repository, MenuServiceMapper serviceMapper, UserRepository userRepository) {
         super(repository, serviceMapper);
 
         this.userRepository = userRepository;

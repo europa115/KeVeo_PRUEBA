@@ -1,7 +1,6 @@
 package com.example.KeVeo.service;
 
 import com.example.KeVeo.data.entity.Film;
-import com.example.KeVeo.data.entity.Genre;
 import com.example.KeVeo.data.entity.Platform;
 import com.example.KeVeo.data.entity.Punctuation;
 import com.example.KeVeo.data.repository.FilmRepository;
@@ -9,8 +8,11 @@ import com.example.KeVeo.data.repository.GenreRepository;
 import com.example.KeVeo.data.repository.PlatformRepository;
 import com.example.KeVeo.data.repository.UserRepository;
 import com.example.KeVeo.dto.FilmDTO;
-import com.example.KeVeo.service.mapper.FilmMapper;
-import com.example.KeVeo.service.mapper.PunctuationMapper;
+import com.example.KeVeo.dto.GenreDTO;
+import com.example.KeVeo.dto.PunctuationDTO;
+import com.example.KeVeo.service.mapper.FilmServiceMapper;
+import com.example.KeVeo.service.mapper.GenreServiceMapper;
+import com.example.KeVeo.service.mapper.PunctuationServiceMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,21 +22,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class FilmService extends AbstractBusinessService<Film,Integer, FilmDTO, FilmRepository, FilmMapper>{
+public class FilmService extends AbstractBusinessService<Film,Integer, FilmDTO, FilmRepository, FilmServiceMapper>{
 
     private final GenreRepository genreRepository;
     private final PlatformRepository platformRepository;
-    private final PunctuationMapper punctuationMapper;
+    private final PunctuationServiceMapper punctuationServiceMapper;
+    private final GenreServiceMapper genreServiceMapper;
     private final UserRepository userRepository;
 
     @Autowired
-    protected FilmService(FilmRepository repository, FilmMapper serviceMapper,GenreRepository genreRepository,
-                          PlatformRepository platformRepository,PunctuationMapper punctuationMapper,UserRepository userRepository) {
+    protected FilmService(FilmRepository repository, FilmServiceMapper serviceMapper, GenreRepository genreRepository,
+                          PlatformRepository platformRepository, PunctuationServiceMapper punctuationServiceMapper, GenreServiceMapper genreServiceMapper, UserRepository userRepository) {
         super(repository, serviceMapper);
 
         this.genreRepository=genreRepository;
         this.platformRepository=platformRepository;
-        this.punctuationMapper=punctuationMapper;
+        this.punctuationServiceMapper = punctuationServiceMapper;
+        this.genreServiceMapper = genreServiceMapper;
         this.userRepository=userRepository;
     }
 
@@ -58,8 +62,8 @@ public class FilmService extends AbstractBusinessService<Film,Integer, FilmDTO, 
 
     }
 
-    public List<Genre> listGenres() {
-        return genreRepository.findAll();
+    public List<GenreDTO> listGenres() {
+        return genreServiceMapper.toDto(genreRepository.findAll());
     }
 
     public List<Platform> listPlatforms() {
@@ -77,7 +81,7 @@ public class FilmService extends AbstractBusinessService<Film,Integer, FilmDTO, 
 
     }
 
-    public List<Punctuation> findByPunctuations(Integer id){
+    public List<PunctuationDTO> findByPunctuations(Integer id){
 
         List<Object[]> listObjects= getRepository().findByPunctuations(id);
         List<Punctuation> listPunctuations=new ArrayList<>();
@@ -89,7 +93,7 @@ public class FilmService extends AbstractBusinessService<Film,Integer, FilmDTO, 
             listPunctuations.add(pnt);
         }
 
-        return listPunctuations;
+        return punctuationServiceMapper.toDto(listPunctuations);
     }
 
     public void deletePunctuation(Integer idFilm, Integer idPuncuation){

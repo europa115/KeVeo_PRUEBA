@@ -7,8 +7,8 @@ import com.example.KeVeo.data.repository.RoleRepository;
 import com.example.KeVeo.data.repository.UserRepository;
 import com.example.KeVeo.dto.FilmDTO;
 import com.example.KeVeo.dto.UserDTO;
-import com.example.KeVeo.service.mapper.FilmMapper;
-import com.example.KeVeo.service.mapper.UserMapper;
+import com.example.KeVeo.service.mapper.FilmServiceMapper;
+import com.example.KeVeo.service.mapper.UserServiceMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -19,21 +19,21 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 @Service
-public class UserService extends AbstractBusinessService<User, Integer, UserDTO, UserRepository, UserMapper> {
+public class UserService extends AbstractBusinessService<User, Integer, UserDTO, UserRepository, UserServiceMapper> {
     private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
-    private final FilmMapper filmMapper;
+    private final FilmServiceMapper filmServiceMapper;
     private final AWSS3ServiceImpl awss3Service;
 
 
     @Autowired
-    protected UserService(UserRepository repository, UserMapper serviceMapper, RoleRepository roleRepository,
-                          PasswordEncoder passwordEncoder,FilmMapper filmMapper,AWSS3ServiceImpl awss3Service) {
+    protected UserService(UserRepository repository, UserServiceMapper serviceMapper, RoleRepository roleRepository,
+                          PasswordEncoder passwordEncoder, FilmServiceMapper filmServiceMapper, AWSS3ServiceImpl awss3Service) {
         super(repository, serviceMapper);
 
         this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
-        this.filmMapper= filmMapper;
+        this.filmServiceMapper = filmServiceMapper;
         this.awss3Service=awss3Service;
     }
 
@@ -83,7 +83,7 @@ public class UserService extends AbstractBusinessService<User, Integer, UserDTO,
 
     List<FilmDTO> findByFilms(Integer id){
 
-        return filmMapper.toDto(getRepository().findByFilms(id));
+        return filmServiceMapper.toDto(getRepository().findByFilms(id));
     }
 
 }

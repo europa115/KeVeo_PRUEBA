@@ -6,7 +6,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 @Service
-public class FilmMapper extends AbstractServiceMapper<Film, FilmDTO>{
+public class FilmServiceMapper extends AbstractServiceMapper<Film, FilmDTO>{
 
     private final ModelMapper modelMapper = new ModelMapper();
 

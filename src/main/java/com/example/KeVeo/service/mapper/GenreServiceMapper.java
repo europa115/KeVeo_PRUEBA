@@ -6,7 +6,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 @Service
-public class GenreMapper extends AbstractServiceMapper<Genre, GenreDTO>{
+public class GenreServiceMapper extends AbstractServiceMapper<Genre, GenreDTO>{
 
     private final ModelMapper modelMapper = new ModelMapper();
 

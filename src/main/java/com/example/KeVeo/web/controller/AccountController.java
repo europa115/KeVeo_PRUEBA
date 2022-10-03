@@ -6,7 +6,7 @@ import com.example.KeVeo.data.repository.UserRepository;
 import com.example.KeVeo.dto.UserDTO;
 import com.example.KeVeo.service.MenuService;
 import com.example.KeVeo.service.UserService;
-import com.example.KeVeo.service.mapper.UserMapper;
+import com.example.KeVeo.service.mapper.UserServiceMapper;
 
 
 
@@ -24,15 +24,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class AccountController extends AbstractController<UserDTO> {
-    private final UserMapper userMapper;
+    private final UserServiceMapper userServiceMapper;
     private final UserService userService;
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
-    protected AccountController(MenuService menuService, UserMapper userMapper, UserService userService, UserRepository userRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
+    protected AccountController(MenuService menuService, UserServiceMapper userServiceMapper, UserService userService, UserRepository userRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
         super(menuService);
-        this.userMapper = userMapper;
+        this.userServiceMapper = userServiceMapper;
         this.userService = userService;
         this.userRepository = userRepository;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
@@ -56,8 +56,6 @@ public class AccountController extends AbstractController<UserDTO> {
         } catch (DataIntegrityViolationException exception) {
             status.setComplete();
             return new ModelAndView("error/errorHapus")
-                    .addObject("entityId", id)
-                    .addObject("entityName", "user")
                     .addObject("errorCause", exception.getRootCause().getMessage())
                     .addObject("backLink", "/gestionUser");
         }
@@ -79,7 +77,7 @@ public class AccountController extends AbstractController<UserDTO> {
 
         if (bCryptPasswordEncoder.matches(oldPassword, userDTO.getPassword())) {
             userDTO.setPassword(bCryptPasswordEncoder.encode(newPassword));
-            this.userRepository.save(userMapper.toEntity(userDTO));
+            userService.save(userDTO);
             model.addAttribute("successful", true);
         } else {
             model.addAttribute("errors", true);

@@ -7,7 +7,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 @Service
-public class MenuMapper extends AbstractServiceMapper<Menu, MenuDTO> {
+public class MenuServiceMapper extends AbstractServiceMapper<Menu, MenuDTO> {
 
     private final ModelMapper modelMapper = new ModelMapper();
 

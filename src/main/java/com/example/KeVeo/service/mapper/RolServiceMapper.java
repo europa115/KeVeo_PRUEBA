@@ -6,7 +6,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 @Service
-public class RolMapper extends AbstractServiceMapper<Role, RoleDTO> {
+public class RolServiceMapper extends AbstractServiceMapper<Role, RoleDTO> {
 
     private final ModelMapper modelMapper = new ModelMapper();
 

@@ -6,7 +6,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 @Service
-public class PunctuationMapper extends AbstractServiceMapper<Punctuation, PunctuationDTO> {
+public class PunctuationServiceMapper extends AbstractServiceMapper<Punctuation, PunctuationDTO> {
     private final ModelMapper modelMapper = new ModelMapper();
 
     @Override

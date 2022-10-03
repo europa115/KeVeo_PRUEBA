@@ -6,7 +6,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 @Service
-public class PlatformMapper extends AbstractServiceMapper<Platform, PlatformDTO>{
+public class PlatformServiceMapper extends AbstractServiceMapper<Platform, PlatformDTO>{
 
     private final ModelMapper modelMapper = new ModelMapper();
 
