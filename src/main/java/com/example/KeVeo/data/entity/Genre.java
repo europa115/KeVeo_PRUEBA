@@ -1,5 +1,6 @@
 package com.example.KeVeo.data.entity;
 
+import groovyjarjarantlr4.v4.runtime.misc.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,6 +20,7 @@ public class Genre implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private Integer id;
+    @NotNull
     private String name;
     @Override
     public String toString(){

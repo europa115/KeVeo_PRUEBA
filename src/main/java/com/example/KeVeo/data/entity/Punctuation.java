@@ -1,5 +1,6 @@
 package com.example.KeVeo.data.entity;
 
+import groovyjarjarantlr4.v4.runtime.misc.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,6 +19,7 @@ public class Punctuation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private Integer id;
+    @NotNull
     private Double score;
 
     @ManyToOne(fetch = FetchType.LAZY)

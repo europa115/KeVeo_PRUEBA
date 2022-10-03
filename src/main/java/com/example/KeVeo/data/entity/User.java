@@ -1,5 +1,6 @@
 package com.example.KeVeo.data.entity;
 
+import groovyjarjarantlr4.v4.runtime.misc.NotNull;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
@@ -27,13 +28,16 @@ public class User implements Serializable {
     private Date date;
     private ZonedDateTime registerDate;
     @Basic(optional = false)
+    @NotNull
     private boolean active;
+    @NotNull
     private String userSurname;
+    @NotNull
     private String userEmail;
     private String photo;
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Role> roles;
-    @ManyToMany(cascade = CascadeType.ALL)     //Un poco de dudas con lazy y cascade
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "user_films", joinColumns = @JoinColumn(name = "User_ID"),
     inverseJoinColumns = @JoinColumn(name = "Film_ID"))
     private List<Film> films;
@@ -55,10 +59,7 @@ public class User implements Serializable {
     public boolean favourite(Integer id){
         boolean favourite=false;
         for(Film film:this.films){
-
-            if(Objects.equals(id, film.getId())){
-                favourite=true;
-            }
+            if(Objects.equals(id, film.getId())) favourite=true;
         }
         return favourite;
     }

@@ -1,5 +1,6 @@
 package com.example.KeVeo.data.entity;
 
+import groovyjarjarantlr4.v4.runtime.misc.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,7 +25,9 @@ public class Menu {
     private Menu parent;
     @Column(name = "APP_ORDER")
     private Integer order;
+    @NotNull
     private Integer active;
+    @NotNull
     private String url;
     private String icon;
 

@@ -24,8 +24,18 @@ spring:
       hibernate:
         format_sql: true
         show_sql: true
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 5MB
   sql:
     init:
       mode: always
+aws:
+  access_key_id: <your_access_key>
+  secret_access_key: <your_secret>
+  s3:
+    bucket: pruebakeveo
+    region: us-east-1
 server:
   port: 8080

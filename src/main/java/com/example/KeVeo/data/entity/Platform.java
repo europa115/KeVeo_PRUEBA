@@ -23,9 +23,6 @@ public class Platform implements Serializable {
     @NotNull
     private String name;
 
-@Override
-    public String toString(){
-
-    return this.name;
-    }
+    @Override
+    public String toString(){ return this.name;}
 }

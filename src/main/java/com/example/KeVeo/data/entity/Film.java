@@ -33,6 +33,7 @@ public class Film implements Serializable {
     @Lob
     private String synopsis;
     private String trailer;
+    @NotNull
     private boolean active;
 
 
