@@ -94,6 +94,7 @@ body {
 .neonText {
   color: #fff;
   text-shadow:
+    0 0 2px #000000,
     0 0 7px #fff,
     0 0 10px #fff,
     0 0 21px #f8c407,

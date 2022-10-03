@@ -55,7 +55,15 @@ body{
     content: "\f007";
 }
 
+.form-group#last-group::before{
+    content: "\f007";
+}
+
 .form-group#contrasena-group::before{
+    content: "\f023";
+}
+
+.form-group#contrasena-confirm-group::before{
     content: "\f023";
 }
 
@@ -78,6 +86,9 @@ button .confirm{
     padding: 5px 0;
 }
 
-.forgot a{
-    color: white;
+.register-cnt{
+    color: rgb(233, 179, 17);
+}
+.register{
+    color:#fff;
 }
