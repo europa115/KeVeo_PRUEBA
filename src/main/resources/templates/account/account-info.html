@@ -75,12 +75,17 @@
                         </a>
                     </div>
 
+
                 </form>
 
-                <div class="form-group">
-                    <span><FONT SIZE="4">Si deseas eliminar tu cuenta </FONT><a th:href="@{/login}">pulsa
-							aqui</a></span>
+                <div class="delete-account">
+
+                    <span><FONT SIZE="4">Si deseas eliminar tu cuenta </FONT><span>
+                        <form  th:action="@{/deleteAccount}" method="post" onsubmit="return confirm('Estas seguro de que deas eliminar tu cuenta?');">
+                        <button class="btn-warning submit" type="submit" value="deleteAccount" >pulsa aquí</button>
+                    </form></span></span>
                 </div>
+
                 <div th:if="${errors}" class="alert alert-danger" role="alert">
                     Invalid username and password.
                 </div>

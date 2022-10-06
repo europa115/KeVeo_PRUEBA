@@ -87,4 +87,12 @@ public class AccountController extends AbstractController<UserDTO> {
 
     }
 
+    @PostMapping({"/deleteAccount"})
+    public String deleteAccount(){
+        UserDTO userDTO = userService.findById(((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId()).get();
+        userDTO.setActive(false);
+        userService.save(userDTO);
+        return "redirect:/logout";
+    }
+
 }
