@@ -41,7 +41,7 @@ Then launch your favourite browser and go to `http://localhost:8080`. Enjoy!
     password: <- your base_password ->
 * Spring Boot will create the database automatically and the data needed to run the web app will be inserted with data.sql.
 
-  Remember to run data.sql only once so that the data is only inserted once.
+  If you want your database to save your data permanently you will have to change `jpa.hibernate.ddl-auto: update` in application.yaml
 ## How to access change user photo
 * Amazon AWS S3 has been used to store user photos.
 * If you want to use the select user photo function or change your default image you will need to enter in application.yaml:

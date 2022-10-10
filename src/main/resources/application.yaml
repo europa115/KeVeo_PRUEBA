@@ -18,7 +18,7 @@ spring:
       period: 0
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-drop
     defer-datasource-initialization: true
     properties:
       hibernate:
