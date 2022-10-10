@@ -56,9 +56,8 @@
 
                             <i th:if="${#authentication.getPrincipal() == 'anonymousUser'}" th:href="@{/login}">
                                 <span>Login/Registro</span></i>
-                            <i th:unless="${#authentication.getPrincipal() == 'anonymousUser'}"
-                               th:href="@{/acounnt}"><span
-                                    th:text="${#authentication.getPrincipal().getUserName()}"></span>
+                            <i th:unless="${#authentication.getPrincipal() == 'anonymousUser'}">
+                                <span th:text="${#authentication.getPrincipal().getUserName()}" th:href="@{/acounnt}"></span>
                             </i>
 
                         </a></li>

@@ -43,8 +43,8 @@ public class AccountController extends AbstractController<UserDTO> {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserDTO userDTO = this.userService.findById(((User) authentication.getPrincipal()).getId()).get();
         model.addAttribute("user",userDTO);
-        if (authentication == null) return "/login";
-        else return "account/account-info";
+
+        return "account/account-info";
     }
 
     @PostMapping({"/{id}/account"})

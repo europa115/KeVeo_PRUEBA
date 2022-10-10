@@ -1,6 +1,6 @@
 # KeVeo Web Project
 
-### Information
+# Information
 
 * The KeVeo web project has been created to practice web programming skills.
 The project consists of a web page that allows you to search and filter movies to quickly access the video platforms where they are available.
@@ -30,20 +30,33 @@ Just execute
 Then launch your favourite browser and go to `http://localhost:8080`. Enjoy!
 
 ## How to access to the database
-Open http://localhost:8080/h2-console
+* The database of this project has been created with MySQL Workbench.
 
-* drive: org.h2.Driver
-* JDBC URL: jdbc:h2:file:./target/h2db/db/demo;AUTO_SERVER=TRUE;DB_CLOSE_DELAY=-1
-* username: demo
-* password: (empty)
+* Create your database with: CREATE DATABASE base_keveo;
+
+* Enter in application.yaml:
+
+    username: <- your base_username ->
+
+    password: <- your base_password ->
+* Spring Boot will create the database automatically and the data needed to run the web app will be inserted with data.sql.
+
+  Remember to run data.sql only once so that the data is only inserted once.
+## How to access change user photo
+* Amazon AWS S3 has been used to store user photos.
+* If you want to use the select user photo function or change your default image you will need to enter in application.yaml:
+
+  access_key_id: <-your_access_key->
+
+  secret_access_key: <-your_secret->
 
 ## Users
 Login with email and password
-* admin@user.com:123
-* user1@user.com:123
-* user2@user.com:123
-* nonactive@user:123 (this user will not work just because active field is disabled)
-* anonymous@user.com:123 (this user will not work just because active field is disabled)
+* admin@email.com:123
+* user1@email.com:123
+* user2@email.com:123
+* nonactive@email.com:123 (this user will not work just because active field is disabled)
+* anonymous@email.com:123 (this user will not work just because active field is disabled)
 
 ## Roles
 
@@ -76,3 +89,22 @@ Login with email and password
 * Edit, delete, add and view information of all movies.
 * Delete comments and scores for movies.
 
+## Technologies used in the project
+
+* Java 18
+* Maven 4.0
+* Spring Boot 2.7.1
+* Spring Security
+* JPA
+* Hibernate
+* Lombok
+* MySQL
+* DataBase H2
+* ModelMapper
+* Amazon AWS S3
+* Thymeleaf
+* HTML
+* CSS
+* JavaScript
+* Git
+* GitHub
